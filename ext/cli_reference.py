@@ -17,11 +17,11 @@ import copy
 import inspect
 
 from docutils.parsers import rst
-
 from rally.cli import cliutils
 from rally.cli import main
 from rally.cli import manage
-import utils
+
+from . import utils  # noqa
 
 
 class Parser(object):

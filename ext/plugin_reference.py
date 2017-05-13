@@ -21,7 +21,8 @@ import re
 from rally.common.plugin import discover
 from rally.common.plugin import plugin
 from rally import plugins
-import utils
+
+from . import utils  # noqa
 
 
 JSON_SCHEMA_TYPES_MAP = {"boolean": "bool",
