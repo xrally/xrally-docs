@@ -44,5 +44,4 @@ Contents
    verification/index
    plugins/index
    contribute
-   feature_requests
    project_info/index

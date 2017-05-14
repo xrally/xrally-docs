@@ -15,8 +15,8 @@
 
 .. _project_info:
 
-Project Info and Release Notes
-==============================
+Project Info
+============
 
 Maintainers
 -----------
@@ -152,9 +152,6 @@ Where can I discuss and propose changes?
   `subscription and usage instructions`_);
 - `Rally team on Launchpad`_: Answers/Bugs/Blueprints.
 
-.. _release_notes:
-
-.. include:: release_notes.rst
 
 .. references:
 

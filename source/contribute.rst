@@ -28,11 +28,6 @@ In case you have questions or want to share your ideas, be sure to contact us
 either at `Rally-dev/Lobby`_ channel on **Gitter** messenger (or, less
 preferably, at the ``#openstack-rally`` IRC channel on **irc.freenode.net**).
 
-If you are going to contribute to Rally, you will probably need to grasp a
-better understanding of several main design concepts used throughout our
-project (such as **benchmark scenarios**, **contexts** etc.). To do so, please
-read :ref:`this article <main_concepts>`.
-
 
 How to contribute
 -----------------

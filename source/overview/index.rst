@@ -22,4 +22,3 @@ Rally project overview
 
     overview
     glossary
-    user_stories
