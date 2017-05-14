@@ -9,31 +9,11 @@
 #  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #  License for the specific language governing permissions and limitations
 #  under the License.
-#
-# Rally documentation build configuration file, created by
-# sphinx-quickstart on Fri Jan 10 23:19:18 2014.
-#
-# This file is execfile() with the current directory set to its containing dir.
-#
-# Note that not all possible configuration values are present in this
-# auto-generated file.
-#
-# All configuration values have a default; values that are commented out
-# serve to show the default.
 
 import datetime as dt
 import os
 import subprocess
 import sys
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-# sys.path.extend([
-#     os.path.abspath("../.."),
-#     os.path.abspath("../"),
-#     os.path.abspath("./")
-# ])
 
 sys.path.insert(0, os.path.abspath("../../"))
 sys.path.insert(0, os.path.abspath("../"))
@@ -64,7 +44,7 @@ extensions = [
 todo_include_todos = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ["_templates"]
+templates_path = []
 
 # The suffix of source filenames.
 source_suffix = ".rst"
@@ -76,8 +56,8 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"Rally"
-copyright = u"%d, OpenStack Foundation" % dt.datetime.now().year
+project = u"xRally"
+copyright = u"%d, xRally Team" % dt.datetime.now().year
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -159,10 +139,7 @@ html_theme_path = []
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-if not on_rtd:
-    html_static_path = ["_templates/openstackrally/_static"]
-else:
-    html_static_path = []
+html_static_path = []
 
 # If not "", a "Last updated on:" timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -228,7 +205,7 @@ latex_documents = [
     ("index",
      "%s.tex" % project,
      u"%s Documentation" % project,
-     u"OpenStack Foundation", "manual"),
+     u"xRally Team", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -271,10 +248,12 @@ latex_documents = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ("index", "Rally", u"Rally Documentation",
-     u"Rally Team", "Rally",
-     "Testing framework and tool for all kinds of tests",
-     "Development"),
+    ("index", "xRally", u"xRally Documentation",
+     u"xRally Team", "xRally",
+     "xRally is both tool and framework that allows one to write simple "
+     "plugins and combine them in complex tests scenarios that allows to "
+     "perform functional, regression, load, stress and even chaos testing.",
+     "Development and Operations"),
 ]
 
 # Documents to append as an appendix to all manuals.

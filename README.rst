@@ -4,16 +4,15 @@ xRally Documentation
 
 Official xRally Documentation
 
-HowTo build docs
-----------------
+How To build docs
+-----------------
 
 Python-Tox package takes care about installing all requirements and building
-docs. To genereate documentation, you need to launch simple command:
+docs. To generate documentation run:
 
-  .. console::
-
+.. console::
     tox -e docs
 
-After then, generated docs will be available in following directory:
+Generated docs are placed to:
 
-  source/build
+  ./build
