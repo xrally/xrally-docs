@@ -48,5 +48,8 @@ doc/source/_build/
 .pydevproject
 *.swp
 
+# Ignore doc builds
+site/
+
 # Mac Desktop Service Store
 *.DS_Store

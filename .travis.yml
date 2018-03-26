@@ -1,8 +1,6 @@
 language: python
 env:
-  - TOXENV=pep8
-  - TOXENV=docs
-  - TOXENV=py34
+  - TOXENV=build
 install:
   - pip install tox
 script:
