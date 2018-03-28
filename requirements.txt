@@ -1,2 +1,2 @@
-rally
-sphinx>=1.5.1
+mkdocs
+mkdocs-material
