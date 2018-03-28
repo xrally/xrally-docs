@@ -1,7 +1,7 @@
 site_name: xRally Docs
 site_description: Official xRally Documentation
 site_author: xRally team
-site_url: https://xrally.xyz
+site_url: https://xrally.org
 repo_name: xrally/xrally
 repo_url: https://github.com/xrally/xrally
 edit_uri: ""
@@ -13,11 +13,9 @@ theme:
 
 pages:
   - Overview:
-    - Why Rally?: index.md
+    - Why xRally?: index.md
     - Quick Start: overview/quick_start.md
-    - Env component: overview/env.md
-    - Task component: overview/task.md
-    - Verify component: overview/verify.md
+    - Components: overview/components.md
     - Export Results: overview/export.md
     - Install Options: overview/install.md
     - DB & Upgrades: overview/upgrades.md
