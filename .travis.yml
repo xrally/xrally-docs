@@ -25,6 +25,7 @@ deploy:
   local_dir: site
   # Set the Cache-Control header.
   cache_control: "max-age=21600"
+  acl: public_read
 after_deploy:
   # Allow `awscli` to make requests to CloudFront.
   - aws configure set preview.cloudfront true
