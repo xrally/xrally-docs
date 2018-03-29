@@ -12,15 +12,15 @@ theme:
         tabs: true
 
 pages:
-  - Overview:
+  - Home:
     - Why xRally?: index.md
-    - Quick Start: overview/quick_start.md
-    - Components: overview/components.md
-    - Export Results: overview/export.md
-    - Install Options: overview/install.md
-    - DB & Upgrades: overview/upgrades.md
-    - Community: overview/community.md
-    - License: overview/license.md
+    - Quick Start: quick_start.md
+    - Components: components.md
+    - Export Results: export.md
+    - Install Options: install.md
+    - DB & Upgrades: upgrades.md
+    - Community: community.md
+    - License: license.md
 
   - Conitnious Integration:
     - Overview: ci/index.md
