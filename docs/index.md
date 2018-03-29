@@ -1,23 +1,27 @@
 # Why xRally?
 
+xRally enables continuous monitoring of complex applications using synthetic workloads to measure service performance and detect issues based on code check-ins, configuration changes and operational interuptions. 
+
 ## Are you tired from
 
-- having different tools for functional, concurrency, load, performance, scale, ... testing?
-- not being able to reuse your tests for active monitoring?
+- having different testing tools for functional, concurrency, load, performance, scale?
+- not being able to reuse functional tests for active monitoring?
 - unit test based frameworks that can test only simple "Hello world" apps?
-- copy pasting test cases over and over?
+- copy and pasting test cases over and over again?
 
-## Than xRally is perfect for you!
+## Then xRally is perfect for you!
 
-xRally is next gen testing and active monitoring tool and framework. It is 5 years old project. Hundreds of companies and thousands of devs and ops are using xRally in their systems for testing and monitoring OpenStack. Finally, xRally become a true generic tool that can help other OpenSource projects to improve their quality and performance.
+xRally is based on the OpenStack Rally project that is used today by hundreds of companies for testing and monitoring services and applications. xRally extends Rally to support any cloud compute environment, including Kubernetes and public clouds such as AWS.
 
-Framework leverages home grown plugin mechanism and composition though YAML that allows one to make highly reusable plugins for testing, R&D and monitoring.
+xRally automates the testing cycle by incorporating synthetic workload testing into the continuous integration process. The xRally framework includes built-in plugins for hundreds of cloud services and composition of workloads using YAML. This makes it easy for developers and operations staff to create highly reusable plugins for testing, R&D and monitoring.
 
-Tool is build on top of framework allows easy usage and integration, by providing:
+## xRally framework overview
+
+The xRally Tool is build on top of an automated testing framework that allows code-free testing, by providing:
 
 - Command Line Interface & Python binding
-- Persisting storage for environments and results
-- Built-in HTML & JSON reports
-- Result exporters to popular systems, like Elasticsearch
-- Plugin inventory & auto discovering
+- Persistent storage for configuration environments and test results
+- Simple reporting using HTML & JSON
+- Data export to simplify integration with other monitoring such as New Relic and reporting systems such as Elasticsearch
+- Plugin ecosystem & auto discovery of cloud services
 
