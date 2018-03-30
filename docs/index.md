@@ -1,6 +1,6 @@
 # Why xRally?
 
-xRally enables continuous monitoring of complex applications using synthetic workloads to measure service performance and detect issues based on code check-ins, configuration changes and operational interuptions. 
+xRally enables continuous monitoring of complex applications using synthetic workloads to measure service performance and detect issues based on code check-ins, configuration changes and operational interruptions. 
 
 ## Are you tired from
 
@@ -17,7 +17,7 @@ xRally automates the testing cycle by incorporating synthetic workload testing i
 
 ## xRally framework overview
 
-The xRally Tool is build on top of an automated testing framework that allows code-free testing, by providing:
+The xRally Tool is built on top of an automated testing framework that allows code-free testing, by providing:
 
 - Command Line Interface & Python binding
 - Persistent storage for configuration environments and test results
