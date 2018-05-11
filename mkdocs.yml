@@ -22,13 +22,13 @@ pages:
     - Community: community.md
     - License: license.md
 
-  - Continious Integration:
+  - Continuous Integration:
     - Overview: ci/index.md
     - xRally & Jenkins: ci/jenkins.md
     - xRally & Travis: ci/travis.md
     - xRally & CircleCI: ci/circleci.md
 
-  - Continious Monitoring:
+  - Continuous Monitoring:
     - Overview: cm/index.md
     - xRally, Elastic & Grafana: cm/elastic_grafana.md
 
