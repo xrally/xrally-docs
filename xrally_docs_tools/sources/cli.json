@@ -1,0 +1,1767 @@
+{
+    "rally": "0.12.1", 
+    "categories": [
+        {
+            "commands": [
+                {
+                    "arguments": [], 
+                    "command": "create", 
+                    "name": "rally db create", 
+                    "description": "Create Rally database."
+                }, 
+                {
+                    "arguments": [], 
+                    "command": "ensure", 
+                    "name": "rally db ensure", 
+                    "description": "Creates Rally database if it doesn't exists."
+                }, 
+                {
+                    "arguments": [], 
+                    "command": "recreate", 
+                    "name": "rally db recreate", 
+                    "description": "Drop and create Rally database.\n\nThis will delete all existing data."
+                }, 
+                {
+                    "arguments": [], 
+                    "command": "revision", 
+                    "name": "rally db revision", 
+                    "description": "Print current Rally database revision UUID."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "show_creds", 
+                            "args": [
+                                "--creds"
+                            ], 
+                            "metavar": null, 
+                            "description": "Do not hide credentials from connection string"
+                        }
+                    ], 
+                    "command": "show", 
+                    "name": "rally db show", 
+                    "description": "Show the connection string."
+                }, 
+                {
+                    "arguments": [], 
+                    "command": "upgrade", 
+                    "name": "rally db upgrade", 
+                    "description": "Upgrade Rally database to the latest state."
+                }
+            ], 
+            "name": "db", 
+            "description": "CLI commands for DB management."
+        }, 
+        {
+            "commands": [
+                {
+                    "arguments": [
+                        {
+                            "description": "UUID or name of the env.", 
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "defaults": "env", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }, 
+                        {
+                            "dest": "detailed", 
+                            "args": [
+                                "--detailed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show detailed information."
+                        }
+                    ], 
+                    "command": "check", 
+                    "name": "rally env check", 
+                    "description": "Check availability of all platforms in environment."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "name", 
+                            "args": [
+                                "--name", 
+                                "-n"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<name>", 
+                            "description": "Name of the env."
+                        }, 
+                        {
+                            "description": "Env description", 
+                            "dest": "description", 
+                            "args": [
+                                "--description", 
+                                "-d"
+                            ], 
+                            "defaults": "description", 
+                            "type": "str", 
+                            "metavar": "<description>"
+                        }, 
+                        {
+                            "description": "JSON or YAML dict with custom non validate info.", 
+                            "dest": "extras", 
+                            "args": [
+                                "--extras", 
+                                "-e"
+                            ], 
+                            "defaults": "extras", 
+                            "type": "str", 
+                            "metavar": "<extras>"
+                        }, 
+                        {
+                            "dest": "from_sysenv", 
+                            "args": [
+                                "--from-sysenv"
+                            ], 
+                            "metavar": null, 
+                            "description": "Iterate over all available platforms and check system environment for credentials."
+                        }, 
+                        {
+                            "description": "Path to env spec.", 
+                            "dest": "spec", 
+                            "args": [
+                                "--spec", 
+                                "-s"
+                            ], 
+                            "defaults": "spec", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Don't set new env as default for future operations."
+                        }
+                    ], 
+                    "command": "create", 
+                    "name": "rally env create", 
+                    "description": "Create new environment."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUID or name of the env.", 
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "defaults": "env", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "force", 
+                            "args": [
+                                "--force"
+                            ], 
+                            "metavar": null, 
+                            "description": "Delete DB records even if env is not destroyed."
+                        }
+                    ], 
+                    "command": "delete", 
+                    "name": "rally env delete", 
+                    "description": "Deletes all records related to Env from db."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUID or name of the env.", 
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "defaults": "env", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "skip_cleanup", 
+                            "args": [
+                                "--skip-cleanup"
+                            ], 
+                            "metavar": null, 
+                            "description": "Do not perform platforms cleanup before destroy."
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }, 
+                        {
+                            "dest": "detailed", 
+                            "args": [
+                                "--detailed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show detailed information."
+                        }
+                    ], 
+                    "command": "destroy", 
+                    "name": "rally env destroy", 
+                    "description": "Destroy existing environment."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUID or name of the env.", 
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "defaults": "env", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }
+                    ], 
+                    "command": "info", 
+                    "name": "rally env info", 
+                    "description": "Show environment information."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }
+                    ], 
+                    "command": "list", 
+                    "name": "rally env list", 
+                    "description": "List existing environments."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUID or name of the env.", 
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "defaults": "env", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }, 
+                        {
+                            "dest": "only_spec", 
+                            "args": [
+                                "--only-spec"
+                            ], 
+                            "metavar": null, 
+                            "description": "Print only a spec for the environment."
+                        }
+                    ], 
+                    "command": "show", 
+                    "name": "rally env show", 
+                    "description": ""
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "env", 
+                            "args": [
+                                "--env"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of a env."
+                        }, 
+                        {
+                            "dest": "to_json", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Format output as JSON."
+                        }
+                    ], 
+                    "command": "use", 
+                    "name": "rally env use", 
+                    "description": "Set default environment."
+                }
+            ], 
+            "name": "env", 
+            "description": "Set of commands that allow you to manage envs."
+        }, 
+        {
+            "commands": [
+                {
+                    "arguments": [
+                        {
+                            "description": "List only plugins that match the given name.", 
+                            "dest": "name", 
+                            "args": [
+                                "--name"
+                            ], 
+                            "defaults": "name", 
+                            "type": "str", 
+                            "metavar": "<name>"
+                        }, 
+                        {
+                            "description": "List only plugins that are in the specified platform.", 
+                            "dest": "platform", 
+                            "args": [
+                                "--platform"
+                            ], 
+                            "defaults": "platform", 
+                            "type": "str", 
+                            "metavar": "<platform>"
+                        }, 
+                        {
+                            "dest": "platform", 
+                            "args": [
+                                "--namespace"
+                            ], 
+                            "metavar": null, 
+                            "defaults": "platform", 
+                            "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
+                        }, 
+                        {
+                            "description": "Plugin base class.", 
+                            "dest": "base_cls", 
+                            "args": [
+                                "--plugin-base"
+                            ], 
+                            "defaults": "base_cls", 
+                            "type": "str", 
+                            "metavar": "<plugin_base>"
+                        }
+                    ], 
+                    "command": "list", 
+                    "name": "rally plugin list", 
+                    "description": "List all Rally plugins that match name and platform."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "name", 
+                            "args": [
+                                "--name"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<name>", 
+                            "description": "Plugin name."
+                        }, 
+                        {
+                            "description": "Plugin platform.", 
+                            "dest": "platform", 
+                            "args": [
+                                "--platform"
+                            ], 
+                            "defaults": "platform", 
+                            "type": "str", 
+                            "metavar": "<platform>"
+                        }, 
+                        {
+                            "dest": "platform", 
+                            "args": [
+                                "--namespace"
+                            ], 
+                            "metavar": null, 
+                            "defaults": "platform", 
+                            "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
+                        }
+                    ], 
+                    "command": "show", 
+                    "name": "rally plugin show", 
+                    "description": "Show detailed information about a Rally plugin."
+                }
+            ], 
+            "name": "plugin", 
+            "description": "Set of commands that allow you to manage Rally plugins."
+        }, 
+        {
+            "commands": [
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task."
+                        }, 
+                        {
+                            "dest": "soft", 
+                            "args": [
+                                "--soft"
+                            ], 
+                            "metavar": null, 
+                            "description": "Abort task after current scenario finishes execution."
+                        }
+                    ], 
+                    "command": "abort", 
+                    "name": "rally task abort", 
+                    "description": "Abort a running task."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "force", 
+                            "args": [
+                                "--force"
+                            ], 
+                            "metavar": null, 
+                            "description": "force delete"
+                        }, 
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<task-id>", 
+                            "description": "UUID of task or a list of task UUIDs."
+                        }
+                    ], 
+                    "command": "delete", 
+                    "name": "rally task delete", 
+                    "description": "Delete task and its results."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task. If --uuid is \"last\" the results of  the most recently created task will be displayed."
+                        }, 
+                        {
+                            "dest": "iterations_data", 
+                            "args": [
+                                "--iterations-data"
+                            ], 
+                            "metavar": null, 
+                            "description": "Print detailed results for each iteration."
+                        }
+                    ], 
+                    "command": "detailed", 
+                    "name": "rally task detailed", 
+                    "description": ""
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUIDs of tasks or json reports of tasks", 
+                            "dest": "tasks", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "defaults": "tasks", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "description": "Report type. Out-of-the-box types: JSON, HTML, HTML-Static, Elastic, JUnit-XML. HINT: You can list all types, executing `rally plugin list --plugin-base TaskExporter` command.", 
+                            "dest": "output_type", 
+                            "args": [
+                                "--type"
+                            ], 
+                            "defaults": "output_type", 
+                            "type": "str", 
+                            "metavar": "<type>"
+                        }, 
+                        {
+                            "description": "Report destination. Can be a path to a file (in case of JSON, HTML, HTML-Static, JUnit-XML, Elastic etc. types) to save the report to or a connection string. It depends on the report type.", 
+                            "dest": "output_dest", 
+                            "args": [
+                                "--to"
+                            ], 
+                            "defaults": "output_dest", 
+                            "type": "str", 
+                            "metavar": "<dest>"
+                        }
+                    ], 
+                    "command": "export", 
+                    "name": "rally task export", 
+                    "description": "Export task results to the custom task's exporting system."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "JSON file with task results", 
+                            "dest": "task_file", 
+                            "args": [
+                                "--file"
+                            ], 
+                            "defaults": "task_file", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of a deployment."
+                        }, 
+                        {
+                            "description": "Mark the task with a tag or a few tags.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }
+                    ], 
+                    "command": "import", 
+                    "name": "rally task import", 
+                    "description": "Import json results of a test into rally database"
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of a deployment."
+                        }, 
+                        {
+                            "dest": "all_deployments", 
+                            "args": [
+                                "--all-deployments"
+                            ], 
+                            "metavar": null, 
+                            "description": "List tasks from all deployments."
+                        }, 
+                        {
+                            "description": "List tasks with specified status. Available statuses: aborted, aborting, crashed, finished, init, paused, running, sla_failed, soft_aborting, validated, validating, validation_failed", 
+                            "dest": "status", 
+                            "args": [
+                                "--status"
+                            ], 
+                            "defaults": "status", 
+                            "type": "str", 
+                            "metavar": "<status>"
+                        }, 
+                        {
+                            "description": "Tags to filter tasks by.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }, 
+                        {
+                            "dest": "uuids_only", 
+                            "args": [
+                                "--uuids-only"
+                            ], 
+                            "metavar": null, 
+                            "description": "List task UUIDs only."
+                        }
+                    ], 
+                    "command": "list", 
+                    "name": "rally task list", 
+                    "description": "List tasks, started and finished.\n\nDisplayed tasks can be filtered by status or deployment.  By\ndefault 'rally task list' will display tasks from the active\ndeployment without filtering by status."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "tasks", 
+                            "args": [
+                                "--tasks"
+                            ], 
+                            "metavar": null, 
+                            "defaults": "tasks", 
+                            "description": "[Deprecated since Rally 0.10.0] Use '--uuid' instead. "
+                        }, 
+                        {
+                            "description": "Report destination. Can be a path to a file (in case of HTML, HTML-STATIC, etc. types) to save the report to or a connection string.", 
+                            "dest": "out", 
+                            "args": [
+                                "--out"
+                            ], 
+                            "defaults": "out", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "dest": "open_it", 
+                            "args": [
+                                "--open"
+                            ], 
+                            "metavar": null, 
+                            "description": "Open the output in a browser."
+                        }, 
+                        {
+                            "dest": "out_format", 
+                            "args": [
+                                "--html"
+                            ], 
+                            "metavar": null, 
+                            "description": ""
+                        }, 
+                        {
+                            "dest": "out_format", 
+                            "args": [
+                                "--html-static"
+                            ], 
+                            "metavar": null, 
+                            "description": ""
+                        }, 
+                        {
+                            "dest": "out_format", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": ""
+                        }, 
+                        {
+                            "dest": "out_format", 
+                            "args": [
+                                "--junit"
+                            ], 
+                            "metavar": null, 
+                            "description": "[Deprecated since Rally 0.10.0] Use 'rally task export --type junit-xml' instead. "
+                        }, 
+                        {
+                            "description": "UUIDs of tasks or json reports of tasks", 
+                            "dest": "tasks", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "defaults": "tasks", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }
+                    ], 
+                    "command": "report", 
+                    "name": "rally task report", 
+                    "description": "Generate a report for the specified task(s)."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task."
+                        }
+                    ], 
+                    "command": "results", 
+                    "name": "rally task results", 
+                    "description": "Display raw task results.\n\nThis will produce a lot of output data about every iteration."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task."
+                        }, 
+                        {
+                            "dest": "tojson", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Output in JSON format."
+                        }
+                    ], 
+                    "command": "sla-check", 
+                    "name": "rally task sla-check", 
+                    "description": "Display SLA check results table."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task."
+                        }, 
+                        {
+                            "dest": "tojson", 
+                            "args": [
+                                "--json"
+                            ], 
+                            "metavar": null, 
+                            "description": "Output in JSON format."
+                        }
+                    ], 
+                    "command": "sla_check", 
+                    "name": "rally task sla_check", 
+                    "description": "DEPRECATED since Rally 0.8.0, use `rally task sla-check` instead."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of a deployment."
+                        }, 
+                        {
+                            "dest": "task_file", 
+                            "args": [
+                                "--task", 
+                                "--filename"
+                            ], 
+                            "metavar": "<path>", 
+                            "description": "Path to the input task file."
+                        }, 
+                        {
+                            "dest": "task_args", 
+                            "args": [
+                                "--task-args"
+                            ], 
+                            "metavar": "<json>", 
+                            "defaults": "task_args", 
+                            "description": "Input task args (JSON dict). These args are used to render the Jinja2 template in the input task."
+                        }, 
+                        {
+                            "dest": "task_args_file", 
+                            "args": [
+                                "--task-args-file"
+                            ], 
+                            "metavar": "<path>", 
+                            "defaults": "task_args_file", 
+                            "description": "Path to the file with input task args (dict in JSON/YAML). These args are used to render the Jinja2 template in the input task."
+                        }, 
+                        {
+                            "description": "Mark the task with a tag or a few tags.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Don't set new task as default for future operations."
+                        }, 
+                        {
+                            "dest": "abort_on_sla_failure", 
+                            "args": [
+                                "--abort-on-sla-failure"
+                            ], 
+                            "metavar": null, 
+                            "description": "Abort the execution of a task when any SLA check for it fails for subtask or workload."
+                        }
+                    ], 
+                    "command": "start", 
+                    "name": "rally task start", 
+                    "description": "Run task.\n\nIf both task_args and task_args_file are specified, they are going to\nbe merged. task_args has a higher priority so it overrides\nvalues from task_args_file.\nThere are 3 kinds of return codes, 0: no error, 1: running error,\n2: sla check failed."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of task"
+                        }
+                    ], 
+                    "command": "status", 
+                    "name": "rally task status", 
+                    "description": "Display the current status of a task."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "out", 
+                            "args": [
+                                "--out"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<path>", 
+                            "description": "Path to output file."
+                        }, 
+                        {
+                            "dest": "open_it", 
+                            "args": [
+                                "--open"
+                            ], 
+                            "metavar": null, 
+                            "description": "Open the output in a browser."
+                        }, 
+                        {
+                            "dest": "tasks", 
+                            "args": [
+                                "--tasks"
+                            ], 
+                            "metavar": "<tasks>", 
+                            "description": "UUIDs of tasks, or JSON files with task results"
+                        }
+                    ], 
+                    "command": "trends", 
+                    "name": "rally task trends", 
+                    "description": "Generate workloads trends HTML report."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID of the task"
+                        }, 
+                        {
+                            "dest": "task_id", 
+                            "args": [
+                                "--task"
+                            ], 
+                            "type": "str", 
+                            "metavar": null, 
+                            "description": "[Deprecated since Rally 0.2.0] Use '--uuid' instead. "
+                        }
+                    ], 
+                    "command": "use", 
+                    "name": "rally task use", 
+                    "description": "Set active task."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of a deployment."
+                        }, 
+                        {
+                            "dest": "task_file", 
+                            "args": [
+                                "--task", 
+                                "--filename"
+                            ], 
+                            "metavar": "<path>", 
+                            "description": "Path to the input task file."
+                        }, 
+                        {
+                            "dest": "task_args", 
+                            "args": [
+                                "--task-args"
+                            ], 
+                            "metavar": "<json>", 
+                            "defaults": "task_args", 
+                            "description": "Input task args (JSON dict). These args are used to render the Jinja2 template in the input task."
+                        }, 
+                        {
+                            "dest": "task_args_file", 
+                            "args": [
+                                "--task-args-file"
+                            ], 
+                            "metavar": "<path>", 
+                            "defaults": "task_args_file", 
+                            "description": "Path to the file with input task args (dict in JSON/YAML). These args are used to render the Jinja2 template in the input task."
+                        }
+                    ], 
+                    "command": "validate", 
+                    "name": "rally task validate", 
+                    "description": "Validate a task configuration file.\n\nThis will check that task configuration file has valid syntax and\nall required options of scenarios, contexts, SLA and runners are set.\n\nIf both task_args and task_args_file are specified, they will\nbe merged. task_args has a higher priority so it will override\nvalues from task_args_file."
+                }
+            ], 
+            "name": "task", 
+            "description": "Set of commands that allow you to manage tasks and results.\n\n    "
+        }, 
+        {
+            "commands": [
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "description": "Path or URL to the repo to clone verifier extension from.", 
+                            "dest": "source", 
+                            "args": [
+                                "--source"
+                            ], 
+                            "defaults": "source", 
+                            "type": "str", 
+                            "metavar": "<source>"
+                        }, 
+                        {
+                            "description": "Branch, tag or commit ID to checkout before installation of the verifier extension (the 'master' branch is used by default).", 
+                            "dest": "version", 
+                            "args": [
+                                "--version"
+                            ], 
+                            "defaults": "version", 
+                            "type": "str", 
+                            "metavar": "<version>"
+                        }, 
+                        {
+                            "description": "Extra installation settings for verifier extension.", 
+                            "dest": "extra", 
+                            "args": [
+                                "--extra-settings"
+                            ], 
+                            "defaults": "extra", 
+                            "type": "str", 
+                            "metavar": "<extra_settings>"
+                        }
+                    ], 
+                    "command": "add-verifier-ext", 
+                    "name": "rally verify add-verifier-ext", 
+                    "description": "Add a verifier extension."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "dest": "reconfigure", 
+                            "args": [
+                                "--reconfigure"
+                            ], 
+                            "metavar": null, 
+                            "description": "Reconfigure verifier."
+                        }, 
+                        {
+                            "description": "Extend verifier configuration with extra options. If options are already present, the given ones will override them. Can be a path to a regular config file or just a json/yaml.", 
+                            "dest": "extra_options", 
+                            "args": [
+                                "--extend"
+                            ], 
+                            "defaults": "extra_options", 
+                            "type": "str", 
+                            "metavar": "<path/json/yaml>"
+                        }, 
+                        {
+                            "description": "Override verifier configuration by another one from a given source.", 
+                            "dest": "new_configuration", 
+                            "args": [
+                                "--override"
+                            ], 
+                            "defaults": "new_configuration", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "dest": "show", 
+                            "args": [
+                                "--show"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show verifier configuration."
+                        }
+                    ], 
+                    "command": "configure-verifier", 
+                    "name": "rally verify configure-verifier", 
+                    "description": "Configure a verifier for a specific deployment."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "name", 
+                            "args": [
+                                "--name"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<name>", 
+                            "description": "Verifier name (for example, 'My verifier')."
+                        }, 
+                        {
+                            "dest": "vtype", 
+                            "args": [
+                                "--type"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<type>", 
+                            "description": "Verifier plugin name. HINT: You can list all verifier plugins, executing command `rally verify list-plugins`."
+                        }, 
+                        {
+                            "description": "Verifier plugin platform. Should be specified in case of two verifier plugins with equal names but in different platforms.", 
+                            "dest": "platform", 
+                            "args": [
+                                "--platform"
+                            ], 
+                            "defaults": "platform", 
+                            "type": "str", 
+                            "metavar": "<platform>"
+                        }, 
+                        {
+                            "dest": "platform", 
+                            "args": [
+                                "--namespace"
+                            ], 
+                            "metavar": null, 
+                            "defaults": "platform", 
+                            "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
+                        }, 
+                        {
+                            "description": "Path or URL to the repo to clone verifier from.", 
+                            "dest": "source", 
+                            "args": [
+                                "--source"
+                            ], 
+                            "defaults": "source", 
+                            "type": "str", 
+                            "metavar": "<source>"
+                        }, 
+                        {
+                            "description": "Branch, tag or commit ID to checkout before verifier installation (the 'master' branch is used by default).", 
+                            "dest": "version", 
+                            "args": [
+                                "--version"
+                            ], 
+                            "defaults": "version", 
+                            "type": "str", 
+                            "metavar": "<version>"
+                        }, 
+                        {
+                            "dest": "system_wide", 
+                            "args": [
+                                "--system-wide"
+                            ], 
+                            "metavar": null, 
+                            "description": "Use the system-wide environment for verifier instead of a virtual environment."
+                        }, 
+                        {
+                            "description": "Extra installation settings for verifier.", 
+                            "dest": "extra", 
+                            "args": [
+                                "--extra-settings"
+                            ], 
+                            "defaults": "extra", 
+                            "type": "str", 
+                            "metavar": "<extra_settings>"
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Not to set the created verifier as the default verifier for future operations."
+                        }
+                    ], 
+                    "command": "create-verifier", 
+                    "name": "rally verify create-verifier", 
+                    "description": "Create a verifier."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "verification_uuid", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "UUIDs of verifications. HINT: You can list all verifications, executing command `rally verify list`."
+                        }
+                    ], 
+                    "command": "delete", 
+                    "name": "rally verify delete", 
+                    "description": "Delete a verification or a few verifications."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`."
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. If specified, only the deployment-specific data will be deleted for verifier. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "dest": "force", 
+                            "args": [
+                                "--force"
+                            ], 
+                            "metavar": null, 
+                            "description": "Delete all stored verifications of the specified verifier. If a deployment specified, only verifications of this deployment will be deleted. Use this argument carefully! You can delete verifications that may be important to you."
+                        }
+                    ], 
+                    "command": "delete-verifier", 
+                    "name": "rally verify delete-verifier", 
+                    "description": "Delete a verifier."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "description": "Verifier extension name.", 
+                            "dest": "name", 
+                            "args": [
+                                "--name"
+                            ], 
+                            "defaults": "name", 
+                            "type": "str", 
+                            "metavar": "<name>"
+                        }
+                    ], 
+                    "command": "delete-verifier-ext", 
+                    "name": "rally verify delete-verifier-ext", 
+                    "description": "Delete a verifier extension."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "description": "File to import test results from.", 
+                            "dest": "file_to_parse", 
+                            "args": [
+                                "--file"
+                            ], 
+                            "defaults": "file_to_parse", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "description": "Arguments that might be used when running tests. For example, '{concurrency: 2, pattern: set=identity}'.", 
+                            "dest": "run_args", 
+                            "args": [
+                                "--run-args"
+                            ], 
+                            "defaults": "run_args", 
+                            "type": "str", 
+                            "metavar": "<run_args>"
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Not to set the created verification as the default verification for future operations."
+                        }
+                    ], 
+                    "command": "import", 
+                    "name": "rally verify import", 
+                    "description": "Import results of a test run into the Rally database."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "description": "Tags to filter verifications by.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }, 
+                        {
+                            "description": "Status to filter verifications by.", 
+                            "dest": "status", 
+                            "args": [
+                                "--status"
+                            ], 
+                            "defaults": "status", 
+                            "type": "str", 
+                            "metavar": "<status>"
+                        }
+                    ], 
+                    "command": "list", 
+                    "name": "rally verify list", 
+                    "description": "List all verifications."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Requried patform (e.g. openstack).", 
+                            "dest": "platform", 
+                            "args": [
+                                "--platform"
+                            ], 
+                            "defaults": "platform", 
+                            "type": "str", 
+                            "metavar": "<platform>"
+                        }, 
+                        {
+                            "dest": "platform", 
+                            "args": [
+                                "--namespace"
+                            ], 
+                            "metavar": null, 
+                            "defaults": "platform", 
+                            "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
+                        }
+                    ], 
+                    "command": "list-plugins", 
+                    "name": "rally verify list-plugins", 
+                    "description": "List all plugins for verifiers management."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }
+                    ], 
+                    "command": "list-verifier-exts", 
+                    "name": "rally verify list-verifier-exts", 
+                    "description": "List all verifier extensions."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "description": "Pattern which will be used for matching. Can be a regexp or a verifier-specific entity (for example, in case of Tempest you can specify 'set=smoke').", 
+                            "dest": "pattern", 
+                            "args": [
+                                "--pattern"
+                            ], 
+                            "defaults": "pattern", 
+                            "type": "str", 
+                            "metavar": "<pattern>"
+                        }
+                    ], 
+                    "command": "list-verifier-tests", 
+                    "name": "rally verify list-verifier-tests", 
+                    "description": "List all verifier tests."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Status to filter verifiers by.", 
+                            "dest": "status", 
+                            "args": [
+                                "--status"
+                            ], 
+                            "defaults": "status", 
+                            "type": "str", 
+                            "metavar": "<status>"
+                        }
+                    ], 
+                    "command": "list-verifiers", 
+                    "name": "rally verify list-verifiers", 
+                    "description": "List all verifiers."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "UUIDs of verifications. HINT: You can list all verifications, executing command `rally verify list`.", 
+                            "dest": "verification_uuid", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "defaults": "verification_uuid", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "description": "Report type (Defaults to JSON). Out-of-the-box types: HTML, HTML-Static, JSON, JUnit-XML. HINT: You can list all types, executing `rally plugin list --plugin-base VerificationReporter` command.", 
+                            "dest": "output_type", 
+                            "args": [
+                                "--type"
+                            ], 
+                            "defaults": "output_type", 
+                            "type": "str", 
+                            "metavar": "<type>"
+                        }, 
+                        {
+                            "description": "Report destination. Can be a path to a file (in case of HTML, JSON, etc. types) to save the report to or a connection string. It depends on the report type.", 
+                            "dest": "output_dest", 
+                            "args": [
+                                "--to"
+                            ], 
+                            "defaults": "output_dest", 
+                            "type": "str", 
+                            "metavar": "<dest>"
+                        }, 
+                        {
+                            "dest": "open_it", 
+                            "args": [
+                                "--open"
+                            ], 
+                            "metavar": null, 
+                            "description": "Open the output file in a browser."
+                        }
+                    ], 
+                    "command": "report", 
+                    "name": "rally verify report", 
+                    "description": "Generate a report for a verification or a few verifications."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verification UUID. HINT: You can list all verifications, executing command `rally verify list`.", 
+                            "dest": "verification_uuid", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "defaults": "verification_uuid", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "dest": "failed", 
+                            "args": [
+                                "--failed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Rerun only failed tests."
+                        }, 
+                        {
+                            "description": "Mark verification with a tag or a few tags.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }, 
+                        {
+                            "description": "How many processes to be used for running verifier tests. The default value (0) auto-detects your CPU count.", 
+                            "dest": "concur", 
+                            "args": [
+                                "--concurrency"
+                            ], 
+                            "defaults": "concur", 
+                            "type": "int", 
+                            "metavar": "<N>"
+                        }, 
+                        {
+                            "dest": "detailed", 
+                            "args": [
+                                "--detailed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show verification details such as errors of failed tests."
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Not to set the finished verification as the default verification for future operations."
+                        }
+                    ], 
+                    "command": "rerun", 
+                    "name": "rally verify rerun", 
+                    "description": "Rerun tests from a verification for a specific deployment."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verification UUID. HINT: You can list all verifications, executing command `rally verify list`.", 
+                            "dest": "verification_uuid", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "defaults": "verification_uuid", 
+                            "type": "str", 
+                            "metavar": "<uuid>"
+                        }, 
+                        {
+                            "description": "Sort tests by 'name', 'duration' or 'status'.", 
+                            "dest": "sort_by", 
+                            "args": [
+                                "--sort-by"
+                            ], 
+                            "defaults": "sort_by", 
+                            "type": "str", 
+                            "metavar": "<query>"
+                        }, 
+                        {
+                            "dest": "detailed", 
+                            "args": [
+                                "--detailed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show verification details such as run arguments and errors of failed tests."
+                        }
+                    ], 
+                    "command": "show", 
+                    "name": "rally verify show", 
+                    "description": "Show detailed information about a verification."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }
+                    ], 
+                    "command": "show-verifier", 
+                    "name": "rally verify show-verifier", 
+                    "description": "Show detailed information about a verifier."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "dest": "deployment", 
+                            "args": [
+                                "--deployment-id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Deployment name or UUID. HINT: You can list all deployments, executing command `rally deployment list`."
+                        }, 
+                        {
+                            "description": "Mark verification with a tag or a few tags.", 
+                            "dest": "tags", 
+                            "args": [
+                                "--tag"
+                            ], 
+                            "defaults": "tags", 
+                            "type": "str", 
+                            "metavar": "<tag>"
+                        }, 
+                        {
+                            "description": "Pattern which will be used for running tests. Can be a regexp or a verifier-specific entity (for example, in case of Tempest you can specify 'set=smoke').", 
+                            "dest": "pattern", 
+                            "args": [
+                                "--pattern"
+                            ], 
+                            "defaults": "pattern", 
+                            "type": "str", 
+                            "metavar": "<pattern>"
+                        }, 
+                        {
+                            "description": "How many processes to be used for running verifier tests. The default value (0) auto-detects your CPU count.", 
+                            "dest": "concur", 
+                            "args": [
+                                "--concurrency"
+                            ], 
+                            "defaults": "concur", 
+                            "type": "int", 
+                            "metavar": "<N>"
+                        }, 
+                        {
+                            "description": "Path to a file with a list of tests to run.", 
+                            "dest": "load_list", 
+                            "args": [
+                                "--load-list"
+                            ], 
+                            "defaults": "load_list", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "description": "Path to a file with a list of tests to skip. Format: json or yaml like a dictionary where keys are test names and values are reasons.", 
+                            "dest": "skip_list", 
+                            "args": [
+                                "--skip-list"
+                            ], 
+                            "defaults": "skip_list", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "description": "Path to a file with a list of tests that will be considered as expected failures. Format: json or yaml like a dictionary where keys are test names and values are reasons.", 
+                            "dest": "xfail_list", 
+                            "args": [
+                                "--xfail-list"
+                            ], 
+                            "defaults": "xfail_list", 
+                            "type": "str", 
+                            "metavar": "<path>"
+                        }, 
+                        {
+                            "dest": "detailed", 
+                            "args": [
+                                "--detailed"
+                            ], 
+                            "metavar": null, 
+                            "description": "Show verification details such as errors of failed tests."
+                        }, 
+                        {
+                            "dest": "do_use", 
+                            "args": [
+                                "--no-use"
+                            ], 
+                            "metavar": null, 
+                            "description": "Not to set the finished verification as the default verification for future operations."
+                        }
+                    ], 
+                    "command": "start", 
+                    "name": "rally verify start", 
+                    "description": "Start a verification (run verifier tests)."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`.", 
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "defaults": "verifier_id", 
+                            "type": "str", 
+                            "metavar": "<id>"
+                        }, 
+                        {
+                            "dest": "update_venv", 
+                            "args": [
+                                "--update-venv"
+                            ], 
+                            "metavar": null, 
+                            "description": "Update the virtual environment for verifier."
+                        }, 
+                        {
+                            "description": "Branch, tag or commit ID to checkout. HINT: Specify the same version to pull the latest repo code.", 
+                            "dest": "version", 
+                            "args": [
+                                "--version"
+                            ], 
+                            "defaults": "version", 
+                            "type": "str", 
+                            "metavar": "<version>"
+                        }, 
+                        {
+                            "dest": "system_wide", 
+                            "args": [
+                                "--system-wide"
+                            ], 
+                            "metavar": null, 
+                            "description": "Switch to using the system-wide environment."
+                        }, 
+                        {
+                            "dest": "no_system_wide", 
+                            "args": [
+                                "--no-system-wide"
+                            ], 
+                            "metavar": null, 
+                            "description": "Switch to using the virtual environment. If the virtual environment doesn't exist, it will be created."
+                        }
+                    ], 
+                    "command": "update-verifier", 
+                    "name": "rally verify update-verifier", 
+                    "description": "Update a verifier."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "verification_uuid", 
+                            "args": [
+                                "--uuid"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<uuid>", 
+                            "description": "Verification UUID. HINT: You can list all verifications, executing command `rally verify list`."
+                        }
+                    ], 
+                    "command": "use", 
+                    "name": "rally verify use", 
+                    "description": "Choose a verification to use for the future operations."
+                }, 
+                {
+                    "arguments": [
+                        {
+                            "dest": "verifier_id", 
+                            "args": [
+                                "--id"
+                            ], 
+                            "type": "str", 
+                            "metavar": "<id>", 
+                            "description": "Verifier name or UUID. HINT: You can list all verifiers, executing command `rally verify list-verifiers`."
+                        }
+                    ], 
+                    "command": "use-verifier", 
+                    "name": "rally verify use-verifier", 
+                    "description": "Choose a verifier to use for the future operations."
+                }
+            ], 
+            "name": "verify", 
+            "description": "Verify an OpenStack cloud via a verifier."
+        }
+    ]
+}
