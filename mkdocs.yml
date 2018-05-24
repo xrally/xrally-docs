@@ -11,6 +11,12 @@ theme:
     feature:
         tabs: true
 
+markdown_extensions:
+- admonition
+- pymdownx.details
+- codehilite: {guess_lang: false}
+- toc: {permalink: true}
+
 pages:
   - Home:
     - Why xRally?: index.md
