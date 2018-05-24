@@ -13,6 +13,29 @@
 #    under the License.
 
 import inspect
+import os
+import subprocess
+import tempfile
+import uuid
+
+import yaml
+
+import xrally_docs_tools
+
+
+def generate_random_path(root_dir=None):
+    """Generates a vacant name for a file or dir at the specified place.
+
+    :param root_dir: Name of a directory to generate path in. If None (default
+        behaviour), temporary directory (i.e /tmp in linux) will be used.
+    """
+    root_dir = root_dir or tempfile.gettempdir()
+    path = None
+    while path is None:
+        candidate = os.path.join(root_dir, str(uuid.uuid4()))
+        if not os.path.exists(candidate):
+            path = candidate
+    return path
 
 
 class Tag(object):
@@ -77,9 +100,30 @@ class Tag(object):
         return sorted(tags)
 
 
+def sp_call(cmd, env=None, cwd=None, merge_stdout=True):
+    """Call subprocess.check_output with hiding stdout and stderr."""
+    try:
+        stderr = subprocess.STDOUT if merge_stdout else None
+        return subprocess.check_output(cmd, env=env, cwd=cwd,
+                                       stderr=stderr)
+    except subprocess.CalledProcessError as e:
+        print("Output: %s" % e.output)
+
+
 def get_defaults(func):
     """Return a map of argument:default_value for specified function."""
     spec = inspect.getargspec(func)
     if spec.defaults:
         return dict(zip(spec.args[-len(spec.defaults):], spec.defaults))
     return {}
+
+
+def get_mkdocs_cfg():
+    with open(xrally_docs_tools.MKDOCS_CFG) as f:
+        return yaml.safe_load(f)
+
+
+def update_mkdocs_cfg(cfg):
+    print("Updating MKDocs configuration.")
+    with open(xrally_docs_tools.MKDOCS_CFG, "w") as f:
+        f.write(yaml.safe_dump(cfg))

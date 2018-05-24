@@ -4,5 +4,12 @@
          "title": "In-tree",
          "repository": "https://github.com/openstack/rally",
          "versions": ["0.11.0", "0.12.1"]
+    },
+    {
+         "name": "rally-openstack",
+         "title": "OpenStack",
+         "repository": "https://github.com/openstack/rally-openstack",
+         "versions": ["1.0.0", "1.1.0"],
+         "changelog_file": "CHANGELOG.rst"
     }
 ]
