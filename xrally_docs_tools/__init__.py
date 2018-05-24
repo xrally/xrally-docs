@@ -18,3 +18,5 @@ import os
 ROOT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 DOCS_DIR = os.path.join(ROOT_DIR, "docs")
 MKDOCS_CFG = os.path.join(ROOT_DIR, "mkdocs.yml")
+PLUGINS_FILE = os.path.join(ROOT_DIR, "plugins.json")
+SOURCE_DATA_DIR = os.path.join(ROOT_DIR, "xrally_docs_tools", "sources")

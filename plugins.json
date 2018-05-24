@@ -1,0 +1,8 @@
+[
+    {
+         "name": "rally",
+         "title": "In-tree",
+         "repository": "https://github.com/openstack/rally",
+         "versions": ["0.11.0", "0.12.1"]
+    }
+]
