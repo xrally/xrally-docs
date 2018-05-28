@@ -34,20 +34,28 @@ RESULTS_FILE = os.path.join(xrally_docs_tools.SOURCE_DATA_DIR, "plugins.json")
 
 def process_package(package, results):
     print("Start processing %s." % package["name"])
+
+    processed_versions = None
     if package["name"] not in results:
         # this package is new for us.
         results[package["name"]] = copy.deepcopy(package)
         results[package["name"]]["plugins"] = {}
         results[package["name"]]["plugins_bases"] = {}
-        processed_versions = None
     else:
-        processed_versions = results[package["name"]]["versions"]
+        if "versions" in results[package["name"]]:
+            processed_versions = results[package["name"]]["versions"]
 
     p_data = results[package["name"]]
 
-    if processed_versions and processed_versions == package["versions"]:
+    if processed_versions and processed_versions == package.get("versions"):
         # nothing had changed. skipping
         print("Nothing had changed. Skipping...\n\n")
+        return
+
+    if "versions" not in p_data:
+        # it is in-active-development-plugin
+        print("Package is under active development, but had not been released "
+              "yet...\n\n")
         return
 
     print("Cloning the source code.")
@@ -151,16 +159,19 @@ def generate_pages(data):
             {"Config Options": pages.ConfigOptionsReference(root_package).save()}
         ]})
     for package in sorted(data.values(), key=lambda p: p["title"]):
-        res = [
-            {"Overview": pages.OverviewPage(package).save()},
-            {"Plugins": pages.PluginsReferencesPage(package).save()}
-        ]
-        if package["changelog"]:
-            res.append({"ChangeLog": pages.ChangeLogPage(package).save()})
-        if package["options"]:
-            res.append({
-                "Config Options":
-                    pages.ConfigOptionsReference(package).save()})
+        if "versions" not in package:
+            res = pages.DevOverviewPage(package).save()
+        else:
+            res = [
+                {"Overview": pages.OverviewPage(package).save()},
+                {"Plugins": pages.PluginsReferencesPage(package).save()}
+            ]
+            if package["changelog"]:
+                res.append({"ChangeLog": pages.ChangeLogPage(package).save()})
+            if package["options"]:
+                res.append({
+                    "Config Options":
+                        pages.ConfigOptionsReference(package).save()})
 
         plugins_section.append({package["title"]: res})
 
@@ -195,10 +206,10 @@ def main():
         if os.path.exists(_ROOT_TMP_DIR):
             shutil.rmtree(_ROOT_TMP_DIR)
 
-        results = json.dumps(results, indent=4)
+        data = json.dumps(results, indent=4)
         if changed:
             with open(RESULTS_FILE, "w") as f:
-                f.write(results)
+                f.write(data)
 
     generate_pages(results)
 

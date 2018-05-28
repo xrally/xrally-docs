@@ -80,6 +80,26 @@ class OverviewPage(PackagePage):
         return "\n\n".join(page)
 
 
+class DevOverviewPage(PackagePage):
+    """Shows the overview page for a package which had not been released yet"""
+    NAME = "overview.md"
+
+    def _make(self):
+        page = [
+            "# %s" % self.package["title"],
+            "__Repository__: <%s>" % self.package["repository"],
+            "!!! note",
+            "    This package is under active development and has not "
+            "been released yet.",
+            "    Follow the repository on GitHub to do not miss any updates."
+        ]
+        if "description" in self.package:
+            page.append("## Description")
+            page.append(self.package["description"])
+
+        return "\n\n".join(page)
+
+
 class ChangeLogPage(PackagePage):
     """Shows changelog for the package."""
 

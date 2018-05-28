@@ -35,6 +35,8 @@ pages:
   - In-tree:
     - {Plugins: plugins/in_tree/plugins.md}
     - {Config Options: plugins/in_tree/options.md}
+  - {Docker: plugins/docker/overview.md}
+  - {Kubernetes: plugins/kubernetes/overview.md}
   - OpenStack:
     - {Overview: plugins/openstack/overview.md}
     - {Plugins: plugins/openstack/plugins.md}
