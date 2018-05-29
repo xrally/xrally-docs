@@ -159,20 +159,27 @@ def generate_page(categories):
             page.append("### %s" % (command["name"]))
             page.append(command["description"])
             definition = mdutils.DefinitionsList(
-                "Command arguments",
-                prefix="%s_%s_" % (category["name"], command["command"]))
+                prefix="%s_%s_" % (category["name"], command["command"]),
+                term_label="Argument",
+                no_wrap_term=True)
             for argument in command["arguments"]:
                 description = [argument["description"]]
+
+                if "type" in argument or "defaults" in argument:
+                    # add empty line to split description from meta data
+                    description.append("\n")
+
                 if "type" in argument:
-                    description.append("_Type_: %s" % argument["type"])
+                    description.append("<i>Type</i>: %s" % argument["type"])
                 if "defaults" in argument:
-                    description.append("_Defaults_: %s" % argument["defaults"])
+                    description.append(
+                        "<i>Defaults</i>: %s" % argument["defaults"])
 
                 args = argument["args"]
                 if argument["metavar"]:
                     args = ["%s %s" % (arg, argument["metavar"])
                             for arg in args]
-                definition.add_term(", ".join(args), description)
+                definition.add_term(",\n".join(args), description)
             if command["arguments"]:
                 page.append(definition.to_md())
 

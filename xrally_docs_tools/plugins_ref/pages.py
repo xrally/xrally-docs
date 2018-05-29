@@ -222,12 +222,11 @@ class PluginsReferencesPage(PackagePage):
         return grouped_by_categories
 
     @staticmethod
-    def _make_arg_items(items, ref_prefix, description=None,
-                        title="Parameters"):
+    def _make_arg_items(items, ref_prefix, title="Parameters"):
         definition = mdutils.DefinitionsList(
             title=title,
-            description=description,
-            prefix=ref_prefix)
+            prefix=ref_prefix,
+            term_label="Argument")
         for item in items:
             iname = item.get("name", "") or item.pop("type")
             if "type" in item:
