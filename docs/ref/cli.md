@@ -79,8 +79,6 @@ Check availability of all platforms in environment.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: env</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -147,8 +145,6 @@ d-description"> [ref]</a>
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: description</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -164,8 +160,6 @@ e-extras"> [ref]</a>
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: extras</span>
         <br>
       </td>
     </tr>
@@ -191,8 +185,6 @@ s-path"> [ref]</a>
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: spec</span>
         <br>
       </td>
     </tr>
@@ -242,8 +234,6 @@ Deletes all records related to Env from db.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: env</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -282,8 +272,6 @@ Destroy existing environment.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: env</span>
         <br>
       </td>
     </tr>
@@ -341,8 +329,6 @@ Show environment information.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: env</span>
         <br>
       </td>
     </tr>
@@ -407,8 +393,6 @@ List existing environments.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: env</span>
         <br>
       </td>
     </tr>
@@ -501,8 +485,6 @@ List all Rally plugins that match name and platform.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: name</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -517,8 +499,6 @@ List all Rally plugins that match name and platform.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: platform</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -530,8 +510,6 @@ List all Rally plugins that match name and platform.
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: platform</span>
         <br>
       </td>
     </tr>
@@ -546,8 +524,6 @@ List all Rally plugins that match name and platform.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: base_cls</span>
         <br>
       </td>
     </tr>
@@ -593,8 +569,6 @@ Show detailed information about a Rally plugin.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: platform</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -606,8 +580,6 @@ Show detailed information about a Rally plugin.
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: platform</span>
         <br>
       </td>
     </tr>
@@ -762,8 +734,6 @@ Export task results to the custom task's exporting system.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: tasks</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -778,8 +748,6 @@ Export task results to the custom task's exporting system.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: output_type</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -793,8 +761,6 @@ Export task results to the custom task's exporting system.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: output_dest</span>
         <br>
       </td>
     </tr>
@@ -826,8 +792,6 @@ Import json results of a test into rally database
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: task_file</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -855,8 +819,6 @@ Import json results of a test into rally database
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: tags</span>
         <br>
       </td>
     </tr>
@@ -915,8 +877,6 @@ deployment without filtering by status.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: status</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -930,8 +890,6 @@ deployment without filtering by status.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: tags</span>
         <br>
       </td>
     </tr>
@@ -970,8 +928,6 @@ Generate a report for the specified task(s).
         <span>
 </span>
         <br>
-        <span><i>Defaults</i>: tasks</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -985,8 +941,6 @@ Generate a report for the specified task(s).
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: out</span>
         <br>
       </td>
     </tr>
@@ -1046,8 +1000,6 @@ Generate a report for the specified task(s).
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: tasks</span>
         <br>
       </td>
     </tr>
@@ -1218,8 +1170,6 @@ filename-path"> [ref]</a>
         <span>
 </span>
         <br>
-        <span><i>Defaults</i>: task_args</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1231,8 +1181,6 @@ filename-path"> [ref]</a>
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: task_args_file</span>
         <br>
       </td>
     </tr>
@@ -1247,8 +1195,6 @@ filename-path"> [ref]</a>
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: tags</span>
         <br>
       </td>
     </tr>
@@ -1450,8 +1396,6 @@ filename-path"> [ref]</a>
         <span>
 </span>
         <br>
-        <span><i>Defaults</i>: task_args</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1463,8 +1407,6 @@ filename-path"> [ref]</a>
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: task_args_file</span>
         <br>
       </td>
     </tr>
@@ -1500,8 +1442,6 @@ Add a verifier extension.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1515,8 +1455,6 @@ Add a verifier extension.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: source</span>
         <br>
       </td>
     </tr>
@@ -1532,8 +1470,6 @@ Add a verifier extension.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: version</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1547,8 +1483,6 @@ Add a verifier extension.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: extra</span>
         <br>
       </td>
     </tr>
@@ -1579,8 +1513,6 @@ Configure a verifier for a specific deployment.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: verifier_id</span>
         <br>
       </td>
     </tr>
@@ -1619,8 +1551,6 @@ Configure a verifier for a specific deployment.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: extra_options</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1634,8 +1564,6 @@ Configure a verifier for a specific deployment.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: new_configuration</span>
         <br>
       </td>
     </tr>
@@ -1704,8 +1632,6 @@ Create a verifier.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: platform</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1717,8 +1643,6 @@ Create a verifier.
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: platform</span>
         <br>
       </td>
     </tr>
@@ -1734,8 +1658,6 @@ Create a verifier.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: source</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1749,8 +1671,6 @@ Create a verifier.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: version</span>
         <br>
       </td>
     </tr>
@@ -1774,8 +1694,6 @@ Create a verifier.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: extra</span>
         <br>
       </td>
     </tr>
@@ -1899,8 +1817,6 @@ Delete a verifier extension.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1914,8 +1830,6 @@ Delete a verifier extension.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: name</span>
         <br>
       </td>
     </tr>
@@ -1947,8 +1861,6 @@ Import results of a test run into the Rally database.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1977,8 +1889,6 @@ Import results of a test run into the Rally database.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: file_to_parse</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -1992,8 +1902,6 @@ Import results of a test run into the Rally database.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: run_args</span>
         <br>
       </td>
     </tr>
@@ -2034,8 +1942,6 @@ List all verifications.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2064,8 +1970,6 @@ List all verifications.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: tags</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2079,8 +1983,6 @@ List all verifications.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: status</span>
         <br>
       </td>
     </tr>
@@ -2112,8 +2014,6 @@ List all plugins for verifiers management.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: platform</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2125,8 +2025,6 @@ List all plugins for verifiers management.
         <br>
         <span>
 </span>
-        <br>
-        <span><i>Defaults</i>: platform</span>
         <br>
       </td>
     </tr>
@@ -2158,8 +2056,6 @@ List all verifier extensions.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
   </tbody>
@@ -2190,8 +2086,6 @@ List all verifier tests.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2205,8 +2099,6 @@ List all verifier tests.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: pattern</span>
         <br>
       </td>
     </tr>
@@ -2238,8 +2130,6 @@ List all verifiers.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: status</span>
-        <br>
       </td>
     </tr>
   </tbody>
@@ -2270,8 +2160,6 @@ Generate a report for a verification or a few verifications.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verification_uuid</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2286,8 +2174,6 @@ Generate a report for a verification or a few verifications.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: output_type</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2301,8 +2187,6 @@ Generate a report for a verification or a few verifications.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: output_dest</span>
         <br>
       </td>
     </tr>
@@ -2343,8 +2227,6 @@ Rerun tests from a verification for a specific deployment.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verification_uuid</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2382,8 +2264,6 @@ Rerun tests from a verification for a specific deployment.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: tags</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2397,8 +2277,6 @@ Rerun tests from a verification for a specific deployment.
 </span>
         <br>
         <span><i>Type</i>: int</span>
-        <br>
-        <span><i>Defaults</i>: concur</span>
         <br>
       </td>
     </tr>
@@ -2448,8 +2326,6 @@ Show detailed information about a verification.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verification_uuid</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2464,7 +2340,7 @@ Show detailed information about a verification.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: sort_by</span>
+        <span><i>Defaults</i>: name</span>
         <br>
       </td>
     </tr>
@@ -2505,8 +2381,6 @@ Show detailed information about a verifier.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
   </tbody>
@@ -2537,8 +2411,6 @@ Start a verification (run verifier tests).
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2567,8 +2439,6 @@ Start a verification (run verifier tests).
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: tags</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2582,8 +2452,6 @@ Start a verification (run verifier tests).
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: pattern</span>
         <br>
       </td>
     </tr>
@@ -2599,8 +2467,6 @@ Start a verification (run verifier tests).
         <br>
         <span><i>Type</i>: int</span>
         <br>
-        <span><i>Defaults</i>: concur</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2614,8 +2480,6 @@ Start a verification (run verifier tests).
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: load_list</span>
         <br>
       </td>
     </tr>
@@ -2631,8 +2495,6 @@ Start a verification (run verifier tests).
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: skip_list</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2646,8 +2508,6 @@ Start a verification (run verifier tests).
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: xfail_list</span>
         <br>
       </td>
     </tr>
@@ -2697,8 +2557,6 @@ Update a verifier.
         <br>
         <span><i>Type</i>: str</span>
         <br>
-        <span><i>Defaults</i>: verifier_id</span>
-        <br>
       </td>
     </tr>
     <tr>
@@ -2721,8 +2579,6 @@ Update a verifier.
 </span>
         <br>
         <span><i>Type</i>: str</span>
-        <br>
-        <span><i>Defaults</i>: version</span>
         <br>
       </td>
     </tr>

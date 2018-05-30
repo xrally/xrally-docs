@@ -57,14 +57,13 @@
                 {
                     "arguments": [
                         {
-                            "description": "UUID or name of the env.", 
                             "dest": "env", 
                             "args": [
                                 "--env"
                             ], 
-                            "defaults": "env", 
                             "type": "str", 
-                            "metavar": "<uuid>"
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of the env."
                         }, 
                         {
                             "dest": "to_json", 
@@ -106,7 +105,7 @@
                                 "--description", 
                                 "-d"
                             ], 
-                            "defaults": "description", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<description>"
                         }, 
@@ -117,7 +116,7 @@
                                 "--extras", 
                                 "-e"
                             ], 
-                            "defaults": "extras", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<extras>"
                         }, 
@@ -136,7 +135,7 @@
                                 "--spec", 
                                 "-s"
                             ], 
-                            "defaults": "spec", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -164,14 +163,13 @@
                 {
                     "arguments": [
                         {
-                            "description": "UUID or name of the env.", 
                             "dest": "env", 
                             "args": [
                                 "--env"
                             ], 
-                            "defaults": "env", 
                             "type": "str", 
-                            "metavar": "<uuid>"
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of the env."
                         }, 
                         {
                             "dest": "force", 
@@ -189,14 +187,13 @@
                 {
                     "arguments": [
                         {
-                            "description": "UUID or name of the env.", 
                             "dest": "env", 
                             "args": [
                                 "--env"
                             ], 
-                            "defaults": "env", 
                             "type": "str", 
-                            "metavar": "<uuid>"
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of the env."
                         }, 
                         {
                             "dest": "skip_cleanup", 
@@ -230,14 +227,13 @@
                 {
                     "arguments": [
                         {
-                            "description": "UUID or name of the env.", 
                             "dest": "env", 
                             "args": [
                                 "--env"
                             ], 
-                            "defaults": "env", 
                             "type": "str", 
-                            "metavar": "<uuid>"
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of the env."
                         }, 
                         {
                             "dest": "to_json", 
@@ -270,14 +266,13 @@
                 {
                     "arguments": [
                         {
-                            "description": "UUID or name of the env.", 
                             "dest": "env", 
                             "args": [
                                 "--env"
                             ], 
-                            "defaults": "env", 
                             "type": "str", 
-                            "metavar": "<uuid>"
+                            "metavar": "<uuid>", 
+                            "description": "UUID or name of the env."
                         }, 
                         {
                             "dest": "to_json", 
@@ -338,7 +333,7 @@
                             "args": [
                                 "--name"
                             ], 
-                            "defaults": "name", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<name>"
                         }, 
@@ -348,7 +343,7 @@
                             "args": [
                                 "--platform"
                             ], 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<platform>"
                         }, 
@@ -358,7 +353,7 @@
                                 "--namespace"
                             ], 
                             "metavar": null, 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
                         }, 
                         {
@@ -367,7 +362,7 @@
                             "args": [
                                 "--plugin-base"
                             ], 
-                            "defaults": "base_cls", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<plugin_base>"
                         }
@@ -393,7 +388,7 @@
                             "args": [
                                 "--platform"
                             ], 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<platform>"
                         }, 
@@ -403,7 +398,7 @@
                                 "--namespace"
                             ], 
                             "metavar": null, 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
                         }
                     ], 
@@ -497,7 +492,7 @@
                             "args": [
                                 "--uuid"
                             ], 
-                            "defaults": "tasks", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<uuid>"
                         }, 
@@ -507,7 +502,7 @@
                             "args": [
                                 "--type"
                             ], 
-                            "defaults": "output_type", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<type>"
                         }, 
@@ -517,7 +512,7 @@
                             "args": [
                                 "--to"
                             ], 
-                            "defaults": "output_dest", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<dest>"
                         }
@@ -534,7 +529,7 @@
                             "args": [
                                 "--file"
                             ], 
-                            "defaults": "task_file", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -553,7 +548,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }
@@ -587,7 +582,7 @@
                             "args": [
                                 "--status"
                             ], 
-                            "defaults": "status", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<status>"
                         }, 
@@ -597,7 +592,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }, 
@@ -622,7 +617,7 @@
                                 "--tasks"
                             ], 
                             "metavar": null, 
-                            "defaults": "tasks", 
+                            "defaults": null, 
                             "description": "[Deprecated since Rally 0.10.0] Use '--uuid' instead. "
                         }, 
                         {
@@ -631,7 +626,7 @@
                             "args": [
                                 "--out"
                             ], 
-                            "defaults": "out", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -681,7 +676,7 @@
                             "args": [
                                 "--uuid"
                             ], 
-                            "defaults": "tasks", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<uuid>"
                         }
@@ -780,7 +775,7 @@
                                 "--task-args"
                             ], 
                             "metavar": "<json>", 
-                            "defaults": "task_args", 
+                            "defaults": null, 
                             "description": "Input task args (JSON dict). These args are used to render the Jinja2 template in the input task."
                         }, 
                         {
@@ -789,7 +784,7 @@
                                 "--task-args-file"
                             ], 
                             "metavar": "<path>", 
-                            "defaults": "task_args_file", 
+                            "defaults": null, 
                             "description": "Path to the file with input task args (dict in JSON/YAML). These args are used to render the Jinja2 template in the input task."
                         }, 
                         {
@@ -798,7 +793,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }, 
@@ -922,7 +917,7 @@
                                 "--task-args"
                             ], 
                             "metavar": "<json>", 
-                            "defaults": "task_args", 
+                            "defaults": null, 
                             "description": "Input task args (JSON dict). These args are used to render the Jinja2 template in the input task."
                         }, 
                         {
@@ -931,7 +926,7 @@
                                 "--task-args-file"
                             ], 
                             "metavar": "<path>", 
-                            "defaults": "task_args_file", 
+                            "defaults": null, 
                             "description": "Path to the file with input task args (dict in JSON/YAML). These args are used to render the Jinja2 template in the input task."
                         }
                     ], 
@@ -953,7 +948,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -963,7 +958,7 @@
                             "args": [
                                 "--source"
                             ], 
-                            "defaults": "source", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<source>"
                         }, 
@@ -973,7 +968,7 @@
                             "args": [
                                 "--version"
                             ], 
-                            "defaults": "version", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<version>"
                         }, 
@@ -983,7 +978,7 @@
                             "args": [
                                 "--extra-settings"
                             ], 
-                            "defaults": "extra", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<extra_settings>"
                         }
@@ -1000,7 +995,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1027,7 +1022,7 @@
                             "args": [
                                 "--extend"
                             ], 
-                            "defaults": "extra_options", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path/json/yaml>"
                         }, 
@@ -1037,7 +1032,7 @@
                             "args": [
                                 "--override"
                             ], 
-                            "defaults": "new_configuration", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -1080,7 +1075,7 @@
                             "args": [
                                 "--platform"
                             ], 
-                            "defaults": "platform", 
+                            "defaults": "", 
                             "type": "str", 
                             "metavar": "<platform>"
                         }, 
@@ -1090,7 +1085,7 @@
                                 "--namespace"
                             ], 
                             "metavar": null, 
-                            "defaults": "platform", 
+                            "defaults": "", 
                             "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
                         }, 
                         {
@@ -1099,7 +1094,7 @@
                             "args": [
                                 "--source"
                             ], 
-                            "defaults": "source", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<source>"
                         }, 
@@ -1109,7 +1104,7 @@
                             "args": [
                                 "--version"
                             ], 
-                            "defaults": "version", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<version>"
                         }, 
@@ -1127,7 +1122,7 @@
                             "args": [
                                 "--extra-settings"
                             ], 
-                            "defaults": "extra", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<extra_settings>"
                         }, 
@@ -1201,7 +1196,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1211,7 +1206,7 @@
                             "args": [
                                 "--name"
                             ], 
-                            "defaults": "name", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<name>"
                         }
@@ -1228,7 +1223,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1247,7 +1242,7 @@
                             "args": [
                                 "--file"
                             ], 
-                            "defaults": "file_to_parse", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -1257,7 +1252,7 @@
                             "args": [
                                 "--run-args"
                             ], 
-                            "defaults": "run_args", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<run_args>"
                         }, 
@@ -1282,7 +1277,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1301,7 +1296,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }, 
@@ -1311,7 +1306,7 @@
                             "args": [
                                 "--status"
                             ], 
-                            "defaults": "status", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<status>"
                         }
@@ -1328,7 +1323,7 @@
                             "args": [
                                 "--platform"
                             ], 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<platform>"
                         }, 
@@ -1338,7 +1333,7 @@
                                 "--namespace"
                             ], 
                             "metavar": null, 
-                            "defaults": "platform", 
+                            "defaults": null, 
                             "description": "[Deprecated since Rally 0.10.0] Use '--platform' instead. "
                         }
                     ], 
@@ -1354,7 +1349,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }
@@ -1371,7 +1366,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1381,7 +1376,7 @@
                             "args": [
                                 "--pattern"
                             ], 
-                            "defaults": "pattern", 
+                            "defaults": "", 
                             "type": "str", 
                             "metavar": "<pattern>"
                         }
@@ -1398,7 +1393,7 @@
                             "args": [
                                 "--status"
                             ], 
-                            "defaults": "status", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<status>"
                         }
@@ -1415,7 +1410,7 @@
                             "args": [
                                 "--uuid"
                             ], 
-                            "defaults": "verification_uuid", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<uuid>"
                         }, 
@@ -1425,7 +1420,7 @@
                             "args": [
                                 "--type"
                             ], 
-                            "defaults": "output_type", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<type>"
                         }, 
@@ -1435,7 +1430,7 @@
                             "args": [
                                 "--to"
                             ], 
-                            "defaults": "output_dest", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<dest>"
                         }, 
@@ -1460,7 +1455,7 @@
                             "args": [
                                 "--uuid"
                             ], 
-                            "defaults": "verification_uuid", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<uuid>"
                         }, 
@@ -1487,7 +1482,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }, 
@@ -1497,7 +1492,7 @@
                             "args": [
                                 "--concurrency"
                             ], 
-                            "defaults": "concur", 
+                            "defaults": null, 
                             "type": "int", 
                             "metavar": "<N>"
                         }, 
@@ -1530,7 +1525,7 @@
                             "args": [
                                 "--uuid"
                             ], 
-                            "defaults": "verification_uuid", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<uuid>"
                         }, 
@@ -1540,7 +1535,7 @@
                             "args": [
                                 "--sort-by"
                             ], 
-                            "defaults": "sort_by", 
+                            "defaults": "name", 
                             "type": "str", 
                             "metavar": "<query>"
                         }, 
@@ -1565,7 +1560,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }
@@ -1582,7 +1577,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1601,7 +1596,7 @@
                             "args": [
                                 "--tag"
                             ], 
-                            "defaults": "tags", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<tag>"
                         }, 
@@ -1611,7 +1606,7 @@
                             "args": [
                                 "--pattern"
                             ], 
-                            "defaults": "pattern", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<pattern>"
                         }, 
@@ -1621,7 +1616,7 @@
                             "args": [
                                 "--concurrency"
                             ], 
-                            "defaults": "concur", 
+                            "defaults": 0, 
                             "type": "int", 
                             "metavar": "<N>"
                         }, 
@@ -1631,7 +1626,7 @@
                             "args": [
                                 "--load-list"
                             ], 
-                            "defaults": "load_list", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -1641,7 +1636,7 @@
                             "args": [
                                 "--skip-list"
                             ], 
-                            "defaults": "skip_list", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -1651,7 +1646,7 @@
                             "args": [
                                 "--xfail-list"
                             ], 
-                            "defaults": "xfail_list", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<path>"
                         }, 
@@ -1684,7 +1679,7 @@
                             "args": [
                                 "--id"
                             ], 
-                            "defaults": "verifier_id", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<id>"
                         }, 
@@ -1702,7 +1697,7 @@
                             "args": [
                                 "--version"
                             ], 
-                            "defaults": "version", 
+                            "defaults": null, 
                             "type": "str", 
                             "metavar": "<version>"
                         }, 

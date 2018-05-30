@@ -127,10 +127,11 @@ def discover_cli():
                         argument["type"] = arg_type.__name__
 
                     skip_default = argument["dest"] in ("deployment",
+                                                        "env",
                                                         "task_id",
                                                         "verification")
                     if not skip_default and argument["dest"] in defaults:
-                        argument["defaults"] = argument["dest"]
+                        argument["defaults"] = defaults[argument["dest"]]
 
                 arguments.append(argument)
             commands.append({
@@ -171,7 +172,7 @@ def generate_page(categories):
 
                 if "type" in argument:
                     description.append("<i>Type</i>: %s" % argument["type"])
-                if "defaults" in argument:
+                if "defaults" in argument and argument["defaults"]:
                     description.append(
                         "<i>Defaults</i>: %s" % argument["defaults"])
 
