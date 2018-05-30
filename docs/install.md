@@ -7,12 +7,15 @@
 pip install rally
 ```
 
->**Note**: may fail because of missing system packages.
-> <a href="https://raw.githubusercontent.com/openstack/rally/master/bindep.txt"> Required packages </a>
+!!! note
+
+    may fail because of missing system packages.
+    [Required packages](https://raw.githubusercontent.com/openstack/rally/master/bindep.txt)
 
 ## Option 2: Automated installation
 
-The easiest way to install xRally is by executing its `installation script`_
+The easiest way to install xRally is by executing its 
+[installation script](https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh)
 
 ```bash
 wget -q -O- https://raw.githubusercontent.com/openstack/rally/master/install_rally.sh | bash
@@ -88,10 +91,12 @@ Options:
   --no-color             Disable output coloring.
 ```
 
-> **Note** the script will check if all the software required by xRally
-> is already installed in your system. If this is not the case, it will
-> exit, suggesting you the command to issue **as root** in order to
-> install the dependencies.
+!!! note 
+
+    the script will check if all the software required by xRally
+    is already installed in your system. If this is not the case, it will
+    exit, suggesting you the command to issue **as root** in order to
+    install the dependencies.
 
 You also have to set up the **sRally database** after the installation is
 complete:
@@ -103,7 +108,8 @@ rally db recreate
 
 ## Option 3: Use Docker Image
 
-First you need to install Docker; Docker supplies <a href="https://docs.docker.com/install/">installation instructions for various OSes </a>
+First you need to install Docker; Docker supplies 
+[installation instructions for various OSes](https://docs.docker.com/install/)
 
 You can either use the official Rally Docker image, or build your own
 from the Rally source. To do that, change directory to the root directory of
@@ -135,12 +141,14 @@ docker run -v /var/lib/rally_container:/home/rally/data xrally/xrally-openstack 
 docker run -v /var/lib/rally_container:/home/rally/data xrally/xrally-openstack env create --name "foo"
 ```
 
-> **Note**: In order for the volume to be accessible by the xRally user
-> (uid: 65500) inside the container, it must be accessible by UID
-> 65500 *outside* the container as well, which is why it is created
-> in ``/var/lib/rally_container``. Creating it in your home directory is only
-> likely to work if your home directory has excessively open
-> permissions (e.g., ``0755``), which is not recommended.
+!!! note
+
+    In order for the volume to be accessible by the xRally user
+    (uid: 65500) inside the container, it must be accessible by UID
+    65500 *outside* the container as well, which is why it is created
+    in ``/var/lib/rally_container``. Creating it in your home directory is only
+    likely to work if your home directory has excessively open
+    permissions (e.g., ``0755``), which is not recommended.
 
 You can find all task samples, docs and pre created tasks at /home/rally/source
 In case you have SELinux enabled and xRally fails to create the

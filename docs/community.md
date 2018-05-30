@@ -27,7 +27,10 @@ Becoming xRally contributor is simple:
 * Code your idea
 * Push to upstream!
 
-_Before doing any significant contribution, we highly recommend one to join our IRC or Gitter and share ideas._
+!!! tip
+
+    Before doing any significant contribution, we highly recommend one to join 
+    our IRC or Gitter and share ideas.
 
 ### Get The Code
 
@@ -41,7 +44,9 @@ Running locally test is super easy:
 1. Install tox, tool that triggers tests and manages venvs ```pip install tox```
 2. Run ```tox``` without parameters to trigger all default tests
 
-_We highly recommend to run tests locally before submitting patches._
+!!! tip
+
+    We highly recommend to run tests locally before submitting patches.
 
 
 ### Set Up Gerrit & Accounts

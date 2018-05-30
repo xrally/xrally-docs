@@ -19,14 +19,18 @@ To print current revision use: ```rally db revision```
 
 To upgrade DB to the latest state use: ```rally db upgrade```
 
->**WARNING** xRally does NOT support DB schema downgrade. One should consider
->backing up existing database in order to be able to rollback the change.
+!!! warning
+
+    xRally does NOT support DB schema downgrade. One should consider
+    backing up existing database in order to be able to rollback the change.
 
 ### For developers
 
 DB migration in xRally is implemented via package *alembic*.
 
-It is highly recommended to get familiar with it's <a href="http://alembic.zzzcomputing.com/en/latest/" target="_blank">documentation</a> before proceeding.
+It is highly recommended to get familiar with it's 
+[documentation](<a href="http://alembic.zzzcomputing.com/en/latest/) before 
+proceeding.
 
 If developer is about to change existing DB schema they should
 create a new DB revision and a migration script with the following command.
@@ -51,5 +55,7 @@ migrations.
 Generated script should then be checked, edited if it is needed to be
 and added to Rally source tree.
 
->**WARNING** Even though alembic supports schema downgrade, migration
->scripts provided along with Rally do not contain actual code for downgrade.
+!!! warning
+
+    Even though alembic supports schema downgrade, migration
+    scripts provided along with Rally do not contain actual code for downgrade.
