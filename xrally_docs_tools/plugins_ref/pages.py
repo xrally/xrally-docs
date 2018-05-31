@@ -62,14 +62,13 @@ class OverviewPage(PackagePage):
                 "__Relevant release__: %s" % self.package["versions"][1],
                 "__Repository__: <%s>" % self.package["repository"]]
         for key in ("License", "Author", "Author-email"):
-            if self.package["pkg_info"][key]:
+            if key in self.package["pkg_info"]:
                 page.append(
                     "__%s__: %s" % (key, self.package["pkg_info"][key]))
         if self.package["pkg_info"]["Description"]:
-            description = self.package["pkg_info"]["Description"]
+            description = info.trim(self.package["pkg_info"]["Description"])
             if not description.startswith("#"):
                 # rst
-                description = info.trim(description)
                 description = r2m.convert(description)
             page.extend(description.split("\n\n")[1:])
         elif self.package["pkg_info"]["Summary"]:

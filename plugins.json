@@ -16,7 +16,8 @@
          "name": "xrally-docker",
          "title": "Docker",
          "repository": "https://github.com/xrally/xrally-docker",
-         "description": "A set of xRally plugins to run workloads against Docker platform."
+         "versions": ["1.0.0", "1.0.0"],
+         "changelog_file": "CHANGELOG.md"
     },
     {
          "name": "xrally-kuberneted",
