@@ -36,18 +36,18 @@ pages:
   - Docker:
     - {Overview: plugins/docker/overview.md}
     - {Plugins: plugins/docker/plugins.md}
-    - {ChangeLog: plugins/docker/changelog.md}
     - {Config Options: plugins/docker/options.md}
+    - {ChangeLog: plugins/docker/changelog.md}
   - Kubernetes:
     - {Overview: plugins/kubernetes/overview.md}
     - {Plugins: plugins/kubernetes/plugins.md}
-    - {ChangeLog: plugins/kubernetes/changelog.md}
     - {Config Options: plugins/kubernetes/options.md}
+    - {ChangeLog: plugins/kubernetes/changelog.md}
   - OpenStack:
     - {Overview: plugins/openstack/overview.md}
     - {Plugins: plugins/openstack/plugins.md}
-    - {ChangeLog: plugins/openstack/changelog.md}
     - {Config Options: plugins/openstack/options.md}
+    - {ChangeLog: plugins/openstack/changelog.md}
 repo_name: xrally/xrally
 repo_url: https://github.com/xrally/xrally
 site_author: xRally team
