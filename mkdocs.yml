@@ -14,14 +14,12 @@ pages:
   - {DB & Upgrades: upgrades.md}
   - {Community: community.md}
   - {License: license.md}
-- Continuous Integration:
-  - {Overview: ci/index.md}
-  - {xRally & Jenkins: ci/jenkins.md}
-  - {xRally & Travis: ci/travis.md}
-  - {xRally & CircleCI: ci/circleci.md}
-- Continuous Monitoring:
-  - {Overview: cm/index.md}
-  - {'xRally, Elastic & Grafana': cm/elastic_grafana.md}
+- Use Cases:
+  - {Overview: case/index.md}
+  - {xRally & Jenkins: case/jenkins.md}
+  - {xRally & Travis: case/travis.md}
+  - {xRally & CircleCI: case/circleci.md}
+  - {'xRally, Elastic & Grafana': case/elastic_grafana.md}
 - Architecture:
   - {High Level: arch/index.md}
   - {Glossary: arch/glossary.md}
