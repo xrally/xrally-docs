@@ -29,7 +29,6 @@ _ROOT_TMP_DIR = None
 _WORK_DIR = os.path.join(os.path.abspath(os.path.dirname(__file__)),
                          "plugins_ref")
 _AGENT = os.path.join(_WORK_DIR, "agent.py")
-RESULTS_FILE = os.path.join(xrally_docs_tools.SOURCE_DATA_DIR, "plugins.json")
 
 
 def process_package(package, results):
@@ -50,13 +49,13 @@ def process_package(package, results):
     if processed_versions and processed_versions == package.get("versions"):
         # nothing had changed. skipping
         print("Nothing had changed. Skipping...\n\n")
-        return
+        return False, None
 
     if "versions" not in p_data:
         # it is in-active-development-plugin
         print("Package is under active development, but had not been released "
               "yet...\n\n")
-        return
+        return False, None
 
     print("Cloning the source code.")
     repo_dir = utils.generate_random_path(_ROOT_TMP_DIR)
@@ -140,7 +139,7 @@ def process_package(package, results):
                 p_data["changelog"] = f.read()
 
     print("Done.\n\n")
-    return True
+    return True, p_data
 
 
 def generate_pages(data):
@@ -191,11 +190,19 @@ def main():
     with open(xrally_docs_tools.PLUGINS_FILE) as f:
         packages = json.loads(f.read())
 
-    with open(RESULTS_FILE) as f:
-        try:
-            results = json.loads(f.read())
-        except ValueError:
-            results = {}
+    results = {}
+
+    for package in packages:
+        p_results_f = os.path.join(
+            xrally_docs_tools.SOURCE_DATA_DIR,
+            "%s.json" % package["name"].replace("-", "_"))
+        if os.path.exists(p_results_f):
+            with open(p_results_f) as f:
+                try:
+                    results[package["name"]] = json.loads(f.read())
+                except ValueError:
+                    pass
+
     if len(sys.argv) == 1:
         print("WARNING: This tool requires internet access. Checking...")
         resp = requests.get("https://github.com")
@@ -206,19 +213,18 @@ def main():
         _ROOT_TMP_DIR = utils.generate_random_path()
         os.mkdir(_ROOT_TMP_DIR)
 
-        changed = False
         for package in packages:
-            res = process_package(package, results)
-            if res:
-                changed = True
+            changed, res = process_package(package, results)
+            if changed:
+                p_results = json.dumps(res, indent=4)
+                p_results_f = os.path.join(
+                    xrally_docs_tools.SOURCE_DATA_DIR,
+                    "%s.json" % package["name"].replace("-", "_"))
+                with open(p_results_f, "w") as f:
+                    f.write(p_results)
 
         if os.path.exists(_ROOT_TMP_DIR):
             shutil.rmtree(_ROOT_TMP_DIR)
-
-        data = json.dumps(results, indent=4)
-        if changed:
-            with open(RESULTS_FILE, "w") as f:
-                f.write(data)
 
     generate_pages(results)
 
