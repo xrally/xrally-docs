@@ -43,7 +43,11 @@ def find_plugins(dist):
     packages = find_packages(exclude=["tests", "tests.*"],
                              where=dist.location)
     for p in plugin.Plugin.get_all():
-        if p.__module__.split(".", 1)[0] not in packages:
+        if (p.__module__.split(".", 1)[0] not in packages
+                # do not save info about in-tree openstack plugins
+                or p.__module__.startswith("rally.plugins.openstack")
+                # another place of openstack plugins...
+                or p.__module__.startswith("rally.task.validation")):
             continue
         p_info = p.get_info()
         p_info["module"] = p.__module__

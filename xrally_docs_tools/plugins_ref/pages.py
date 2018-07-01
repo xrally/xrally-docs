@@ -195,9 +195,6 @@ class PluginsReferencesPage(PackagePage):
             for name, descr in self.package["plugins_bases"].items())
 
         plugins = self.package["plugins"].values()
-        if self.package["name"] == "rally":
-            # ignore in-tree openstack plugins
-            plugins = [p for p in plugins if p["platform"] != "openstack"]
 
         for p in plugins:
             base = p.get("base", "Common")

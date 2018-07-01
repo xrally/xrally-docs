@@ -97,6 +97,15 @@ def process_package(package, results):
         utils.sp_call(["git", "checkout", "%s" % tag], cwd=repo_dir)
         utils.sp_call(["pip", "install", "-U", "-e", "./"],
                       cwd=repo_dir, env=env)
+        if package["name"] == "rally-openstack" and tag == utils.Tag(1, 0, 0):
+            # rally-openstack 1.0.0 was a first attempt to deliver rally
+            #   plugins as separate package. It showed a bunch of issues which
+            #   were fixed in further releases. Unfortunately, after releasing
+            #   Rally 1.0.0, the first rally-openstack release doesn't work.
+            #   Let's apply this hack and to still be able to discover info
+            #   from first release.
+            utils.sp_call(["pip", "install", "rally==0.12.1"],
+                          cwd=repo_dir, env=env)
 
         print("Collecting data...")
         tag_data = utils.sp_call(
