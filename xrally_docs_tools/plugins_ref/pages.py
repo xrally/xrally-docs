@@ -190,27 +190,16 @@ class PluginsReferencesPage(PackagePage):
 
     def _group_plugins(self):
         """Group plugins by plugin bases."""
-        grouped_by_bases = dict(
-            (name, {"description": descr, "plugins": [], "name": name}) 
-            for name, descr in self.package["plugins_bases"].items())
-
-        plugins = self.package["plugins"].values()
-
-        for p in plugins:
-            base = p.get("base", "Common")
-            if base in self._IGNORED_BASES:
-                continue
-            
-            grouped_by_bases[base]["plugins"].append(p)
 
         grouped_by_categories = {}
-        for pbase in grouped_by_bases.values():
-            if not pbase["plugins"]:
+        for pbase_name, pbase in self.package["plugins"].items():
+            if not pbase["plugins"] or pbase_name in self._IGNORED_BASES:
                 continue
             category_of_base = "Common"
             for cname, cbases in self._CATEGORIES.items():
-                if pbase["name"] in cbases:
+                if pbase_name in cbases:
                     category_of_base = cname
+            pbase["name"] = pbase_name
 
             grouped_by_categories.setdefault(category_of_base, []).append(
                 pbase)
@@ -297,7 +286,7 @@ class PluginsReferencesPage(PackagePage):
         if plugin["platform"]:
             page.append("__Platform__: %s" % plugin["platform"])
 
-        if plugin["introduced_in"]:
+        if plugin.get("introduced_in"):
             page.append(
                 "__Introduced in__: %s" % plugin["introduced_in"])
 
@@ -329,7 +318,7 @@ class PluginsReferencesPage(PackagePage):
             for p in plugin["required_platforms"]:
                 platform_name = p.pop("platform")
                 page.append("* %s with the next options: %s" % (
-                    platform_name, p))
+                    platform_name, json.dumps(p)))
 
         filename = plugin["module"].replace(".", "/").replace("-", "_")
         ref = ("%s/blob/master/%s.py" % (self.package["repository"], filename))
@@ -349,15 +338,14 @@ class PluginsReferencesPage(PackagePage):
 
         for category, plugins_bases in sorted(self._group_plugins().items()):
             page.append("## %s" % category)
+
             plugins_bases = sorted(plugins_bases, key=lambda b: b["name"])
             for plugins_base in plugins_bases:
                 page.append("### %s" % plugins_base["name"])
                 if plugins_base["description"]:
                     page.append(r2m.convert(plugins_base["description"]))
 
-                plugins = sorted(plugins_base["plugins"],
-                                 key=lambda p: p["name"])
-                for plugin in plugins:
+                for plugin in plugins_base["plugins"].values():
                     page.append(self._make_plugin_section(plugin))
                     page.append("<hr />")
 

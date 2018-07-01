@@ -2,7 +2,10 @@
     "changelog": "# Changelog\n\n<!-- \n  Changelogs are for humans, not machines. The end users of Rally project are\n  human beings who care about what's is changing, why and how it affects them.\n  Please leave these notes as much as possible human oriented.\n\n  Each release can use the next sections:\n   - **Added** for new features.\n   - **Changed** for changes in existing functionality.\n   - **Deprecated** for soon-to-be removed features/plugins.\n   - **Removed** for now removed features/plugins.\n   - **Fixed** for any bug fixes.\n\n  Release notes for existing releases are MUTABLE! If there is something that\n  was missed or can be improved, feel free to change it!\n \n-->\n\n## [1.0.0] - 2018-05-31\n\nThe start. Initial release. Have fun! ;)\n", 
     "name": "xrally-docker", 
     "repository": "https://github.com/xrally/xrally-docker", 
-    "title": "Docker", 
+    "versions": [
+        "1.0.0", 
+        "1.0.0"
+    ], 
     "pkg_info": {
         "Name": "xrally-docker", 
         "License": "Apache License, Version 2.0", 
@@ -16,331 +19,340 @@
         "Classifier": "Programming Language :: Python :: 3.6", 
         "Description": "# xrally-docker\n        \n        xRally plugins for [Docker engine](https://www.docker.com).\n        \n        ## What is it?!\n        \n        Originally, it was created as a quick proof-of-concept to show ability of\n        [Rally](https://github.com/openstack/rally) to test platforms other than\n        [OpenStack](https://www.openstack.org/). After the first preview,\n        it became obvious that it should be developed as a complete package.\n        \n        __xrally_docker__ is a pack of xRally plugins for execution different workloads\n        at the top of Docker Engine. Such workloads can be used as like for testing\n        environments with Docker or testing behaviour of specified docker image.\n        \n        ## How to use?!\n        \n        ### Install package\n        \n        __xrally_docker__ package is configured to be auto-discovered by Rally. Since\n        rally package is a dependency of __xrally_docker__ , so to start using\n        __xrally_docker__ you need to install just one package:\n        \n        ```commandline\n        \n        pip install xrally_docker\n        \n        ```\n        \n        ### Specify entry-point of docker engine to use\n        \n        The next step is to specify entry-point to docker, i.e. create rally \n        environment. There are 2 way to do it:\n        \n        1. Specify environment specification manually. For a simple case (no cert, \n           tls, etc), it looks like ``{\"docker@existing\": {}}``.\n        2. Create environment specification from system environment variables \n           (supported by Rally >= 0.11.2) using \n           ``rally env create --name example --from-sysenv`` command. An expected \n           system variables are the same as native docker client supports.\n        \n        ### Check that Rally can access the docker\n        \n        First of all try to execute ``rally env check`` command. It checks all \n        platforms of the environment to be available. If it does not show any errors \n        for communicating with docker, go and execute any task against docker. \n        If is fails, try to execute the command again with ``--detailed`` flag.\n        \n        Also, you can use ``rally env info`` command for the same purpose. Unlike \n        ``rally env check`` it will not only check the platforms, but print some \n        information about them. In case of docker platform, it will print the similar \n        to ``docker --version`` data.\n        \n        ### Execute a workload against docker\n        \n        Here is a simple workload:\n        \n        ```yaml\n        \n        ---\n          version: 2\n          title: Simple task with only one workload\n          subtasks:\n            -\n              title: a subtask with one workload\n              description: This workload should run a container from \"ubuntu\" \n                           image and execute simple command.\n              scenario:\n                Docker.run_container:\n                  image_name: \"ubuntu\"\n                  command: \"echo 'Hello world!'\"\n              runner:\n                constant:\n                  times: 10\n                  concurrency: 2\n              sla:\n                failure_rate:\n                  max: 0\n        ```\n        \n        This task will download _ubuntu_ image first, if it does not present in the \n        system. Then, it will run 10 containers from the image with 2 concurrency and \n        execute a  simple command. The output of the command will be saved as \n        TextArea and will be available via json and html reports.\n        \n        See plugin references for the full list of available plugins for docker \n        platform to combine workloads. \n        \n        ## Known issues\n        \n        This package works fine, but you need to install the proper version of Docker\n        client which suits your Docker API version.\n        "
     }, 
-    "versions": [
-        "1.0.0", 
-        "1.0.0"
-    ], 
+    "title": "Docker", 
     "changelog_file": "CHANGELOG.md", 
     "plugins": {
-        "images@docker": {
-            "introduced_in": null, 
-            "name": "images", 
-            "parameters": [], 
-            "title": "Pull new images or load existing ones.", 
+        "Platform": {
             "description": "", 
-            "module": "xrally_docker.task.contexts.images", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Context", 
-            "schema": {
-                "additionalProperties": false, 
-                "type": "object", 
-                "properties": {
-                    "names": {
-                        "items": {
-                            "type": "string", 
-                            "description": "The image to pull. (if the tag of image is not specified, 'latest' will be used)."
-                        }, 
-                        "type": "array", 
-                        "description": "Pull images from the list."
-                    }, 
-                    "existing": {
-                        "type": "boolean", 
-                        "description": "Load all existing images"
-                    }
-                }
-            }
-        }, 
-        "required_docker_platform@docker": {
-            "introduced_in": null, 
-            "name": "required_docker_platform", 
-            "parameters": [], 
-            "title": "Check for docker platform in selected environment.", 
-            "description": "", 
-            "module": "xrally_docker.task.validators", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "Docker.create_and_delete_network@docker": {
-            "introduced_in": null, 
-            "name": "Docker.create_and_delete_network", 
-            "parameters": [
-                {
-                    "doc": "Name of the driver used to create the network\n", 
-                    "name": "driver"
-                }, 
-                {
-                    "doc": "Driver options as a key-value dictionary\n", 
-                    "name": "options"
-                }, 
-                {
-                    "doc": "Optional custom IP scheme for the network.\n", 
-                    "name": "ipam"
-                }, 
-                {
-                    "doc": "Request daemon to check for networks with\nsame name.\n", 
-                    "name": "check_duplicate"
-                }, 
-                {
-                    "doc": "Restrict external access to the network.\n", 
-                    "name": "internal"
-                }, 
-                {
-                    "doc": "Map of labels to set on the network.\n", 
-                    "name": "labels"
-                }, 
-                {
-                    "doc": "Enable IPv6 on the network.\n", 
-                    "name": "enable_ipv6"
-                }, 
-                {
-                    "doc": "If enabled, and the network is in the global\nscope,  non-service containers on worker nodes will be able to\nconnect to the network.\n", 
-                    "name": "attachable"
-                }, 
-                {
-                    "doc": "Specify the network's scope (``local``, ``global`` or\n``swarm``)\n", 
-                    "name": "scope"
-                }, 
-                {
-                    "doc": "If set, create an ingress network which provides\nthe routing-mesh in swarm mode.\n", 
-                    "name": "ingress"
-                }
-            ], 
-            "title": "Create and delete docker network", 
-            "description": "", 
-            "module": "xrally_docker.task.scenarios.networks", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "Docker.list_networks@docker": {
-            "introduced_in": null, 
-            "name": "Docker.list_networks", 
-            "parameters": [
-                {
-                    "doc": "a network driver to match\n", 
-                    "name": "driver"
-                }, 
-                {
-                    "doc": "label to match\n", 
-                    "name": "label"
-                }, 
-                {
-                    "doc": "Filters networks by type.\n", 
-                    "name": "ntype"
-                }, 
-                {
-                    "doc": "Grep detailed information about networks (aka greedy)", 
-                    "name": "detailed"
-                }
-            ], 
-            "title": "List docker networks", 
-            "description": "", 
-            "module": "xrally_docker.task.scenarios.networks", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "Docker.run_container@docker": {
-            "introduced_in": null, 
-            "name": "Docker.run_container", 
-            "parameters": [
-                {
-                    "doc": "The name of image to start\n", 
-                    "name": "image_name"
-                }, 
-                {
-                    "doc": "The command to launch in container", 
-                    "name": "command"
-                }
-            ], 
-            "title": "Run a docker container from image and execute a command in it.", 
-            "description": "", 
-            "module": "xrally_docker.task.scenarios.container", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "check_cleanup_resources@docker": {
-            "introduced_in": null, 
-            "name": "check_cleanup_resources", 
-            "parameters": [], 
-            "title": "Validates that docker resource managers exist.", 
-            "description": "", 
-            "module": "xrally_docker.task.contexts.cleanup", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "existing@docker": {
-            "introduced_in": null, 
-            "name": "existing", 
-            "parameters": [], 
-            "title": "Default plugin for Docker.", 
-            "description": "", 
-            "module": "xrally_docker.env.platforms.existing", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Platform", 
-            "schema": {
-                "additionalProperties": false, 
-                "type": "object", 
-                "properties": {
-                    "ssl_version": {
-                        "type": "integer", 
-                        "description": "A valid SSL version (see https://docs.python.org/3.5/library/ssl.html#ssl.PROTOCOL_TLSv1)"
-                    }, 
-                    "host": {
-                        "type": "string", 
-                        "description": "The URL to the Docker host"
-                    }, 
-                    "version": {
-                        "type": "string", 
-                        "description": "The version of the API to use. Defaults to ``auto`` whichmeans automatically detection of the server's version."
-                    }, 
-                    "tls_verify": {
-                        "type": "boolean", 
-                        "description": "Verify the host against a CA certificate."
-                    }, 
-                    "timeout": {
-                        "minimum": 0, 
-                        "type": "number", 
-                        "description": "Default timeout for API calls, in seconds."
-                    }, 
-                    "cert_path": {
-                        "type": "string", 
-                        "description": "A path to a directory containing TLS certificates to use when connecting to the Docker host."
-                    }
-                }
-            }
-        }, 
-        "networks@docker": {
-            "introduced_in": null, 
-            "name": "networks", 
-            "parameters": [], 
-            "title": "Create one or several docker networks.", 
-            "description": "", 
-            "module": "xrally_docker.task.contexts.networks", 
-            "platform": "docker", 
-            "returns": "", 
-            "base": "Context", 
-            "schema": {
-                "definitions": {
-                    "ipam": {
+            "plugins": {
+                "existing@docker": {
+                    "name": "existing", 
+                    "parameters": [], 
+                    "title": "Default plugin for Docker.", 
+                    "description": "", 
+                    "module": "xrally_docker.env.platforms.existing", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Platform", 
+                    "schema": {
                         "additionalProperties": false, 
-                        "required": [
-                            "Driver"
-                        ], 
                         "type": "object", 
-                        "description": "Custom IP scheme for the network", 
                         "properties": {
-                            "Driver": {
+                            "ssl_version": {
+                                "type": "integer", 
+                                "description": "A valid SSL version (see https://docs.python.org/3.5/library/ssl.html#ssl.PROTOCOL_TLSv1)"
+                            }, 
+                            "host": {
                                 "type": "string", 
-                                "description": "The name of the driver"
+                                "description": "The URL to the Docker host"
                             }, 
-                            "Config": {
-                                "items": {
-                                    "additionalProperties": false, 
-                                    "type": "object", 
-                                    "properties": {
-                                        "subnet": {
-                                            "type": "string", 
-                                            "description": "Custom subnet for this IPAM pool using the CIDR notation."
-                                        }, 
-                                        "aux_addresses": {
-                                            "type": "object", 
-                                            "description": "A dictionary of ``key -> ip_address``relationships specifying auxiliary addresses that need to be allocated by the IPAM driver."
-                                        }, 
-                                        "iprange": {
-                                            "type": "string", 
-                                            "description": "Custom IP range for endpoints in this IPAM pool using the CIDR notation."
-                                        }, 
-                                        "gateway": {
-                                            "type": "string", 
-                                            "description": "Custom IP address for the pool's gateway."
-                                        }
-                                    }
-                                }, 
-                                "type": "array", 
-                                "description": "A list of IPAM Pool configurations."
+                            "version": {
+                                "type": "string", 
+                                "description": "The version of the API to use. Defaults to ``auto`` whichmeans automatically detection of the server's version."
                             }, 
-                            "Options": {
-                                "additionalProperties": true, 
-                                "type": "object", 
-                                "description": "Driver options."
+                            "tls_verify": {
+                                "type": "boolean", 
+                                "description": "Verify the host against a CA certificate."
+                            }, 
+                            "timeout": {
+                                "minimum": 0, 
+                                "type": "number", 
+                                "description": "Default timeout for API calls, in seconds."
+                            }, 
+                            "cert_path": {
+                                "type": "string", 
+                                "description": "A path to a directory containing TLS certificates to use when connecting to the Docker host."
                             }
                         }
-                    }, 
-                    "single-network": {
+                    }
+                }
+            }
+        }, 
+        "Validator": {
+            "description": "A base class for all validators.", 
+            "plugins": {
+                "check_cleanup_resources@docker": {
+                    "name": "check_cleanup_resources", 
+                    "parameters": [], 
+                    "title": "Validates that docker resource managers exist.", 
+                    "description": "", 
+                    "module": "xrally_docker.task.contexts.cleanup", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "required_docker_platform@docker": {
+                    "name": "required_docker_platform", 
+                    "parameters": [], 
+                    "title": "Check for docker platform in selected environment.", 
+                    "description": "", 
+                    "module": "xrally_docker.task.validators", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }
+            }
+        }, 
+        "Scenario": {
+            "description": "This is base class for any scenario.\n\nAll Scenario Plugins should be subclass of this class.\n", 
+            "plugins": {
+                "Docker.create_and_delete_network@docker": {
+                    "name": "Docker.create_and_delete_network", 
+                    "parameters": [
+                        {
+                            "doc": "Name of the driver used to create the network\n", 
+                            "name": "driver"
+                        }, 
+                        {
+                            "doc": "Driver options as a key-value dictionary\n", 
+                            "name": "options"
+                        }, 
+                        {
+                            "doc": "Optional custom IP scheme for the network.\n", 
+                            "name": "ipam"
+                        }, 
+                        {
+                            "doc": "Request daemon to check for networks with\nsame name.\n", 
+                            "name": "check_duplicate"
+                        }, 
+                        {
+                            "doc": "Restrict external access to the network.\n", 
+                            "name": "internal"
+                        }, 
+                        {
+                            "doc": "Map of labels to set on the network.\n", 
+                            "name": "labels"
+                        }, 
+                        {
+                            "doc": "Enable IPv6 on the network.\n", 
+                            "name": "enable_ipv6"
+                        }, 
+                        {
+                            "doc": "If enabled, and the network is in the global\nscope,  non-service containers on worker nodes will be able to\nconnect to the network.\n", 
+                            "name": "attachable"
+                        }, 
+                        {
+                            "doc": "Specify the network's scope (``local``, ``global`` or\n``swarm``)\n", 
+                            "name": "scope"
+                        }, 
+                        {
+                            "doc": "If set, create an ingress network which provides\nthe routing-mesh in swarm mode.\n", 
+                            "name": "ingress"
+                        }
+                    ], 
+                    "title": "Create and delete docker network", 
+                    "description": "", 
+                    "module": "xrally_docker.task.scenarios.networks", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Docker.list_networks@docker": {
+                    "name": "Docker.list_networks", 
+                    "parameters": [
+                        {
+                            "doc": "a network driver to match\n", 
+                            "name": "driver"
+                        }, 
+                        {
+                            "doc": "label to match\n", 
+                            "name": "label"
+                        }, 
+                        {
+                            "doc": "Filters networks by type.\n", 
+                            "name": "ntype"
+                        }, 
+                        {
+                            "doc": "Grep detailed information about networks (aka greedy)", 
+                            "name": "detailed"
+                        }
+                    ], 
+                    "title": "List docker networks", 
+                    "description": "", 
+                    "module": "xrally_docker.task.scenarios.networks", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Docker.run_container@docker": {
+                    "name": "Docker.run_container", 
+                    "parameters": [
+                        {
+                            "doc": "The name of image to start\n", 
+                            "name": "image_name"
+                        }, 
+                        {
+                            "doc": "The command to launch in container", 
+                            "name": "command"
+                        }
+                    ], 
+                    "title": "Run a docker container from image and execute a command in it.", 
+                    "description": "", 
+                    "module": "xrally_docker.task.scenarios.container", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }
+            }
+        }, 
+        "Context": {
+            "description": "", 
+            "plugins": {
+                "images@docker": {
+                    "name": "images", 
+                    "parameters": [], 
+                    "title": "Pull new images or load existing ones.", 
+                    "description": "", 
+                    "module": "xrally_docker.task.contexts.images", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Context", 
+                    "schema": {
                         "additionalProperties": false, 
                         "type": "object", 
                         "properties": {
-                            "ingress": {
-                                "type": "boolean", 
-                                "description": "If set, create an ingress network which provides the routing-mesh in swarm mode."
-                            }, 
-                            "enable_ipv6": {
-                                "type": "boolean", 
-                                "description": "Enable IPv6 on the network."
-                            }, 
-                            "ipam": {
-                                "$ref": "#/definitions/ipam"
-                            }, 
-                            "labels": {
+                            "names": {
                                 "items": {
                                     "type": "string", 
-                                    "description": "A label to apply."
+                                    "description": "The image to pull. (if the tag of image is not specified, 'latest' will be used)."
                                 }, 
                                 "type": "array", 
-                                "description": "A list of labels to apply to the network"
+                                "description": "Pull images from the list."
                             }, 
-                            "driver": {
-                                "type": "string", 
-                                "description": "Name of the driver used to create the network"
-                            }, 
-                            "attachable": {
+                            "existing": {
                                 "type": "boolean", 
-                                "description": "If enabled, and the network is in the global scope,  non-service containers on worker nodes will be able to connect to the network."
-                            }, 
-                            "internal": {
-                                "type": "boolean", 
-                                "description": "Restrict external access to the network."
-                            }, 
-                            "scope": {
-                                "enum": [
-                                    "local", 
-                                    "global", 
-                                    "swarm"
-                                ], 
-                                "description": "The network's scope"
-                            }, 
-                            "options": {
-                                "type": "object", 
-                                "description": "Driver options."
+                                "description": "Load all existing images"
                             }
                         }
                     }
                 }, 
-                "oneOf": [
-                    {
-                        "description": "Create a single network", 
-                        "$ref": "#/definitions/single-network"
-                    }, 
-                    {
-                        "minItems": 1, 
-                        "items": {
-                            "$ref": "#/definitions/single-network"
+                "networks@docker": {
+                    "name": "networks", 
+                    "parameters": [], 
+                    "title": "Create one or several docker networks.", 
+                    "description": "", 
+                    "module": "xrally_docker.task.contexts.networks", 
+                    "platform": "docker", 
+                    "returns": "", 
+                    "base": "Context", 
+                    "schema": {
+                        "definitions": {
+                            "ipam": {
+                                "additionalProperties": false, 
+                                "required": [
+                                    "Driver"
+                                ], 
+                                "type": "object", 
+                                "description": "Custom IP scheme for the network", 
+                                "properties": {
+                                    "Driver": {
+                                        "type": "string", 
+                                        "description": "The name of the driver"
+                                    }, 
+                                    "Config": {
+                                        "items": {
+                                            "additionalProperties": false, 
+                                            "type": "object", 
+                                            "properties": {
+                                                "subnet": {
+                                                    "type": "string", 
+                                                    "description": "Custom subnet for this IPAM pool using the CIDR notation."
+                                                }, 
+                                                "aux_addresses": {
+                                                    "type": "object", 
+                                                    "description": "A dictionary of ``key -> ip_address``relationships specifying auxiliary addresses that need to be allocated by the IPAM driver."
+                                                }, 
+                                                "iprange": {
+                                                    "type": "string", 
+                                                    "description": "Custom IP range for endpoints in this IPAM pool using the CIDR notation."
+                                                }, 
+                                                "gateway": {
+                                                    "type": "string", 
+                                                    "description": "Custom IP address for the pool's gateway."
+                                                }
+                                            }
+                                        }, 
+                                        "type": "array", 
+                                        "description": "A list of IPAM Pool configurations."
+                                    }, 
+                                    "Options": {
+                                        "additionalProperties": true, 
+                                        "type": "object", 
+                                        "description": "Driver options."
+                                    }
+                                }
+                            }, 
+                            "single-network": {
+                                "additionalProperties": false, 
+                                "type": "object", 
+                                "properties": {
+                                    "ingress": {
+                                        "type": "boolean", 
+                                        "description": "If set, create an ingress network which provides the routing-mesh in swarm mode."
+                                    }, 
+                                    "enable_ipv6": {
+                                        "type": "boolean", 
+                                        "description": "Enable IPv6 on the network."
+                                    }, 
+                                    "ipam": {
+                                        "$ref": "#/definitions/ipam"
+                                    }, 
+                                    "labels": {
+                                        "items": {
+                                            "type": "string", 
+                                            "description": "A label to apply."
+                                        }, 
+                                        "type": "array", 
+                                        "description": "A list of labels to apply to the network"
+                                    }, 
+                                    "driver": {
+                                        "type": "string", 
+                                        "description": "Name of the driver used to create the network"
+                                    }, 
+                                    "attachable": {
+                                        "type": "boolean", 
+                                        "description": "If enabled, and the network is in the global scope,  non-service containers on worker nodes will be able to connect to the network."
+                                    }, 
+                                    "internal": {
+                                        "type": "boolean", 
+                                        "description": "Restrict external access to the network."
+                                    }, 
+                                    "scope": {
+                                        "enum": [
+                                            "local", 
+                                            "global", 
+                                            "swarm"
+                                        ], 
+                                        "description": "The network's scope"
+                                    }, 
+                                    "options": {
+                                        "type": "object", 
+                                        "description": "Driver options."
+                                    }
+                                }
+                            }
                         }, 
-                        "type": "array", 
-                        "description": "Create several networks."
+                        "oneOf": [
+                            {
+                                "description": "Create a single network", 
+                                "$ref": "#/definitions/single-network"
+                            }, 
+                            {
+                                "minItems": 1, 
+                                "items": {
+                                    "$ref": "#/definitions/single-network"
+                                }, 
+                                "type": "array", 
+                                "description": "Create several networks."
+                            }
+                        ]
                     }
-                ]
+                }
             }
         }
     }, 
@@ -372,10 +384,5 @@
             }
         ]
     }, 
-    "plugins_bases": {
-        "Platform": "", 
-        "Validator": "A base class for all validators.", 
-        "Scenario": "This is base class for any scenario.\n\nAll Scenario Plugins should be subclass of this class.\n", 
-        "Context": ""
-    }
+    "plugins_bases": {}
 }

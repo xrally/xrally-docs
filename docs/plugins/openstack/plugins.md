@@ -185,7 +185,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.network.allow_ssh](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/network/allow_ssh.py)
 
@@ -480,7 +480,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.contexts.watcher.audit_templates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/watcher/audit_templates.py)
 
@@ -507,9 +507,93 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.magnum.ca_certs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/magnum/ca_certs.py)
+
+<hr />
+
+#### ceilometer [Context]
+
+Creates ceilometer samples and resources.
+
+__Platform__: openstack
+
+??? note "The input of this plugin should be valid to the following JSONSchema"
+        :::json
+        {
+            "$schema": "http://json-schema.org/draft-04/schema", 
+            "type": "object", 
+            "properties": {
+                "batch_size": {
+                    "type": "integer", 
+                    "minimum": 1
+                }, 
+                "batches_allow_lose": {
+                    "type": "integer", 
+                    "minimum": 0
+                }, 
+                "counter_name": {
+                    "type": "string"
+                }, 
+                "counter_type": {
+                    "type": "string"
+                }, 
+                "counter_unit": {
+                    "type": "string"
+                }, 
+                "counter_volume": {
+                    "type": "number", 
+                    "minimum": 0
+                }, 
+                "metadata_list": {
+                    "type": "array", 
+                    "items": {
+                        "type": "object", 
+                        "properties": {
+                            "created_at": {
+                                "type": "string"
+                            }, 
+                            "deleted": {
+                                "type": "string"
+                            }, 
+                            "name": {
+                                "type": "string"
+                            }, 
+                            "status": {
+                                "type": "string"
+                            }
+                        }, 
+                        "additionalProperties": false
+                    }
+                }, 
+                "resources_per_tenant": {
+                    "type": "integer", 
+                    "minimum": 1
+                }, 
+                "samples_per_resource": {
+                    "type": "integer", 
+                    "minimum": 1
+                }, 
+                "timestamp_interval": {
+                    "type": "integer", 
+                    "minimum": 1
+                }
+            }, 
+            "additionalProperties": false, 
+            "required": [
+                "counter_name", 
+                "counter_type", 
+                "counter_unit", 
+                "counter_volume"
+            ]
+        }
+
+__Requires platform(s)__:
+
+* openstack with the next options: {"users": true}
+
+__Module__: [rally_openstack.contexts.ceilometer.samples](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/ceilometer/samples.py)
 
 <hr />
 
@@ -599,7 +683,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.magnum.cluster_templates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/magnum/cluster_templates.py)
 
@@ -630,7 +714,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.magnum.clusters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/magnum/clusters.py)
 
@@ -701,7 +785,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.network.existing_network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/network/existing_network.py)
 
@@ -761,7 +845,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.contexts.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/nova/flavors.py)
 
@@ -834,7 +918,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.dataplane.heat](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/dataplane/heat.py)
 
@@ -997,7 +1081,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.vm.image_command_customizer](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/vm/image_command_customizer.py)
 
@@ -1136,7 +1220,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/glance/images.py)
 
@@ -1157,7 +1241,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.nova.keypairs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/nova/keypairs.py)
 
@@ -1189,7 +1273,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.contexts.neutron.lbaas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/neutron/lbaas.py)
 
@@ -1234,7 +1318,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.manila.manila_security_services](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/manila/manila_security_services.py)
 
@@ -1267,7 +1351,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.manila.manila_share_networks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/manila/manila_share_networks.py)
 
@@ -1305,7 +1389,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.manila.manila_shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/manila/manila_shares.py)
 
@@ -1369,7 +1453,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.monasca.metrics](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/monasca/metrics.py)
 
@@ -1400,7 +1484,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.murano.murano_environments](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/murano/murano_environments.py)
 
@@ -1430,7 +1514,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.murano.murano_packages](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/murano/murano_packages.py)
 
@@ -1504,7 +1588,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.contexts.network.networks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/network/networks.py)
 
@@ -1543,7 +1627,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.senlin.profiles](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/senlin/profiles.py)
 
@@ -1749,7 +1833,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.contexts.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/quotas/quotas.py)
 
@@ -1774,7 +1858,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.keystone.roles](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/keystone/roles.py)
 
@@ -1853,7 +1937,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.contexts.network.routers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/network/routers.py)
 
@@ -1940,7 +2024,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.sahara.sahara_cluster](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/sahara/sahara_cluster.py)
 
@@ -1996,7 +2080,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.sahara.sahara_image](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/sahara/sahara_image.py)
 
@@ -2052,7 +2136,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.sahara.sahara_input_data_sources](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/sahara/sahara_input_data_sources.py)
 
@@ -2114,7 +2198,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.sahara.sahara_job_binaries](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/sahara/sahara_job_binaries.py)
 
@@ -2151,7 +2235,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.sahara.sahara_output_data_sources](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/sahara/sahara_output_data_sources.py)
 
@@ -2230,7 +2314,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/nova/servers.py)
 
@@ -2268,7 +2352,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/heat/stacks.py)
 
@@ -2308,7 +2392,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/swift/objects.py)
 
@@ -2381,7 +2465,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.keystone.users](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/keystone/users.py)
 
@@ -2405,7 +2489,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.contexts.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/cinder/volume_types.py)
 
@@ -2476,7 +2560,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.contexts.designate.zones](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/contexts/designate/zones.py)
 
@@ -2544,7 +2628,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2580,7 +2664,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2616,7 +2700,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2653,7 +2737,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2689,7 +2773,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2725,7 +2809,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2761,7 +2845,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2797,7 +2881,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.authenticate.authenticate](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/authenticate/authenticate.py)
 
@@ -2849,7 +2933,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -2924,7 +3008,7 @@ successful check of the alarm state
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -2977,7 +3061,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -3031,7 +3115,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -3085,7 +3169,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -3138,7 +3222,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -3154,7 +3238,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.alarms](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/alarms.py)
 
@@ -3171,7 +3255,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.events](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/events.py)
 
@@ -3188,7 +3272,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.events](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/events.py)
 
@@ -3205,7 +3289,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.events](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/events.py)
 
@@ -3266,7 +3350,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.meters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/meters.py)
 
@@ -3306,7 +3390,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.meters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/meters.py)
 
@@ -3371,7 +3455,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.queries](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/queries.py)
 
@@ -3442,7 +3526,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.queries](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/queries.py)
 
@@ -3534,7 +3618,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.queries](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/queries.py)
 
@@ -3551,7 +3635,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.resources](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/resources.py)
 
@@ -3626,7 +3710,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.resources](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/resources.py)
 
@@ -3682,7 +3766,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.resources](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/resources.py)
 
@@ -3743,7 +3827,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.samples](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/samples.py)
 
@@ -3783,7 +3867,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.samples](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/samples.py)
 
@@ -3819,7 +3903,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.stats](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/stats.py)
 
@@ -3908,7 +3992,7 @@ list of statistics data
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.stats](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/stats.py)
 
@@ -3926,7 +4010,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.traits](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/traits.py)
 
@@ -3944,7 +4028,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ceilometer.traits](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ceilometer/traits.py)
 
@@ -3991,7 +4075,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.qos_specs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/qos_specs.py)
 
@@ -4038,7 +4122,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.qos_specs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/qos_specs.py)
 
@@ -4106,7 +4190,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.qos_specs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/qos_specs.py)
 
@@ -4153,7 +4237,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.qos_specs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/qos_specs.py)
 
@@ -4211,7 +4295,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_backups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_backups.py)
 
@@ -4279,7 +4363,7 @@ or "back-end."
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4319,7 +4403,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4359,7 +4443,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4435,7 +4519,7 @@ or "back-end."
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4475,7 +4559,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4522,7 +4606,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4615,7 +4699,7 @@ or "back-end."
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4677,7 +4761,7 @@ if False, don't update name.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4740,7 +4824,7 @@ or "back-end."
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4783,7 +4867,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4865,7 +4949,7 @@ or "back-end."
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volume_types.py)
 
@@ -4915,7 +4999,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -4989,7 +5073,7 @@ dictionary, must contain two values:
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5050,7 +5134,7 @@ deletion (in seconds)
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5121,7 +5205,7 @@ deletion (in seconds)
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5192,7 +5276,7 @@ deletion (in seconds)
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5244,7 +5328,7 @@ dictionary, must contain two values:
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5293,7 +5377,7 @@ should be listed
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5359,7 +5443,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5421,7 +5505,7 @@ should be listed
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5476,7 +5560,7 @@ be deleted after creation.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5535,7 +5619,7 @@ description of volume.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5614,7 +5698,7 @@ could be uploaded to image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5678,7 +5762,7 @@ deletion (in seconds)
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5761,7 +5845,7 @@ default values: {"min": 1, "max": 5}
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5834,7 +5918,7 @@ snapshot creation.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5887,7 +5971,7 @@ dictionary, must contain two values:
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -5953,7 +6037,7 @@ dictionary, must contain two values:
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6008,7 +6092,7 @@ read-only access mode
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6063,7 +6147,7 @@ be deleted after creation.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6111,7 +6195,7 @@ be deleted after creation.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6155,7 +6239,7 @@ should be listed
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6198,7 +6282,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6236,7 +6320,7 @@ should be listed
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6297,7 +6381,7 @@ delete_metadata operation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.cinder.volumes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/cinder/volumes.py)
 
@@ -6314,7 +6398,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6350,7 +6434,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6386,7 +6470,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6403,7 +6487,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6420,7 +6504,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6442,7 +6526,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6481,7 +6565,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6520,7 +6604,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6540,7 +6624,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6562,7 +6646,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6579,7 +6663,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6600,7 +6684,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6640,7 +6724,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6676,7 +6760,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6693,7 +6777,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6710,7 +6794,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.designate.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/designate/basic.py)
 
@@ -6792,7 +6876,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ec2.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ec2/servers.py)
 
@@ -6809,7 +6893,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.ec2.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ec2/servers.py)
 
@@ -6882,7 +6966,7 @@ elasticsearch
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.elasticsearch.logging](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/elasticsearch/logging.py)
 
@@ -6952,7 +7036,7 @@ ami, ari, aki, vhd, vmdk, raw, qcow2, vdi, and iso
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7031,7 +7115,7 @@ on the image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7110,7 +7194,7 @@ on the image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7189,7 +7273,7 @@ on the image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7276,7 +7360,7 @@ on the image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7379,7 +7463,7 @@ on the created image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7485,7 +7569,7 @@ on the image
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7506,7 +7590,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.glance.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/glance/images.py)
 
@@ -7539,7 +7623,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.status](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/status.py)
 
@@ -7553,7 +7637,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.capabilities](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/capabilities.py)
 
@@ -7593,7 +7677,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy.py)
 
@@ -7633,7 +7717,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy.py)
 
@@ -7647,7 +7731,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy.py)
 
@@ -7687,7 +7771,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy_rule](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy_rule.py)
 
@@ -7727,7 +7811,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy_rule](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy_rule.py)
 
@@ -7741,7 +7825,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.archive_policy_rule](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/archive_policy_rule.py)
 
@@ -7790,7 +7874,7 @@ __Introduced in__: 1.1.0
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.metric](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/metric.py)
 
@@ -7839,7 +7923,7 @@ __Introduced in__: 1.1.0
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.metric](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/metric.py)
 
@@ -7874,7 +7958,7 @@ __Introduced in__: 1.1.0
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.metric](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/metric.py)
 
@@ -7909,7 +7993,7 @@ __Introduced in__: 1.1.0
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource.py)
 
@@ -7944,7 +8028,7 @@ __Introduced in__: 1.1.0
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource.py)
 
@@ -7977,7 +8061,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource_type](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource_type.py)
 
@@ -8010,7 +8094,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource_type](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource_type.py)
 
@@ -8024,7 +8108,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource_type](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource_type.py)
 
@@ -8121,7 +8205,7 @@ Grafana
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.grafana.metrics](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/grafana/metrics.py)
 
@@ -8254,7 +8338,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8311,7 +8395,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8370,7 +8454,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8430,7 +8514,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8488,7 +8572,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8546,7 +8630,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8620,7 +8704,7 @@ file path)
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8686,7 +8770,7 @@ the scaling webhook
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8752,7 +8836,7 @@ the scaling webhook
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8812,7 +8896,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8900,7 +8984,7 @@ files value will be used instead
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8914,7 +8998,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8928,7 +9012,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.heat.stacks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/heat/stacks.py)
 
@@ -8976,7 +9060,7 @@ characteristics of the node.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ironic.nodes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ironic/nodes.py)
 
@@ -9081,7 +9165,7 @@ default) or 'desc'.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.ironic.nodes](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/ironic/nodes.py)
 
@@ -9114,7 +9198,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.k8s_pods](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/k8s_pods.py)
 
@@ -9147,7 +9231,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.k8s_pods](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/k8s_pods.py)
 
@@ -9161,7 +9245,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.k8s_pods](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/k8s_pods.py)
 
@@ -9175,7 +9259,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9189,7 +9273,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9203,7 +9287,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9217,7 +9301,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9231,7 +9315,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9271,7 +9355,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9304,7 +9388,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9318,7 +9402,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9359,7 +9443,7 @@ roles create
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9399,7 +9483,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9432,7 +9516,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9467,7 +9551,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9510,7 +9594,7 @@ updation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9545,7 +9629,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9578,7 +9662,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9622,7 +9706,7 @@ keystone tenant instance
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9655,7 +9739,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9690,7 +9774,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9732,7 +9816,7 @@ value, and then it will be toggled.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9746,7 +9830,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9789,7 +9873,7 @@ get it by ID.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.keystone.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/keystone/basic.py)
 
@@ -9839,7 +9923,7 @@ listing
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.cluster_templates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/cluster_templates.py)
 
@@ -9887,7 +9971,7 @@ cluster_template
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.clusters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/clusters.py)
 
@@ -9935,7 +10019,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.magnum.clusters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/magnum/clusters.py)
 
@@ -9971,7 +10055,7 @@ Should be one of following: 'ldap', 'kerberos' or
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10037,7 +10121,7 @@ GlusterFS and HDFS
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10143,7 +10227,7 @@ should belong
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10216,7 +10300,7 @@ GlusterFS and HDFS
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10322,7 +10406,7 @@ should belong
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10398,7 +10482,7 @@ are 'ldap', 'kerberos' or 'active_directory'.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10452,7 +10536,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10523,7 +10607,7 @@ objects or not.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10650,7 +10734,7 @@ should belong
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10687,7 +10771,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10730,7 +10814,7 @@ objects or not.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10811,7 +10895,7 @@ delete_metadata operation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.manila.shares](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/manila/shares.py)
 
@@ -10884,7 +10968,7 @@ in "create only" mode.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.mistral.executions](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/mistral/executions.py)
 
@@ -10945,7 +11029,7 @@ Default: asc.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.mistral.executions](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/mistral/executions.py)
 
@@ -10992,7 +11076,7 @@ in "create only" mode.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.mistral.workbooks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/mistral/workbooks.py)
 
@@ -11009,7 +11093,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.mistral.workbooks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/mistral/workbooks.py)
 
@@ -11044,7 +11128,7 @@ name, dimensions, start_time, etc
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.monasca.metrics](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/monasca/metrics.py)
 
@@ -11139,7 +11223,7 @@ package components
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.murano.packages](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/murano/packages.py)
 
@@ -11190,7 +11274,7 @@ e.g. {"category": "Web"}
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.murano.packages](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/murano/packages.py)
 
@@ -11240,7 +11324,7 @@ Default value is False.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.murano.packages](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/murano/packages.py)
 
@@ -11300,7 +11384,7 @@ Default value is "replace".
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.murano.packages](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/murano/packages.py)
 
@@ -11368,7 +11452,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11435,7 +11519,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11504,7 +11588,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11573,7 +11657,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11679,7 +11763,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11747,7 +11831,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11816,7 +11900,7 @@ Acceptable formats: l2 and l3
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.bgpvpn](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/bgpvpn.py)
 
@@ -11855,7 +11939,7 @@ options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -11892,7 +11976,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -11936,7 +12020,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -11974,7 +12058,7 @@ options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12010,7 +12094,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12054,7 +12138,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12101,7 +12185,7 @@ options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12145,7 +12229,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12196,7 +12280,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v1](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v1.py)
 
@@ -12235,7 +12319,7 @@ request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.loadbalancer_v2](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/loadbalancer_v2.py)
 
@@ -12278,7 +12362,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12514,7 +12598,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12555,7 +12639,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12603,7 +12687,7 @@ options. Deprecated.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12668,7 +12752,7 @@ options. Deprecated.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12726,7 +12810,7 @@ options. Deprecated
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12761,7 +12845,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12812,7 +12896,7 @@ options.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12877,7 +12961,7 @@ options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12936,7 +13020,7 @@ options.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -12978,7 +13062,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13036,7 +13120,7 @@ options. Deprecated.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13170,7 +13254,7 @@ options. Deprecated.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13206,7 +13290,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13258,7 +13342,7 @@ options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13304,7 +13388,7 @@ POST /v2.0/security-group-rules request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13342,7 +13426,7 @@ request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13388,7 +13472,7 @@ POST /v2.0/security-group-rules request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13426,7 +13510,7 @@ request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13464,7 +13548,7 @@ request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13510,7 +13594,7 @@ POST /v2.0/security-group-rules request options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13556,7 +13640,7 @@ update options
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.security_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/security_groups.py)
 
@@ -13580,7 +13664,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.neutron.network](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/neutron/network.py)
 
@@ -13618,7 +13702,7 @@ hypervisors
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.agents](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/agents.py)
 
@@ -13654,7 +13738,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13736,7 +13820,7 @@ aggregates
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13771,7 +13855,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13806,7 +13890,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13841,7 +13925,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13877,7 +13961,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13893,7 +13977,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.aggregates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/aggregates.py)
 
@@ -13930,7 +14014,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.availability_zones](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/availability_zones.py)
 
@@ -14014,7 +14098,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14098,7 +14182,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14182,7 +14266,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14266,7 +14350,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14350,7 +14434,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14444,7 +14528,7 @@ flavor in cases where you cannot simply pass ``None``.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14532,7 +14616,7 @@ list than that represented by this flavor id (optional).
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.flavors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/flavors.py)
 
@@ -14572,7 +14656,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.hypervisors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/hypervisors.py)
 
@@ -14612,7 +14696,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.hypervisors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/hypervisors.py)
 
@@ -14652,7 +14736,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.hypervisors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/hypervisors.py)
 
@@ -14689,7 +14773,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.hypervisors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/hypervisors.py)
 
@@ -14705,7 +14789,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.hypervisors](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/hypervisors.py)
 
@@ -14748,7 +14832,7 @@ should contain detailed information
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.images](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/images.py)
 
@@ -14817,7 +14901,7 @@ creation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.keypairs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/keypairs.py)
 
@@ -14852,7 +14936,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.keypairs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/keypairs.py)
 
@@ -14885,7 +14969,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.keypairs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/keypairs.py)
 
@@ -14920,7 +15004,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.keypairs](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/keypairs.py)
 
@@ -14965,7 +15049,7 @@ DEPRECATED, specify arguments explicitly.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.server_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/server_groups.py)
 
@@ -15010,7 +15094,7 @@ DEPRECATED, specify arguments explicitly.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.server_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/server_groups.py)
 
@@ -15063,7 +15147,7 @@ DEPRECATED, specify arguments explicitly.
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.server_groups](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/server_groups.py)
 
@@ -15118,7 +15202,7 @@ floating ip creation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15187,7 +15271,7 @@ in the following format:
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15265,7 +15349,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15337,7 +15421,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15399,7 +15483,7 @@ Text console log output for server
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15458,7 +15542,7 @@ webmks for protocol mks (since version 2.8).
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15521,7 +15605,7 @@ detailed information about all of them
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15605,7 +15689,7 @@ on migrated instance or not
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15656,7 +15740,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15713,7 +15797,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15767,7 +15851,7 @@ Server details
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15824,7 +15908,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15898,7 +15982,7 @@ in seconds
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -15954,7 +16038,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16027,7 +16111,7 @@ server creation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16076,7 +16160,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16135,7 +16219,7 @@ floating ip creation
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16232,7 +16316,7 @@ on migrated instance or not
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16342,7 +16426,7 @@ else use rally cleanup to remove resources
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16412,7 +16496,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16484,7 +16568,7 @@ multiple backends
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16572,7 +16656,7 @@ multiple backends
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16679,7 +16763,7 @@ on migrated instance or not
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16791,7 +16875,7 @@ else use rally cleanup to remove resources
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16865,7 +16949,7 @@ multiple backends
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16903,7 +16987,7 @@ should be listed
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -16957,7 +17041,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17021,7 +17105,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17092,7 +17176,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17146,7 +17230,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17200,7 +17284,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17254,7 +17338,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.nova.servers](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/servers.py)
 
@@ -17296,7 +17380,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.nova.services](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/nova/services.py)
 
@@ -17312,7 +17396,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17345,7 +17429,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17378,7 +17462,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17411,7 +17495,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17425,7 +17509,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17458,7 +17542,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17491,7 +17575,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True, u'users': True}
+* openstack with the next options: {"admin": true, "users": true}
 
 __Module__: [rally_openstack.scenarios.quotas.quotas](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/quotas/quotas.py)
 
@@ -17654,7 +17738,7 @@ should be specify manually
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.sahara.clusters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/sahara/clusters.py)
 
@@ -18024,7 +18108,7 @@ should be specify manually
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.sahara.node_group_templates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/sahara/node_group_templates.py)
 
@@ -18090,7 +18174,7 @@ should be specify manually
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.sahara.node_group_templates](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/sahara/node_group_templates.py)
 
@@ -18156,7 +18240,7 @@ owned by the cluster
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.senlin.clusters](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/senlin/clusters.py)
 
@@ -18203,7 +18287,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/swift/objects.py)
 
@@ -18250,7 +18334,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/swift/objects.py)
 
@@ -18297,7 +18381,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/swift/objects.py)
 
@@ -18311,7 +18395,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/swift/objects.py)
 
@@ -18325,7 +18409,7 @@ __Platform__: openstack
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.swift.objects](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/swift/objects.py)
 
@@ -18508,7 +18592,7 @@ would like to retrieve
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.vm.vmtasks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/vm/vmtasks.py)
 
@@ -18639,7 +18723,7 @@ would like to retrieve
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'users': True}
+* openstack with the next options: {"users": true}
 
 __Module__: [rally_openstack.scenarios.vm.vmtasks](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/vm/vmtasks.py)
 
@@ -18760,7 +18844,7 @@ algorithm
 
 __Requires platform(s)__:
 
-* openstack with the next options: {u'admin': True}
+* openstack with the next options: {"admin": true}
 
 __Module__: [rally_openstack.scenarios.watcher.basic](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/watcher/basic.py)
 

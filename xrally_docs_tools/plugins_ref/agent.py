@@ -38,7 +38,6 @@ def _parse_class_name(cls):
 
 def find_plugins(dist):
     """Find all plugins for the distribution."""
-    plugins = []
     bases = {}
     packages = find_packages(exclude=["tests", "tests.*"],
                              where=dist.location)
@@ -55,7 +54,8 @@ def find_plugins(dist):
         if base != plugin.Plugin:
             b_name = _parse_class_name(base)
             if b_name not in bases:
-                bases[b_name] = info.trim(base.__doc__)
+                bases[b_name] = {"description": info.trim(base.__doc__),
+                                 "plugins": []}
             p_info["base"] = b_name
         if issubclass(p, validation.ValidatablePluginMixin):
             validators = p._meta_get("validators", default=[])
@@ -63,11 +63,11 @@ def find_plugins(dist):
                          if name == "required_platform"]
             if platforms:
                 p_info["required_platforms"] = platforms
-        plugins.append(p_info)
+        bases[b_name]["plugins"].append(p_info)
 
-    plugins = dict(("%s@%s" % (p["name"], p["platform"]), p)
-                   for p in plugins)
-    return plugins, bases
+    for base in bases.values():
+        base["plugins"] = sorted(base["plugins"], key=lambda p: p["name"])
+    return bases
 
 
 def _get_opts_from_method(module_name, function_name="list_opts"):

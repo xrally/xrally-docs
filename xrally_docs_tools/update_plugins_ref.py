@@ -12,6 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import collections
 import json
 import os
 import shutil
@@ -38,8 +39,8 @@ class Package(object):
         self._info = info
         self._tmp_dir = tmp_dir
         self._mkdocs_section = mkdocs_section
-        self._load()
         self._changed_data = {}
+        self._load()
 
     @property
     def name(self):
@@ -63,7 +64,9 @@ class Package(object):
         if os.path.exists(self._dump_file):
             with open(self._dump_file) as f:
                 try:
-                    _dump_data = json.loads(f.read())
+                    _dump_data = json.loads(
+                        f.read(),
+                        object_pairs_hook=collections.OrderedDict)
                 except ValueError:
                     return
             # check if something is changed
@@ -144,18 +147,44 @@ class Package(object):
                     self._info["pkg_info"] = tag_data["pkg_info"]
                     self._info["options"] = tag_data["options"]
 
-                tag_plugins, tag_bases = tag_data["plugins"]
-                for name, plugin in tag_plugins.items():
-                    introduced_in = self._info["plugins"][name]["introduced_in"]
-                    if name not in self._info["plugins"]:
-                        if tag != start_tag:
+                for pbase_name, pbase in tag_data["plugins"].items():
+                    if pbase_name not in self._info["plugins"]:
+                        # there was not such plugin base so no need to check
+                        # introduced_id and deleted_in fields. What we n
+                        pbase["plugins"] = collections.OrderedDict(
+                            ("%s@%s" % (p["name"], p["platform"]), p)
+                            for p in pbase["plugins"]
+                        )
+                        self._info["plugins"][pbase_name] = pbase
+                        continue
+
+                    # ensure that we have the latest description of plugin base
+                    self._info["plugins"][pbase_name]["description"] = (
+                        pbase["description"])
+
+                    ex_plugins = self._info["plugins"][pbase_name]["plugins"]
+                    for plugin in pbase["plugins"]:
+                        introduced_in = None
+                        pname = "%s@%s" % (plugin["name"], plugin["platform"])
+                        if pname in ex_plugins:
+                            ex_plugin = ex_plugins[pname]
+                            introduced_in = ex_plugin.get("introduced_in")
+                        elif tag != start_tag:
                             introduced_in = tag.to_str()
-                    self._info["plugins"][name] = plugin
-                    self._info["plugins"][name]["introduced_in"] = introduced_in
-                deleted = set(self._info["plugins"]) - set(tag_plugins)
-                for p in deleted:
-                    self._info["plugins"][p]["removed_in"] = tag.to_str()
-                self._info["plugins_bases"].update(tag_bases)
+                        ex_plugins[pname] = plugin
+                        plugin["introduced_in"] = introduced_in
+
+                    the_current = ["%s@%s" % (p["name"], p["platform"])
+                                   for p in pbase["plugins"]]
+                    deleted = set(ex_plugins) - set(the_current)
+                    for p in deleted:
+                        ex_plugins[p]["removed_in"] = tag.to_str()
+
+        for pbase_name, pbase in self._info["plugins"].items():
+            # insure that it is sorted after processing new tags
+            pbase["plugins"] = collections.OrderedDict(
+                (k, v) for k, v in sorted(pbase["plugins"].items())
+            )
 
         if "changelog_file" in self._info:
             changelog_file = os.path.join(
@@ -168,7 +197,7 @@ class Package(object):
     def _dump_info(self):
         """Save data to the file."""
         if self.is_changed:
-            dump_results = json.dumps(self._info, indent=4)
+            dump_results = json.dumps(self._info, indent=4, sort_keys=False)
             with open(self._dump_file, "w") as f:
                 f.write(dump_results)
 
@@ -201,6 +230,7 @@ class Package(object):
         print("Start processing %s." % self.name)
 
         if not self.is_changed:
+
             print("Nothing had changed. No new data to retrieve...\n\n")
         elif ("versions" not in self._info
               and "versions" not in self._changed_data):

@@ -1,7 +1,10 @@
 {
     "name": "rally", 
     "repository": "https://github.com/openstack/rally", 
-    "title": "In-tree", 
+    "versions": [
+        "0.11.0", 
+        "1.0.0"
+    ], 
     "pkg_info": {
         "Name": "rally", 
         "License": "Apache License, Version 2.0", 
@@ -16,1137 +19,1237 @@
         "Author-email": "openstack-dev@lists.openstack.org", 
         "Description": "=====\n        Rally\n        =====\n        \n        Rally is tool & framework that allows one to write simple plugins and combine\n        them in complex tests scenarios that allows to perform all kinds of testing!\n        \n        Team and repository tags\n        ========================\n        \n        .. image:: https://governance.openstack.org/tc/badges/rally.svg\n            :target: https://governance.openstack.org/tc/reference/tags/index.html\n        \n        .. image:: https://img.shields.io/pypi/v/rally.svg\n            :target: https://pypi.org/project/rally/\n            :alt: Latest Version\n        \n        .. image:: https://img.shields.io/badge/gitter-join_chat-ff69b4.svg\n            :target: https://gitter.im/rally-dev/Lobby\n            :alt: Gitter Chat\n        \n        .. image:: https://img.shields.io/badge/tasks-trello_board-blue.svg\n            :target: https://trello.com/b/DoD8aeZy/rally\n            :alt: Trello Board\n        \n        .. image:: https://img.shields.io/github/license/openstack/rally.svg\n            :target: https://www.apache.org/licenses/LICENSE-2.0\n            :alt: Apache License, Version 2.0\n        \n        \n        What is Rally\n        =============\n        \n        Rally is intended to provide a testing framework that is\n        capable to perform **specific**, **complicated** and **reproducible**\n        test cases on **real deployment** scenarios.\n        \n        **Rally** workflow can be visualized by the following diagram:\n        \n        .. image:: doc/source/images/Rally-Actions.png\n           :alt: Rally Architecture\n        \n        \n        Who Is Using Rally\n        ==================\n        \n        .. image:: doc/source/images/Rally_who_is_using.png\n           :alt: Who is Using Rally\n        \n        \n        Documentation\n        =============\n        \n        `Rally documentation on ReadTheDocs <https://rally.readthedocs.org/en/latest/>`_\n        is a perfect place to start learning about Rally. It provides you with an\n        **easy** and **illustrative** guidance through this benchmarking tool.\n        \n        For example, check out the `Rally step-by-step tutorial\n        <https://rally.readthedocs.io/en/latest/quick_start/tutorial.html>`_ that\n        explains, in a series of lessons, how to explore the power of Rally in\n        benchmarking your OpenStack clouds.\n        \n        Architecture\n        ------------\n        \n        In terms of software architecture, Rally is built of 4 main components:\n        \n        1. **Environment** - one of key component in Rally. It manages and stores\n           information about tested platforms. Env manager is using platform plugins\n           to: create, delete, cleanup, check health, obtain information about\n           platforms.\n        2. **Task** component is responsible for executing tests defined in\n           task specs, persisting and reporting results.\n        3. **Verification** component allows to wrap subunit-based testing tools and\n           provide complete tool on top of them with allow to do pre configuration,\n           post cleanup as well process and persist results to Rally DB for future use\n           like reporting and results comparing.\n        \n        Use Cases\n        ---------\n        \n        There are 3 major high level Rally Use Cases:\n        \n        .. image:: doc/source/images/Rally-UseCases.png\n           :alt: Rally Use Cases\n        \n        \n        Typical cases where Rally aims to help are:\n        \n        - Automate measuring & profiling focused on how new code changes affect the\n          OpenStack performance;\n        - Using Rally profiler to detect scaling & performance issues;\n        - Investigate how different deployments affect the OS performance:\n        \n            - Find the set of suitable OpenStack deployment architectures;\n            - Create deployment specifications for different loads (amount of\n              controllers, swift nodes, etc.);\n        - Automate the search for hardware best suited for particular OpenStack cloud;\n        - Automate the production cloud specification generation:\n        \n            - Determine terminal loads for basic cloud operations: VM start & stop,\n              Block Device create/destroy & various OpenStack API methods;\n            - Check performance of basic cloud operations in case of different loads.\n        \n        Links\n        -----\n        \n        * Free software: Apache license\n        * Documentation: https://rally.readthedocs.org/en/latest/\n        * Source: https://git.openstack.org/cgit/openstack/rally\n        * Bugs: https://bugs.launchpad.net/rally\n        * Step-by-step tutorial: https://rally.readthedocs.io/en/latest/quick_start/tutorial.html\n        * Launchpad page: https://launchpad.net/rally\n        * Gitter chat: https://gitter.im/rally-dev/Lobby\n        * Trello board: https://trello.com/b/DoD8aeZy/rally\n        \n        "
     }, 
-    "versions": [
-        "0.11.0", 
-        "1.0.0"
-    ], 
+    "title": "In-tree", 
     "plugins": {
-        "expand_user_path@default": {
-            "introduced_in": null, 
-            "name": "expand_user_path", 
-            "parameters": [], 
-            "title": "Expands user path.", 
+        "Resource Type": {
             "description": "", 
-            "module": "rally.plugins.common.types", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Resource Type", 
-            "schema": null
-        }, 
-        "html@default": {
-            "introduced_in": null, 
-            "name": "html", 
-            "parameters": [], 
-            "title": "Generates verification report in HTML format.", 
-            "description": "", 
-            "module": "rally.plugins.common.verification.reporters", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Verification Reporter", 
-            "schema": null
-        }, 
-        "Table@default": {
-            "introduced_in": null, 
-            "name": "Table", 
-            "parameters": [], 
-            "title": "Display complete output as table, can not be used for additive data.", 
-            "description": "Use this plugin for complete output data to display it in HTML report\nas table. This plugin can not be used for additive data because it\ndoes not contain any processing logic.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        complete={\"title\": \"Arbitrary Table\",\n                  \"description\": \"Just show columns and rows as-is\",\n                  \"chart_plugin\": \"Table\",\n                  \"data\": {\"cols\": [\"foo\", \"bar\", \"spam\"],\n                           \"rows\": [[\"a row\", 1, 2], [\"b row\", 3, 4],\n                                    [\"c row\", 5, 6]]}})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "file_dict@default": {
-            "introduced_in": null, 
-            "name": "file_dict", 
-            "parameters": [], 
-            "title": "Return the dictionary of items with file path and file content.", 
-            "description": "", 
-            "module": "rally.plugins.common.types", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Resource Type", 
-            "schema": null
-        }, 
-        "constant@default": {
-            "introduced_in": null, 
-            "name": "constant", 
-            "parameters": [], 
-            "title": "Creates constant load executing a scenario a specified number of times.", 
-            "description": "This runner will place a constant load on the cloud under test by\nexecuting each scenario iteration without pausing between iterations\nup to the number of times specified in the scenario config.\n\nThe concurrency parameter of the scenario config controls the\nnumber of concurrent iterations which execute during a single\nscenario in order to simulate the activities of multiple users\nplacing load on the cloud under test.", 
-            "module": "rally.plugins.common.runners.constant", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario Runner", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "properties": {
-                    "max_cpu_count": {
-                        "minimum": 1, 
-                        "type": "integer", 
-                        "description": "The maximum number of processes to create load from."
-                    }, 
-                    "concurrency": {
-                        "minimum": 1, 
-                        "type": "integer", 
-                        "description": "The number of parallel iteration executions."
-                    }, 
-                    "timeout": {
-                        "type": "number", 
-                        "description": "Operation's timeout."
-                    }, 
-                    "times": {
-                        "minimum": 1, 
-                        "type": "integer", 
-                        "description": "Total number of iteration executions."
-                    }
+            "plugins": {
+                "expand_user_path@default": {
+                    "introduced_in": null, 
+                    "name": "expand_user_path", 
+                    "parameters": [], 
+                    "title": "Expands user path.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.types", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Resource Type", 
+                    "schema": null
+                }, 
+                "file@default": {
+                    "introduced_in": null, 
+                    "name": "file", 
+                    "parameters": [], 
+                    "title": "Return content of the file by its path.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.types", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Resource Type", 
+                    "schema": null
+                }, 
+                "file_dict@default": {
+                    "introduced_in": null, 
+                    "name": "file_dict", 
+                    "parameters": [], 
+                    "title": "Return the dictionary of items with file path and file content.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.types", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Resource Type", 
+                    "schema": null
+                }, 
+                "path_or_url@default": {
+                    "introduced_in": null, 
+                    "name": "path_or_url", 
+                    "parameters": [], 
+                    "title": "Check whether file exists or url available.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.types", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Resource Type", 
+                    "schema": null
                 }
             }
         }, 
-        "check_constant@default": {
-            "introduced_in": null, 
-            "name": "check_constant", 
-            "parameters": [], 
-            "title": "Additional schema validation for constant runner", 
-            "description": "", 
-            "module": "rally.plugins.common.runners.constant", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "HttpRequests.check_request@default": {
-            "introduced_in": null, 
-            "name": "HttpRequests.check_request", 
-            "parameters": [
-                {
-                    "doc": "url for the Request object\n", 
-                    "name": "url"
-                }, 
-                {
-                    "doc": "method for the Request object\n", 
-                    "name": "method"
-                }, 
-                {
-                    "doc": "expected response code\n", 
-                    "name": "status_code"
-                }, 
-                {
-                    "doc": "optional additional request parameters", 
-                    "name": "kwargs"
-                }
-            ], 
-            "title": "Standard way for testing web services using HTTP requests.", 
-            "description": "This scenario is used to make request and check it with expected\nResponse.", 
-            "module": "rally.plugins.common.scenarios.requests.http_requests", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "restricted_parameters@default": {
-            "introduced_in": null, 
-            "name": "restricted_parameters", 
-            "parameters": [
-                {
-                    "doc": "parameter or parameters list to be validated.\n", 
-                    "name": "param_names"
-                }, 
-                {
-                    "doc": "sub-dict of \"config\" to search for param_names. if\nnot defined - will search in \"config\"\n", 
-                    "name": "subdict"
-                }
-            ], 
-            "title": "Validates that parameters is not set.", 
-            "description": "", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "Dummy.dummy_exception@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_exception", 
-            "parameters": [
-                {
-                    "doc": "int size of the exception message\n", 
-                    "name": "size_of_message"
-                }, 
-                {
-                    "doc": "idle time of method (in seconds).\n", 
-                    "name": "sleep"
-                }, 
-                {
-                    "doc": "message of the exception\n", 
-                    "name": "message"
-                }
-            ], 
-            "title": "Throws an exception.", 
-            "description": "Dummy.dummy_exception used for testing if exceptions are processed\nproperly by task engine and analyze rally results storing & displaying\ncapabilities.", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "HttpRequests.check_random_request@default": {
-            "introduced_in": null, 
-            "name": "HttpRequests.check_random_request", 
-            "parameters": [
-                {
-                    "doc": "List of request dicts\n", 
-                    "name": "requests"
-                }, 
-                {
-                    "doc": "Expected Response Code it will\nbe used only if we doesn't specified it in request proper\n", 
-                    "name": "status_code"
-                }
-            ], 
-            "title": "Executes random HTTP requests from provided list.", 
-            "description": "This scenario takes random url from list of requests, and raises\nexception if the response is not the expected response.", 
-            "module": "rally.plugins.common.scenarios.requests.http_requests", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "args-spec@default": {
-            "introduced_in": null, 
-            "name": "args-spec", 
-            "parameters": [], 
-            "title": "Scenario arguments validator", 
-            "description": "", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "outliers@default": {
-            "introduced_in": null, 
-            "name": "outliers", 
-            "parameters": [], 
-            "title": "Limit the number of outliers (iterations that take too much time).", 
-            "description": "The outliers are detected automatically using the computation of the mean\nand standard deviation (std) of the data.", 
-            "module": "rally.plugins.common.sla.outliers", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "properties": {
-                    "max": {
-                        "minimum": 0, 
-                        "type": "integer"
-                    }, 
-                    "min_iterations": {
-                        "minimum": 3, 
-                        "type": "integer"
-                    }, 
-                    "sigmas": {
-                        "type": "number", 
-                        "minimum": 0.0, 
-                        "exclusiveMinimum": true
-                    }
-                }
-            }
-        }, 
-        "event@default": {
-            "introduced_in": null, 
-            "name": "event", 
-            "parameters": [], 
-            "title": "Triggers hook on specified event and list of values.", 
-            "description": "", 
-            "module": "rally.plugins.common.hook.triggers.event", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Hook Trigger", 
-            "schema": {
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "oneOf": [
-                    {
-                        "additionalProperties": false, 
-                        "required": [
-                            "unit", 
-                            "at"
-                        ], 
-                        "description": "Triage hook based on specified seconds after start of workload.", 
-                        "properties": {
-                            "at": {
-                                "minItems": 1, 
-                                "uniqueItems": true, 
-                                "type": "array", 
-                                "items": {
-                                    "minimum": 0, 
-                                    "type": "integer"
-                                }
-                            }, 
-                            "unit": {
-                                "enum": [
-                                    "time"
-                                ]
-                            }
+        "Scenario": {
+            "description": "This is base class for any scenario.\n\nAll Scenario Plugins should be subclass of this class.\n", 
+            "plugins": {
+                "Dummy.dummy@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy", 
+                    "parameters": [
+                        {
+                            "doc": "idle time of method (in seconds).", 
+                            "name": "sleep"
                         }
-                    }, 
-                    {
-                        "additionalProperties": false, 
-                        "required": [
-                            "unit", 
-                            "at"
-                        ], 
-                        "description": "Triage hook based on specific iterations.", 
-                        "properties": {
-                            "at": {
-                                "minItems": 1, 
-                                "uniqueItems": true, 
-                                "type": "array", 
-                                "items": {
-                                    "minimum": 1, 
-                                    "type": "integer"
-                                }
-                            }, 
-                            "unit": {
-                                "enum": [
-                                    "iteration"
-                                ]
-                            }
+                    ], 
+                    "title": "Do nothing and sleep for the given number of seconds (0 by default).", 
+                    "description": "Dummy.dummy can be used for testing performance of different\nScenarioRunners and of the ability of rally to store a large\namount of results.", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.dummy_exception@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_exception", 
+                    "parameters": [
+                        {
+                            "doc": "int size of the exception message\n", 
+                            "name": "size_of_message"
+                        }, 
+                        {
+                            "doc": "idle time of method (in seconds).\n", 
+                            "name": "sleep"
+                        }, 
+                        {
+                            "doc": "message of the exception\n", 
+                            "name": "message"
                         }
-                    }
-                ]
-            }
-        }, 
-        "Dummy.dummy_random_action@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_random_action", 
-            "parameters": [
-                {
-                    "doc": "int number of actions to generate\n", 
-                    "name": "actions_num"
+                    ], 
+                    "title": "Throws an exception.", 
+                    "description": "Dummy.dummy_exception used for testing if exceptions are processed\nproperly by task engine and analyze rally results storing & displaying\ncapabilities.", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
                 }, 
-                {
-                    "doc": "minimal time to sleep, numeric seconds\n", 
-                    "name": "sleep_min"
-                }, 
-                {
-                    "doc": "maximum time to sleep, numeric seconds", 
-                    "name": "sleep_max"
-                }
-            ], 
-            "title": "Sleep random time in dummy actions.", 
-            "description": "", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "max_avg_duration@default": {
-            "introduced_in": null, 
-            "name": "max_avg_duration", 
-            "parameters": [], 
-            "title": "Maximum average duration of one iteration in seconds.", 
-            "description": "", 
-            "module": "rally.plugins.common.sla.max_average_duration", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "type": "number", 
-                "minimum": 0.0, 
-                "exclusiveMinimum": true
-            }
-        }, 
-        "junit-xml@default": {
-            "introduced_in": null, 
-            "name": "junit-xml", 
-            "parameters": [], 
-            "title": "Generates verification report in JUnit-XML format.", 
-            "description": "An example of the report (All dates, numbers, names appearing in this\nexample are fictitious. Any resemblance to real things is purely\ncoincidental):\n\n  .. code-block:: xml\n\n    <testsuites>\n      <!--Report is generated by Rally 0.8.0 at 2002-01-01T00:00:00-->\n      <testsuite id=\"verification-uuid-1\"\n                 tests=\"9\"\n                 time=\"1.111\"\n                 errors=\"0\"\n                 failures=\"3\"\n                 skipped=\"0\"\n                 timestamp=\"2001-01-01T00:00:00\">\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_foo\"\n                  time=\"8\"\n                  timestamp=\"2001-01-01T00:01:00\" />\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_skipped\"\n                  time=\"0\"\n                  timestamp=\"2001-01-01T00:02:00\">\n          <skipped>Skipped until Bug: 666 is resolved.</skipped>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_xfail\"\n                  time=\"3\"\n                  timestamp=\"2001-01-01T00:03:00\">\n          <!--It is an expected failure due to: something-->\n          <!--Traceback:\n    HEEELP-->\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_uxsuccess\"\n                  time=\"3\"\n                  timestamp=\"2001-01-01T00:04:00\">\n          <failure>\n              It is an unexpected success. The test should fail due to:\n              It should fail, I said!\n          </failure>\n        </testcase>\n      </testsuite>\n      <testsuite id=\"verification-uuid-2\"\n                 tests=\"99\"\n                 time=\"22.222\"\n                 errors=\"0\"\n                 failures=\"33\"\n                 skipped=\"0\"\n                 timestamp=\"2002-01-01T00:00:00\">\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_foo\"\n                  time=\"8\"\n                  timestamp=\"2001-02-01T00:01:00\" />\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_failed\"\n                  time=\"8\"\n                  timestamp=\"2001-02-01T00:02:00\">\n          <failure>HEEEEEEELP</failure>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_skipped\"\n                  time=\"0\"\n                  timestamp=\"2001-02-01T00:03:00\">\n          <skipped>Skipped until Bug: 666 is resolved.</skipped>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_xfail\"\n                  time=\"4\"\n                  timestamp=\"2001-02-01T00:04:00\">\n          <!--It is an expected failure due to: something-->\n          <!--Traceback:\n    HEEELP-->\n        </testcase>\n      </testsuite>\n    </testsuites>", 
-            "module": "rally.plugins.common.verification.reporters", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Verification Reporter", 
-            "schema": null
-        }, 
-        "Dummy.dummy_exception_probability@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_exception_probability", 
-            "parameters": [
-                {
-                    "doc": "Sets how likely it is that an exception\nwill be thrown. Float between 0 and 1\n0=never 1=always.\n", 
-                    "name": "exception_probability"
-                }
-            ], 
-            "title": "Throws an exception with given probability.", 
-            "description": "Dummy.dummy_exception_probability used for testing if exceptions are\nprocessed properly by task engine and analyze rally results storing\n& displaying capabilities.", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "Dummy.failure@default": {
-            "introduced_in": null, 
-            "name": "Dummy.failure", 
-            "parameters": [
-                {
-                    "doc": "float iteration sleep time in seconds\n", 
-                    "name": "sleep"
-                }, 
-                {
-                    "doc": "int iteration number which starts range\nof failed iterations\n", 
-                    "name": "from_iteration"
-                }, 
-                {
-                    "doc": "int iteration number which ends range of\nfailed iterations\n", 
-                    "name": "to_iteration"
-                }, 
-                {
-                    "doc": "int cyclic number of iteration which actually raises\nan error in selected range. For example, each=3 will\nraise error in each 3rd iteration.\n", 
-                    "name": "each"
-                }
-            ], 
-            "title": "Raise errors in some iterations.", 
-            "description": "", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "constant_for_duration@default": {
-            "introduced_in": null, 
-            "name": "constant_for_duration", 
-            "parameters": [], 
-            "title": "Creates constant load executing a scenario for an interval of time.", 
-            "description": "This runner will place a constant load on the cloud under test by\nexecuting each scenario iteration without pausing between iterations\nuntil a specified interval of time has elapsed.\n\nThe concurrency parameter of the scenario config controls the\nnumber of concurrent iterations which execute during a single\nsceanario in order to simulate the activities of multiple users\nplacing load on the cloud under test.", 
-            "module": "rally.plugins.common.runners.constant", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario Runner", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "required": [
-                    "duration"
-                ], 
-                "type": "object", 
-                "properties": {
-                    "duration": {
-                        "minimum": 0.0, 
-                        "type": "number", 
-                        "description": "The number of seconds during which to generate a load."
-                    }, 
-                    "concurrency": {
-                        "minimum": 1, 
-                        "type": "integer", 
-                        "description": "The number of parallel iteration executions."
-                    }, 
-                    "timeout": {
-                        "minimum": 1, 
-                        "type": "number", 
-                        "description": "Operation's timeout."
-                    }
-                }
-            }
-        }, 
-        "dummy_context@default": {
-            "introduced_in": null, 
-            "name": "dummy_context", 
-            "parameters": [], 
-            "title": "Dummy context.", 
-            "description": "", 
-            "module": "rally.plugins.common.contexts.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Context", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "properties": {
-                    "fail_cleanup": {
-                        "type": "boolean"
-                    }, 
-                    "fail_setup": {
-                        "type": "boolean"
-                    }
-                }
-            }
-        }, 
-        "Dummy.dummy_random_fail_in_atomic@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_random_fail_in_atomic", 
-            "parameters": [
-                {
-                    "doc": "Probability with which atomic actions\nfail in this dummy scenario (0 <= p <= 1)\n", 
-                    "name": "exception_probability"
-                }
-            ], 
-            "title": "Dummy.dummy_random_fail_in_atomic in dummy actions.", 
-            "description": "Can be used to test atomic actions\nfailures processing.", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "html-static@default": {
-            "introduced_in": null, 
-            "name": "html-static", 
-            "parameters": [], 
-            "title": "Generates verification report in HTML format with embedded JS/CSS.", 
-            "description": "", 
-            "module": "rally.plugins.common.verification.reporters", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Verification Reporter", 
-            "schema": null
-        }, 
-        "Dummy.dummy_timed_atomic_actions@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_timed_atomic_actions", 
-            "parameters": [
-                {
-                    "doc": "int number of atomic actions to create\n", 
-                    "name": "number_of_actions"
-                }, 
-                {
-                    "doc": "int multiplier for number of seconds to sleep", 
-                    "name": "sleep_factor"
-                }
-            ], 
-            "title": "Run some sleepy atomic actions for SLA atomic action tests.", 
-            "description": "", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "number@default": {
-            "introduced_in": null, 
-            "name": "number", 
-            "parameters": [
-                {
-                    "doc": "Name of parameter to validate\n", 
-                    "name": "param_name"
-                }, 
-                {
-                    "doc": "Lower endpoint of valid interval\n", 
-                    "name": "minval"
-                }, 
-                {
-                    "doc": "Upper endpoint of valid interval\n", 
-                    "name": "maxval"
-                }, 
-                {
-                    "doc": "Allow parameter not specified, or parameter=None\n", 
-                    "name": "nullable"
-                }, 
-                {
-                    "doc": "Only accept integers", 
-                    "name": "integer_only"
-                }
-            ], 
-            "title": "Checks that parameter is a number that pass specified condition.", 
-            "description": "Ensure a parameter is within the range [minval, maxval]. This is a\nclosed interval so the end points are included.", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "failure_rate@default": {
-            "introduced_in": null, 
-            "name": "failure_rate", 
-            "parameters": [], 
-            "title": "Failure rate minimum and maximum in percents.", 
-            "description": "", 
-            "module": "rally.plugins.common.sla.failure_rate", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "properties": {
-                    "max": {
-                        "minimum": 0.0, 
-                        "type": "number", 
-                        "maximum": 100.0
-                    }, 
-                    "min": {
-                        "minimum": 0.0, 
-                        "type": "number", 
-                        "maximum": 100.0
-                    }
-                }, 
-                "minProperties": 1
-            }
-        }, 
-        "sys_call@default": {
-            "introduced_in": null, 
-            "name": "sys_call", 
-            "parameters": [], 
-            "title": "Performs system call.", 
-            "description": "", 
-            "module": "rally.plugins.common.hook.sys_call", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Hook Action", 
-            "schema": {
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "string", 
-                "description": "Command to execute."
-            }
-        }, 
-        "max_seconds_per_iteration@default": {
-            "introduced_in": null, 
-            "name": "max_seconds_per_iteration", 
-            "parameters": [], 
-            "title": "Maximum time for one iteration in seconds.", 
-            "description": "", 
-            "module": "rally.plugins.common.sla.iteration_time", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "type": "number", 
-                "minimum": 0.0, 
-                "exclusiveMinimum": true
-            }
-        }, 
-        "performance_degradation@default": {
-            "introduced_in": null, 
-            "name": "performance_degradation", 
-            "parameters": [], 
-            "title": "Calculates performance degradation based on iteration time", 
-            "description": "This SLA plugin finds minimum and maximum duration of\niterations completed without errors during Rally task execution.\nAssuming that minimum duration is 100%, it calculates\nperformance degradation against maximum duration.", 
-            "module": "rally.plugins.common.sla.performance_degradation", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "required": [
-                    "max_degradation"
-                ], 
-                "type": "object", 
-                "properties": {
-                    "max_degradation": {
-                        "minimum": 0.0, 
-                        "type": "number"
-                    }
-                }
-            }
-        }, 
-        "periodic@default": {
-            "introduced_in": null, 
-            "name": "periodic", 
-            "parameters": [], 
-            "title": "Periodically triggers hook with specified range and step.", 
-            "description": "", 
-            "module": "rally.plugins.common.hook.triggers.periodic", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Hook Trigger", 
-            "schema": {
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "oneOf": [
-                    {
-                        "additionalProperties": false, 
-                        "required": [
-                            "unit", 
-                            "step"
-                        ], 
-                        "description": "Periodically triage hook based on elapsed time after start of workload.", 
-                        "properties": {
-                            "start": {
-                                "minimum": 0, 
-                                "type": "integer"
-                            }, 
-                            "step": {
-                                "minimum": 1, 
-                                "type": "integer"
-                            }, 
-                            "end": {
-                                "minimum": 1, 
-                                "type": "integer"
-                            }, 
-                            "unit": {
-                                "enum": [
-                                    "time"
-                                ]
-                            }
+                "Dummy.dummy_exception_probability@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_exception_probability", 
+                    "parameters": [
+                        {
+                            "doc": "Sets how likely it is that an exception\nwill be thrown. Float between 0 and 1\n0=never 1=always.\n", 
+                            "name": "exception_probability"
                         }
-                    }, 
-                    {
-                        "additionalProperties": false, 
-                        "required": [
-                            "unit", 
-                            "step"
-                        ], 
-                        "description": "Periodically triage hook based on iterations.", 
-                        "properties": {
-                            "start": {
-                                "minimum": 1, 
-                                "type": "integer"
-                            }, 
-                            "step": {
-                                "minimum": 1, 
-                                "type": "integer"
-                            }, 
-                            "end": {
-                                "minimum": 1, 
-                                "type": "integer"
-                            }, 
-                            "unit": {
-                                "enum": [
-                                    "iteration"
-                                ]
-                            }
+                    ], 
+                    "title": "Throws an exception with given probability.", 
+                    "description": "Dummy.dummy_exception_probability used for testing if exceptions are\nprocessed properly by task engine and analyze rally results storing\n& displaying capabilities.", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.dummy_output@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_output", 
+                    "parameters": [
+                        {
+                            "doc": "max int limit for generated random values", 
+                            "name": "random_range"
                         }
-                    }
-                ]
+                    ], 
+                    "title": "Generate dummy output.", 
+                    "description": "This scenario generates example of output data.", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.dummy_random_action@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_random_action", 
+                    "parameters": [
+                        {
+                            "doc": "int number of actions to generate\n", 
+                            "name": "actions_num"
+                        }, 
+                        {
+                            "doc": "minimal time to sleep, numeric seconds\n", 
+                            "name": "sleep_min"
+                        }, 
+                        {
+                            "doc": "maximum time to sleep, numeric seconds", 
+                            "name": "sleep_max"
+                        }
+                    ], 
+                    "title": "Sleep random time in dummy actions.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.dummy_random_fail_in_atomic@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_random_fail_in_atomic", 
+                    "parameters": [
+                        {
+                            "doc": "Probability with which atomic actions\nfail in this dummy scenario (0 <= p <= 1)\n", 
+                            "name": "exception_probability"
+                        }
+                    ], 
+                    "title": "Dummy.dummy_random_fail_in_atomic in dummy actions.", 
+                    "description": "Can be used to test atomic actions\nfailures processing.", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.dummy_timed_atomic_actions@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.dummy_timed_atomic_actions", 
+                    "parameters": [
+                        {
+                            "doc": "int number of atomic actions to create\n", 
+                            "name": "number_of_actions"
+                        }, 
+                        {
+                            "doc": "int multiplier for number of seconds to sleep", 
+                            "name": "sleep_factor"
+                        }
+                    ], 
+                    "title": "Run some sleepy atomic actions for SLA atomic action tests.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "Dummy.failure@default": {
+                    "introduced_in": null, 
+                    "name": "Dummy.failure", 
+                    "parameters": [
+                        {
+                            "doc": "float iteration sleep time in seconds\n", 
+                            "name": "sleep"
+                        }, 
+                        {
+                            "doc": "int iteration number which starts range\nof failed iterations\n", 
+                            "name": "from_iteration"
+                        }, 
+                        {
+                            "doc": "int iteration number which ends range of\nfailed iterations\n", 
+                            "name": "to_iteration"
+                        }, 
+                        {
+                            "doc": "int cyclic number of iteration which actually raises\nan error in selected range. For example, each=3 will\nraise error in each 3rd iteration.\n", 
+                            "name": "each"
+                        }
+                    ], 
+                    "title": "Raise errors in some iterations.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.scenarios.dummy.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "HttpRequests.check_random_request@default": {
+                    "introduced_in": null, 
+                    "name": "HttpRequests.check_random_request", 
+                    "parameters": [
+                        {
+                            "doc": "List of request dicts\n", 
+                            "name": "requests"
+                        }, 
+                        {
+                            "doc": "Expected Response Code it will\nbe used only if we doesn't specified it in request proper\n", 
+                            "name": "status_code"
+                        }
+                    ], 
+                    "title": "Executes random HTTP requests from provided list.", 
+                    "description": "This scenario takes random url from list of requests, and raises\nexception if the response is not the expected response.", 
+                    "module": "rally.plugins.common.scenarios.requests.http_requests", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }, 
+                "HttpRequests.check_request@default": {
+                    "introduced_in": null, 
+                    "name": "HttpRequests.check_request", 
+                    "parameters": [
+                        {
+                            "doc": "url for the Request object\n", 
+                            "name": "url"
+                        }, 
+                        {
+                            "doc": "method for the Request object\n", 
+                            "name": "method"
+                        }, 
+                        {
+                            "doc": "expected response code\n", 
+                            "name": "status_code"
+                        }, 
+                        {
+                            "doc": "optional additional request parameters", 
+                            "name": "kwargs"
+                        }
+                    ], 
+                    "title": "Standard way for testing web services using HTTP requests.", 
+                    "description": "This scenario is used to make request and check it with expected\nResponse.", 
+                    "module": "rally.plugins.common.scenarios.requests.http_requests", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario", 
+                    "schema": null
+                }
             }
         }, 
-        "TextArea@default": {
-            "introduced_in": null, 
-            "name": "TextArea", 
-            "parameters": [], 
-            "title": "Arbitrary text", 
-            "description": "This plugin processes complete data and displays of output in HTML report.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        complete={\"title\": \"Script Inline\",\n                  \"chart_plugin\": \"TextArea\",\n                  \"data\": [\"first output\", \"second output\",\n                           \"third output\"]]})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "check_rps@default": {
-            "introduced_in": null, 
-            "name": "check_rps", 
-            "parameters": [], 
-            "title": "Additional schema validation for rps runner", 
-            "description": "", 
-            "module": "rally.plugins.common.runners.rps", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "StackedArea@default": {
-            "introduced_in": null, 
-            "name": "StackedArea", 
-            "parameters": [], 
-            "title": "Display results as stacked area.", 
-            "description": "This plugin processes additive data and displays it in HTML report\nas stacked area with X axis bound to iteration number.\nComplete output data is displayed as stacked area as well, without\nany processing.\n\nKeys \"description\", \"label\" and \"axis_label\" are optional.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive data as stacked area\",\n                  \"description\": \"Iterations trend for foo and bar\",\n                  \"chart_plugin\": \"StackedArea\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34]]},\n        complete={\"title\": \"Complete data as stacked area\",\n                  \"description\": \"Data is shown as stacked area, as-is\",\n                  \"chart_plugin\": \"StackedArea\",\n                  \"data\": [[\"foo\", [[0, 5], [1, 42], [2, 15], [3, 7]]],\n                           [\"bar\", [[0, 2], [1, 1.3], [2, 5], [3, 9]]]],\n                  \"label\": \"Y-axis label text\",\n                  \"axis_label\": \"X-axis label text\"})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "es_exporter_destination@default": {
-            "introduced_in": null, 
-            "name": "es_exporter_destination", 
-            "parameters": [], 
-            "title": "Validates the destination for ElasticSearch exporter.", 
-            "description": "In case when the destination is ElasticSearch cluster, the version of it\nshould be 2.* or 5.*", 
-            "module": "rally.plugins.common.exporters.elastic.exporter", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "jsonschema@default": {
-            "introduced_in": null, 
-            "name": "jsonschema", 
-            "parameters": [], 
-            "title": "JSON schema validator", 
-            "description": "", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "file_exists@default": {
-            "introduced_in": null, 
-            "name": "file_exists", 
-            "parameters": [
-                {
-                    "doc": "Name of parameter to validate\n", 
-                    "name": "param_name"
-                }, 
-                {
-                    "doc": "Access mode to test for. This should be one of:\n* os.F_OK (file exists)\n* os.R_OK (file is readable)\n* os.W_OK (file is writable)\n* os.X_OK (file is executable)\n\nIf multiple modes are required they can be added, eg:\n    mode=os.R_OK+os.W_OK\n", 
-                    "name": "mode"
-                }, 
-                {
-                    "doc": "Boolean indicating whether this argument is required.", 
-                    "name": "required"
-                }
-            ], 
-            "title": "Validator checks parameter is proper path to file with proper mode.", 
-            "description": "Ensure a file exists and can be accessed with the specified mode.\nNote that path to file will be expanded before access checking.", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "Dummy.dummy_output@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy_output", 
-            "parameters": [
-                {
-                    "doc": "max int limit for generated random values", 
-                    "name": "random_range"
-                }
-            ], 
-            "title": "Generate dummy output.", 
-            "description": "This scenario generates example of output data.", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
-        }, 
-        "required_contexts@default": {
-            "introduced_in": null, 
-            "name": "required_contexts", 
-            "parameters": [
-                {
-                    "doc": "list of strings and tuples with context names that\nshould be specified. Tuple represent 'at least one\nof the'.\n", 
-                    "name": "contexts"
-                }
-            ], 
-            "title": "Validator checks if required contexts are specified.", 
-            "description": "", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "file@default": {
-            "introduced_in": null, 
-            "name": "file", 
-            "parameters": [], 
-            "title": "Return content of the file by its path.", 
-            "description": "", 
-            "module": "rally.plugins.common.types", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Resource Type", 
-            "schema": null
-        }, 
-        "StatsTable@default": {
-            "introduced_in": null, 
-            "name": "StatsTable", 
-            "parameters": [], 
-            "title": "Calculate statistics for additive data and display it as table.", 
-            "description": "This plugin processes additive data and compose statistics that is\ndisplayed as table in HTML report.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Statistics\",\n                  \"description\": (\"Table with statistics generated \"\n                                  \"from all iterations values\"),\n                  \"chart_plugin\": \"StatsTable\",\n                  \"data\": [[\"foo stat\", 12], [\"bar\", 34], [\"spam\", 56]]})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "Lines@default": {
-            "introduced_in": null, 
-            "name": "Lines", 
-            "parameters": [], 
-            "title": "Display results as generic chart with lines.", 
-            "description": "This plugin processes additive data and displays it in HTML report\nas linear chart with X axis bound to iteration number.\nComplete output data is displayed as linear chart as well, without\nany processing.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive data as stacked area\",\n                  \"description\": \"Iterations trend for foo and bar\",\n                  \"chart_plugin\": \"Lines\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34]]},\n        complete={\"title\": \"Complete data as stacked area\",\n                  \"description\": \"Data is shown as stacked area, as-is\",\n                  \"chart_plugin\": \"Lines\",\n                  \"data\": [[\"foo\", [[0, 5], [1, 42], [2, 15], [3, 7]]],\n                           [\"bar\", [[0, 2], [1, 1.3], [2, 5], [3, 9]]]],\n                  \"label\": \"Y-axis label text\",\n                  \"axis_label\": \"X-axis label text\"})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "serial@default": {
-            "introduced_in": null, 
-            "name": "serial", 
-            "parameters": [], 
-            "title": "Scenario runner that executes scenarios serially.", 
-            "description": "Unlike scenario runners that execute in parallel, the serial scenario\nrunner executes scenarios one-by-one in the same python interpreter process\nas Rally. This allows you to execute scenario without introducing\nany concurrent operations as well as interactively debug the scenario\nfrom the same command that you use to start Rally.", 
-            "module": "rally.plugins.common.runners.serial", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario Runner", 
-            "schema": {
-                "additionalProperties": true, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "type": "object", 
-                "properties": {
-                    "times": {
-                        "minimum": 1, 
-                        "type": "integer"
+        "Hook Action": {
+            "description": "Factory for hook classes.", 
+            "plugins": {
+                "sys_call@default": {
+                    "introduced_in": null, 
+                    "name": "sys_call", 
+                    "parameters": [], 
+                    "title": "Performs system call.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.hook.sys_call", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Hook Action", 
+                    "schema": {
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "string", 
+                        "description": "Command to execute."
                     }
                 }
             }
         }, 
-        "json@default": {
-            "introduced_in": null, 
-            "name": "json", 
-            "parameters": [], 
-            "title": "Generates verification report in JSON format.", 
-            "description": "An example of the report (All dates, numbers, names appearing in this\nexample are fictitious. Any resemblance to real things is purely\ncoincidental):\n\n  .. code-block:: json\n\n    {\"verifications\": {\n        \"verification-uuid-1\": {\n            \"status\": \"finished\",\n            \"skipped\": 1,\n            \"started_at\": \"2001-01-01T00:00:00\",\n            \"finished_at\": \"2001-01-01T00:05:00\",\n            \"tests_duration\": 5,\n            \"run_args\": {\n                \"pattern\": \"set=smoke\",\n                \"xfail_list\": {\"some.test.TestCase.test_xfail\":\n                                   \"Some reason why it is expected.\"},\n                \"skip_list\": {\"some.test.TestCase.test_skipped\":\n                                  \"This test was skipped intentionally\"},\n            },\n            \"success\": 1,\n            \"expected_failures\": 1,\n            \"tests_count\": 3,\n            \"failures\": 0,\n            \"unexpected_success\": 0\n        },\n        \"verification-uuid-2\": {\n            \"status\": \"finished\",\n            \"skipped\": 1,\n            \"started_at\": \"2002-01-01T00:00:00\",\n            \"finished_at\": \"2002-01-01T00:05:00\",\n            \"tests_duration\": 5,\n            \"run_args\": {\n                \"pattern\": \"set=smoke\",\n                \"xfail_list\": {\"some.test.TestCase.test_xfail\":\n                                   \"Some reason why it is expected.\"},\n                \"skip_list\": {\"some.test.TestCase.test_skipped\":\n                                  \"This test was skipped intentionally\"},\n            },\n            \"success\": 1,\n            \"expected_failures\": 1,\n            \"tests_count\": 3,\n            \"failures\": 1,\n            \"unexpected_success\": 0\n        }\n     },\n     \"tests\": {\n        \"some.test.TestCase.test_foo[tag1,tag2]\": {\n            \"name\": \"some.test.TestCase.test_foo\",\n            \"tags\": [\"tag1\",\"tag2\"],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"success\",\n                    \"duration\": \"1.111\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"success\",\n                    \"duration\": \"22.222\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_skipped[tag1]\": {\n            \"name\": \"some.test.TestCase.test_skipped\",\n            \"tags\": [\"tag1\"],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"skipped\",\n                    \"duration\": \"0\",\n                    \"details\": \"Skipped until Bug: 666 is resolved.\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"skipped\",\n                    \"duration\": \"0\",\n                    \"details\": \"Skipped until Bug: 666 is resolved.\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_xfail\": {\n            \"name\": \"some.test.TestCase.test_xfail\",\n            \"tags\": [],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"xfail\",\n                    \"duration\": \"3\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"xfail\",\n                    \"duration\": \"3\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_failed\": {\n            \"name\": \"some.test.TestCase.test_failed\",\n            \"tags\": [],\n            \"by_verification\": {\n                \"verification-uuid-2\": {\n                    \"status\": \"fail\",\n                    \"duration\": \"4\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                    }\n                }\n            }\n        }\n    }", 
-            "module": "rally.plugins.common.verification.reporters", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Verification Reporter", 
-            "schema": null
-        }, 
-        "elastic@default": {
-            "introduced_in": null, 
-            "name": "elastic", 
-            "parameters": [], 
-            "title": "Exports task results to the ElasticSearch 2.x or 5.x clusters.", 
-            "description": "The exported data includes:\n\n* Task basic information such as title, description, status,\n  deployment uuid, etc.\n  See rally_task_v1_data index.\n\n* Workload information such as scenario name and configuration, runner\n  type and configuration, time of the start load, success rate, sla\n  details in case of errors, etc.\n  See rally_workload_v1_data index.\n\n* Separate documents for all atomic actions.\n  See rally_atomic_action_data_v1 index.\n\nThe destination can be a remote server. In this case specify it like:\n\n    https://elastic:changeme@example.com\n\nOr we can dump documents to the file. The destination should look like:\n\n    /home/foo/bar.txt\n\nIn case of an empty destination, the http://localhost:9200 destination\nwill be used.", 
-            "module": "rally.plugins.common.exporters.elastic.exporter", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Task Exporter", 
-            "schema": null
-        }, 
-        "required_params@default": {
-            "introduced_in": null, 
-            "name": "required_params", 
-            "parameters": [
-                {
-                    "doc": "sub-dict of \"config\" to search. if\nnot defined - will search in \"config\"\n", 
-                    "name": "subdict"
+        "Task Exporter": {
+            "description": "Base class for all exporters for Tasks.", 
+            "plugins": {
+                "elastic@default": {
+                    "introduced_in": null, 
+                    "name": "elastic", 
+                    "parameters": [], 
+                    "title": "Exports task results to the ElasticSearch 2.x or 5.x clusters.", 
+                    "description": "The exported data includes:\n\n* Task basic information such as title, description, status,\n  deployment uuid, etc.\n  See rally_task_v1_data index.\n\n* Workload information such as scenario name and configuration, runner\n  type and configuration, time of the start load, success rate, sla\n  details in case of errors, etc.\n  See rally_workload_v1_data index.\n\n* Separate documents for all atomic actions.\n  See rally_atomic_action_data_v1 index.\n\nThe destination can be a remote server. In this case specify it like:\n\n    https://elastic:changeme@example.com\n\nOr we can dump documents to the file. The destination should look like:\n\n    /home/foo/bar.txt\n\nIn case of an empty destination, the http://localhost:9200 destination\nwill be used.", 
+                    "module": "rally.plugins.common.exporters.elastic.exporter", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Task Exporter", 
+                    "schema": null
                 }, 
-                {
-                    "doc": "list of required parameters", 
-                    "name": "params"
+                "html-static@default": {
+                    "introduced_in": null, 
+                    "name": "html-static", 
+                    "parameters": [], 
+                    "title": "Generates task report in HTML format with embedded JS/CSS.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.exporters.html", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Task Exporter", 
+                    "schema": null
+                }, 
+                "html@default": {
+                    "introduced_in": null, 
+                    "name": "html", 
+                    "parameters": [], 
+                    "title": "Generates task report in HTML format.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.exporters.html", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Task Exporter", 
+                    "schema": null
+                }, 
+                "json@default": {
+                    "introduced_in": null, 
+                    "name": "json", 
+                    "parameters": [], 
+                    "title": "Generates task report in JSON format.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.exporters.json_exporter", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Task Exporter", 
+                    "schema": null
+                }, 
+                "junit-xml@default": {
+                    "introduced_in": null, 
+                    "name": "junit-xml", 
+                    "parameters": [], 
+                    "title": "Generates task report in JUnit-XML format.", 
+                    "description": "An example of the report (All dates, numbers, names appearing in this\nexample are fictitious. Any resemblance to real things is purely\ncoincidental):\n\n.. code-block:: xml\n\n  <testsuites>\n    <!--Report is generated by Rally 0.10.0 at 2017-06-04T05:14:00-->\n    <testsuite id=\"task-uu-ii-dd\"\n               errors=\"0\"\n               failures=\"1\"\n               skipped=\"0\"\n               tests=\"2\"\n               time=\"75.0\"\n               timestamp=\"2017-06-04T05:14:00\">\n      <testcase classname=\"CinderVolumes\"\n                name=\"list_volumes\"\n                id=\"workload-1-uuid\"\n                time=\"29.9695231915\"\n                timestamp=\"2017-06-04T05:14:44\" />\n      <testcase classname=\"NovaServers\"\n                name=\"list_keypairs\"\n                id=\"workload-2-uuid\"\n                time=\"5\"\n                timestamp=\"2017-06-04T05:15:15\">\n        <failure>ooops</failure>\n      </testcase>\n    </testsuite>\n  </testsuites>", 
+                    "module": "rally.plugins.common.exporters.junit", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Task Exporter", 
+                    "schema": null
                 }
-            ], 
-            "title": "Scenario required parameter validator.", 
-            "description": "This allows us to search required parameters in subdict of config.", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
+            }
         }, 
-        "required_platform@default": {
-            "introduced_in": null, 
-            "name": "required_platform", 
-            "parameters": [
-                {
-                    "doc": "name of the platform", 
-                    "name": "platform"
+        "Chart": {
+            "description": "Base class for charts.\n\nThis is a base for all plugins that prepare data for specific charts\nin HTML report. Each chart must at least declare chart widget and\nprepare data that is suitable for rendering by JavaScript.\n", 
+            "plugins": {
+                "Lines@default": {
+                    "introduced_in": null, 
+                    "name": "Lines", 
+                    "parameters": [], 
+                    "title": "Display results as generic chart with lines.", 
+                    "description": "This plugin processes additive data and displays it in HTML report\nas linear chart with X axis bound to iteration number.\nComplete output data is displayed as linear chart as well, without\nany processing.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive data as stacked area\",\n                  \"description\": \"Iterations trend for foo and bar\",\n                  \"chart_plugin\": \"Lines\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34]]},\n        complete={\"title\": \"Complete data as stacked area\",\n                  \"description\": \"Data is shown as stacked area, as-is\",\n                  \"chart_plugin\": \"Lines\",\n                  \"data\": [[\"foo\", [[0, 5], [1, 42], [2, 15], [3, 7]]],\n                           [\"bar\", [[0, 2], [1, 1.3], [2, 5], [3, 9]]]],\n                  \"label\": \"Y-axis label text\",\n                  \"axis_label\": \"X-axis label text\"})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
+                }, 
+                "Pie@default": {
+                    "introduced_in": null, 
+                    "name": "Pie", 
+                    "parameters": [], 
+                    "title": "Display results as pie, calculate average values for additive data.", 
+                    "description": "This plugin processes additive data and calculate average values.\nBoth additive and complete data are displayed in HTML report as pie chart.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive output\",\n                  \"description\": (\"Pie with average data \"\n                                  \"from all iterations values\"),\n                  \"chart_plugin\": \"Pie\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34], [\"spam\", 56]]},\n        complete={\"title\": \"Complete output\",\n                  \"description\": \"Displayed as a pie, as-is\",\n                  \"chart_plugin\": \"Pie\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34], [\"spam\", 56]]})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
+                }, 
+                "StackedArea@default": {
+                    "introduced_in": null, 
+                    "name": "StackedArea", 
+                    "parameters": [], 
+                    "title": "Display results as stacked area.", 
+                    "description": "This plugin processes additive data and displays it in HTML report\nas stacked area with X axis bound to iteration number.\nComplete output data is displayed as stacked area as well, without\nany processing.\n\nKeys \"description\", \"label\" and \"axis_label\" are optional.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive data as stacked area\",\n                  \"description\": \"Iterations trend for foo and bar\",\n                  \"chart_plugin\": \"StackedArea\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34]]},\n        complete={\"title\": \"Complete data as stacked area\",\n                  \"description\": \"Data is shown as stacked area, as-is\",\n                  \"chart_plugin\": \"StackedArea\",\n                  \"data\": [[\"foo\", [[0, 5], [1, 42], [2, 15], [3, 7]]],\n                           [\"bar\", [[0, 2], [1, 1.3], [2, 5], [3, 9]]]],\n                  \"label\": \"Y-axis label text\",\n                  \"axis_label\": \"X-axis label text\"})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
+                }, 
+                "StatsTable@default": {
+                    "introduced_in": null, 
+                    "name": "StatsTable", 
+                    "parameters": [], 
+                    "title": "Calculate statistics for additive data and display it as table.", 
+                    "description": "This plugin processes additive data and compose statistics that is\ndisplayed as table in HTML report.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Statistics\",\n                  \"description\": (\"Table with statistics generated \"\n                                  \"from all iterations values\"),\n                  \"chart_plugin\": \"StatsTable\",\n                  \"data\": [[\"foo stat\", 12], [\"bar\", 34], [\"spam\", 56]]})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
+                }, 
+                "Table@default": {
+                    "introduced_in": null, 
+                    "name": "Table", 
+                    "parameters": [], 
+                    "title": "Display complete output as table, can not be used for additive data.", 
+                    "description": "Use this plugin for complete output data to display it in HTML report\nas table. This plugin can not be used for additive data because it\ndoes not contain any processing logic.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        complete={\"title\": \"Arbitrary Table\",\n                  \"description\": \"Just show columns and rows as-is\",\n                  \"chart_plugin\": \"Table\",\n                  \"data\": {\"cols\": [\"foo\", \"bar\", \"spam\"],\n                           \"rows\": [[\"a row\", 1, 2], [\"b row\", 3, 4],\n                                    [\"c row\", 5, 6]]}})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
+                }, 
+                "TextArea@default": {
+                    "introduced_in": null, 
+                    "name": "TextArea", 
+                    "parameters": [], 
+                    "title": "Arbitrary text", 
+                    "description": "This plugin processes complete data and displays of output in HTML report.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        complete={\"title\": \"Script Inline\",\n                  \"chart_plugin\": \"TextArea\",\n                  \"data\": [\"first output\", \"second output\",\n                           \"third output\"]]})", 
+                    "module": "rally.task.processing.charts", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Chart", 
+                    "schema": null
                 }
-            ], 
-            "title": "Validates specification of specified platform for the workload.", 
-            "description": "", 
-            "module": "rally.common.validation", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
+            }
         }, 
-        "Dummy.dummy@default": {
-            "introduced_in": null, 
-            "name": "Dummy.dummy", 
-            "parameters": [
-                {
-                    "doc": "idle time of method (in seconds).", 
-                    "name": "sleep"
+        "Validator": {
+            "description": "A base class for all validators.", 
+            "plugins": {
+                "args-spec@default": {
+                    "introduced_in": null, 
+                    "name": "args-spec", 
+                    "parameters": [], 
+                    "title": "Scenario arguments validator", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "check_constant@default": {
+                    "introduced_in": null, 
+                    "name": "check_constant", 
+                    "parameters": [], 
+                    "title": "Additional schema validation for constant runner", 
+                    "description": "", 
+                    "module": "rally.plugins.common.runners.constant", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "check_rps@default": {
+                    "introduced_in": null, 
+                    "name": "check_rps", 
+                    "parameters": [], 
+                    "title": "Additional schema validation for rps runner", 
+                    "description": "", 
+                    "module": "rally.plugins.common.runners.rps", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "enum@default": {
+                    "introduced_in": null, 
+                    "name": "enum", 
+                    "parameters": [
+                        {
+                            "doc": "Name of parameter to validate\n", 
+                            "name": "param_name"
+                        }, 
+                        {
+                            "doc": "List of values accepted\n", 
+                            "name": "values"
+                        }, 
+                        {
+                            "doc": "Allow to accept optional parameter\n", 
+                            "name": "missed"
+                        }, 
+                        {
+                            "doc": "Ignore case in enum values", 
+                            "name": "case_insensitive"
+                        }
+                    ], 
+                    "title": "Checks that parameter is in a list.", 
+                    "description": "Ensure a parameter has the right value. This value need to be defined\nin a list.", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "es_exporter_destination@default": {
+                    "introduced_in": null, 
+                    "name": "es_exporter_destination", 
+                    "parameters": [], 
+                    "title": "Validates the destination for ElasticSearch exporter.", 
+                    "description": "In case when the destination is ElasticSearch cluster, the version of it\nshould be 2.* or 5.*", 
+                    "module": "rally.plugins.common.exporters.elastic.exporter", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "file_exists@default": {
+                    "introduced_in": null, 
+                    "name": "file_exists", 
+                    "parameters": [
+                        {
+                            "doc": "Name of parameter to validate\n", 
+                            "name": "param_name"
+                        }, 
+                        {
+                            "doc": "Access mode to test for. This should be one of:\n* os.F_OK (file exists)\n* os.R_OK (file is readable)\n* os.W_OK (file is writable)\n* os.X_OK (file is executable)\n\nIf multiple modes are required they can be added, eg:\n    mode=os.R_OK+os.W_OK\n", 
+                            "name": "mode"
+                        }, 
+                        {
+                            "doc": "Boolean indicating whether this argument is required.", 
+                            "name": "required"
+                        }
+                    ], 
+                    "title": "Validator checks parameter is proper path to file with proper mode.", 
+                    "description": "Ensure a file exists and can be accessed with the specified mode.\nNote that path to file will be expanded before access checking.", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "jsonschema@default": {
+                    "introduced_in": null, 
+                    "name": "jsonschema", 
+                    "parameters": [], 
+                    "title": "JSON schema validator", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "number@default": {
+                    "introduced_in": null, 
+                    "name": "number", 
+                    "parameters": [
+                        {
+                            "doc": "Name of parameter to validate\n", 
+                            "name": "param_name"
+                        }, 
+                        {
+                            "doc": "Lower endpoint of valid interval\n", 
+                            "name": "minval"
+                        }, 
+                        {
+                            "doc": "Upper endpoint of valid interval\n", 
+                            "name": "maxval"
+                        }, 
+                        {
+                            "doc": "Allow parameter not specified, or parameter=None\n", 
+                            "name": "nullable"
+                        }, 
+                        {
+                            "doc": "Only accept integers", 
+                            "name": "integer_only"
+                        }
+                    ], 
+                    "title": "Checks that parameter is a number that pass specified condition.", 
+                    "description": "Ensure a parameter is within the range [minval, maxval]. This is a\nclosed interval so the end points are included.", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "required_contexts@default": {
+                    "introduced_in": null, 
+                    "name": "required_contexts", 
+                    "parameters": [
+                        {
+                            "doc": "list of strings and tuples with context names that\nshould be specified. Tuple represent 'at least one\nof the'.\n", 
+                            "name": "contexts"
+                        }
+                    ], 
+                    "title": "Validator checks if required contexts are specified.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "required_param_or_context@default": {
+                    "introduced_in": null, 
+                    "name": "required_param_or_context", 
+                    "parameters": [
+                        {
+                            "doc": "name of parameter\n", 
+                            "name": "param_name"
+                        }, 
+                        {
+                            "doc": "name of context", 
+                            "name": "ctx_name"
+                        }
+                    ], 
+                    "title": "Validator checks if required image is specified.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "required_params@default": {
+                    "introduced_in": null, 
+                    "name": "required_params", 
+                    "parameters": [
+                        {
+                            "doc": "sub-dict of \"config\" to search. if\nnot defined - will search in \"config\"\n", 
+                            "name": "subdict"
+                        }, 
+                        {
+                            "doc": "list of required parameters", 
+                            "name": "params"
+                        }
+                    ], 
+                    "title": "Scenario required parameter validator.", 
+                    "description": "This allows us to search required parameters in subdict of config.", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "required_platform@default": {
+                    "introduced_in": null, 
+                    "name": "required_platform", 
+                    "parameters": [
+                        {
+                            "doc": "name of the platform", 
+                            "name": "platform"
+                        }
+                    ], 
+                    "title": "Validates specification of specified platform for the workload.", 
+                    "description": "", 
+                    "module": "rally.common.validation", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "restricted_parameters@default": {
+                    "introduced_in": null, 
+                    "name": "restricted_parameters", 
+                    "parameters": [
+                        {
+                            "doc": "parameter or parameters list to be validated.\n", 
+                            "name": "param_names"
+                        }, 
+                        {
+                            "doc": "sub-dict of \"config\" to search for param_names. if\nnot defined - will search in \"config\"\n", 
+                            "name": "subdict"
+                        }
+                    ], 
+                    "title": "Validates that parameters is not set.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
                 }
-            ], 
-            "title": "Do nothing and sleep for the given number of seconds (0 by default).", 
-            "description": "Dummy.dummy can be used for testing performance of different\nScenarioRunners and of the ability of rally to store a large\namount of results.", 
-            "module": "rally.plugins.common.scenarios.dummy.dummy", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario", 
-            "schema": null
+            }
         }, 
-        "path_or_url@default": {
-            "introduced_in": null, 
-            "name": "path_or_url", 
-            "parameters": [], 
-            "title": "Check whether file exists or url available.", 
-            "description": "", 
-            "module": "rally.plugins.common.types", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Resource Type", 
-            "schema": null
-        }, 
-        "rps@default": {
-            "introduced_in": null, 
-            "name": "rps", 
-            "parameters": [], 
-            "title": "Scenario runner that does the job with specified frequency.", 
-            "description": "Every single scenario iteration is executed with specified frequency\n(runs per second) in a pool of processes. The scenario will be\nlaunched for a fixed number of times in total (specified in the config).\n\nAn example of a rps scenario is booting 1 VM per second. This\nexecution type is thus very helpful in understanding the maximal load that\na certain cloud can handle.", 
-            "module": "rally.plugins.common.runners.rps", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Scenario Runner", 
-            "schema": {
-                "additionalProperties": false, 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "required": [
-                    "times", 
-                    "rps"
-                ], 
-                "type": "object", 
-                "properties": {
-                    "max_cpu_count": {
-                        "minimum": 1, 
-                        "type": "integer"
-                    }, 
-                    "max_concurrency": {
-                        "minimum": 1, 
-                        "type": "integer"
-                    }, 
-                    "rps": {
-                        "anyOf": [
+        "Hook Trigger": {
+            "description": "Factory for hook trigger classes.", 
+            "plugins": {
+                "event@default": {
+                    "introduced_in": null, 
+                    "name": "event", 
+                    "parameters": [], 
+                    "title": "Triggers hook on specified event and list of values.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.hook.triggers.event", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Hook Trigger", 
+                    "schema": {
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "oneOf": [
                             {
-                                "type": "number", 
-                                "minimum": 0, 
-                                "exclusiveMinimum": true, 
-                                "description": "Generate constant requests per second during the whole workload."
+                                "additionalProperties": false, 
+                                "required": [
+                                    "unit", 
+                                    "at"
+                                ], 
+                                "description": "Triage hook based on specified seconds after start of workload.", 
+                                "properties": {
+                                    "at": {
+                                        "minItems": 1, 
+                                        "uniqueItems": true, 
+                                        "type": "array", 
+                                        "items": {
+                                            "minimum": 0, 
+                                            "type": "integer"
+                                        }
+                                    }, 
+                                    "unit": {
+                                        "enum": [
+                                            "time"
+                                        ]
+                                    }
+                                }
                             }, 
                             {
                                 "additionalProperties": false, 
                                 "required": [
-                                    "start", 
-                                    "end", 
-                                    "step"
+                                    "unit", 
+                                    "at"
                                 ], 
-                                "type": "object", 
-                                "description": "Increase requests per second for specified value each time after a certain number of seconds.", 
+                                "description": "Triage hook based on specific iterations.", 
                                 "properties": {
-                                    "duration": {
-                                        "minimum": 1, 
-                                        "type": "number"
+                                    "at": {
+                                        "minItems": 1, 
+                                        "uniqueItems": true, 
+                                        "type": "array", 
+                                        "items": {
+                                            "minimum": 1, 
+                                            "type": "integer"
+                                        }
                                     }, 
-                                    "start": {
-                                        "minimum": 1, 
-                                        "type": "number"
-                                    }, 
-                                    "step": {
-                                        "minimum": 1, 
-                                        "type": "number"
-                                    }, 
-                                    "end": {
-                                        "minimum": 1, 
-                                        "type": "number"
+                                    "unit": {
+                                        "enum": [
+                                            "iteration"
+                                        ]
                                     }
                                 }
                             }
                         ]
-                    }, 
-                    "timeout": {
-                        "type": "number"
-                    }, 
-                    "times": {
-                        "minimum": 1, 
-                        "type": "integer"
+                    }
+                }, 
+                "periodic@default": {
+                    "introduced_in": null, 
+                    "name": "periodic", 
+                    "parameters": [], 
+                    "title": "Periodically triggers hook with specified range and step.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.hook.triggers.periodic", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Hook Trigger", 
+                    "schema": {
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "oneOf": [
+                            {
+                                "additionalProperties": false, 
+                                "required": [
+                                    "unit", 
+                                    "step"
+                                ], 
+                                "description": "Periodically triage hook based on elapsed time after start of workload.", 
+                                "properties": {
+                                    "start": {
+                                        "minimum": 0, 
+                                        "type": "integer"
+                                    }, 
+                                    "step": {
+                                        "minimum": 1, 
+                                        "type": "integer"
+                                    }, 
+                                    "end": {
+                                        "minimum": 1, 
+                                        "type": "integer"
+                                    }, 
+                                    "unit": {
+                                        "enum": [
+                                            "time"
+                                        ]
+                                    }
+                                }
+                            }, 
+                            {
+                                "additionalProperties": false, 
+                                "required": [
+                                    "unit", 
+                                    "step"
+                                ], 
+                                "description": "Periodically triage hook based on iterations.", 
+                                "properties": {
+                                    "start": {
+                                        "minimum": 1, 
+                                        "type": "integer"
+                                    }, 
+                                    "step": {
+                                        "minimum": 1, 
+                                        "type": "integer"
+                                    }, 
+                                    "end": {
+                                        "minimum": 1, 
+                                        "type": "integer"
+                                    }, 
+                                    "unit": {
+                                        "enum": [
+                                            "iteration"
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             }
         }, 
-        "required_param_or_context@default": {
-            "introduced_in": null, 
-            "name": "required_param_or_context", 
-            "parameters": [
-                {
-                    "doc": "name of parameter\n", 
-                    "name": "param_name"
-                }, 
-                {
-                    "doc": "name of context", 
-                    "name": "ctx_name"
-                }
-            ], 
-            "title": "Validator checks if required image is specified.", 
+        "Context": {
             "description": "", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
-        }, 
-        "Pie@default": {
-            "introduced_in": null, 
-            "name": "Pie", 
-            "parameters": [], 
-            "title": "Display results as pie, calculate average values for additive data.", 
-            "description": "This plugin processes additive data and calculate average values.\nBoth additive and complete data are displayed in HTML report as pie chart.\n\nExamples of using this plugin in Scenario, for saving output data:\n\n.. code-block:: python\n\n    self.add_output(\n        additive={\"title\": \"Additive output\",\n                  \"description\": (\"Pie with average data \"\n                                  \"from all iterations values\"),\n                  \"chart_plugin\": \"Pie\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34], [\"spam\", 56]]},\n        complete={\"title\": \"Complete output\",\n                  \"description\": \"Displayed as a pie, as-is\",\n                  \"chart_plugin\": \"Pie\",\n                  \"data\": [[\"foo\", 12], [\"bar\", 34], [\"spam\", 56]]})", 
-            "module": "rally.task.processing.charts", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Chart", 
-            "schema": null
-        }, 
-        "enum@default": {
-            "introduced_in": null, 
-            "name": "enum", 
-            "parameters": [
-                {
-                    "doc": "Name of parameter to validate\n", 
-                    "name": "param_name"
-                }, 
-                {
-                    "doc": "List of values accepted\n", 
-                    "name": "values"
-                }, 
-                {
-                    "doc": "Allow to accept optional parameter\n", 
-                    "name": "missed"
-                }, 
-                {
-                    "doc": "Ignore case in enum values", 
-                    "name": "case_insensitive"
+            "plugins": {
+                "dummy_context@default": {
+                    "introduced_in": null, 
+                    "name": "dummy_context", 
+                    "parameters": [], 
+                    "title": "Dummy context.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.contexts.dummy", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Context", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "properties": {
+                            "fail_cleanup": {
+                                "type": "boolean"
+                            }, 
+                            "fail_setup": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
                 }
-            ], 
-            "title": "Checks that parameter is in a list.", 
-            "description": "Ensure a parameter has the right value. This value need to be defined\nin a list.", 
-            "module": "rally.plugins.common.validators", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "Validator", 
-            "schema": null
+            }
         }, 
-        "max_avg_duration_per_atomic@default": {
-            "introduced_in": null, 
-            "name": "max_avg_duration_per_atomic", 
-            "parameters": [], 
-            "title": "Maximum average duration of one iterations atomic actions in seconds.", 
-            "description": "", 
-            "module": "rally.plugins.common.sla.max_average_duration_per_atomic", 
-            "platform": "default", 
-            "returns": "", 
-            "base": "SLA", 
-            "schema": {
-                "additionalProperties": false, 
-                "type": "object", 
-                "$schema": "http://json-schema.org/draft-04/schema", 
-                "patternProperties": {
-                    ".*": {
-                        "type": "number", 
-                        "description": "The name of atomic action."
+        "Scenario Runner": {
+            "description": "Base class for all scenario runners.\n\nScenario runner is an entity that implements a certain strategy of\nlaunching scenarios plugins, e.g. running them continuously or\nperiodically for a given number of times or seconds.\nThese strategies should be implemented in subclasses of ScenarioRunner\nin the_run_scenario() method.\n", 
+            "plugins": {
+                "constant@default": {
+                    "introduced_in": null, 
+                    "name": "constant", 
+                    "parameters": [], 
+                    "title": "Creates constant load executing a scenario a specified number of times.", 
+                    "description": "This runner will place a constant load on the cloud under test by\nexecuting each scenario iteration without pausing between iterations\nup to the number of times specified in the scenario config.\n\nThe concurrency parameter of the scenario config controls the\nnumber of concurrent iterations which execute during a single\nscenario in order to simulate the activities of multiple users\nplacing load on the cloud under test.", 
+                    "module": "rally.plugins.common.runners.constant", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario Runner", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "properties": {
+                            "max_cpu_count": {
+                                "minimum": 1, 
+                                "type": "integer", 
+                                "description": "The maximum number of processes to create load from."
+                            }, 
+                            "concurrency": {
+                                "minimum": 1, 
+                                "type": "integer", 
+                                "description": "The number of parallel iteration executions."
+                            }, 
+                            "timeout": {
+                                "type": "number", 
+                                "description": "Operation's timeout."
+                            }, 
+                            "times": {
+                                "minimum": 1, 
+                                "type": "integer", 
+                                "description": "Total number of iteration executions."
+                            }
+                        }
                     }
                 }, 
-                "minProperties": 1
+                "constant_for_duration@default": {
+                    "introduced_in": null, 
+                    "name": "constant_for_duration", 
+                    "parameters": [], 
+                    "title": "Creates constant load executing a scenario for an interval of time.", 
+                    "description": "This runner will place a constant load on the cloud under test by\nexecuting each scenario iteration without pausing between iterations\nuntil a specified interval of time has elapsed.\n\nThe concurrency parameter of the scenario config controls the\nnumber of concurrent iterations which execute during a single\nsceanario in order to simulate the activities of multiple users\nplacing load on the cloud under test.", 
+                    "module": "rally.plugins.common.runners.constant", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario Runner", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "required": [
+                            "duration"
+                        ], 
+                        "type": "object", 
+                        "properties": {
+                            "duration": {
+                                "minimum": 0.0, 
+                                "type": "number", 
+                                "description": "The number of seconds during which to generate a load."
+                            }, 
+                            "concurrency": {
+                                "minimum": 1, 
+                                "type": "integer", 
+                                "description": "The number of parallel iteration executions."
+                            }, 
+                            "timeout": {
+                                "minimum": 1, 
+                                "type": "number", 
+                                "description": "Operation's timeout."
+                            }
+                        }
+                    }
+                }, 
+                "rps@default": {
+                    "introduced_in": null, 
+                    "name": "rps", 
+                    "parameters": [], 
+                    "title": "Scenario runner that does the job with specified frequency.", 
+                    "description": "Every single scenario iteration is executed with specified frequency\n(runs per second) in a pool of processes. The scenario will be\nlaunched for a fixed number of times in total (specified in the config).\n\nAn example of a rps scenario is booting 1 VM per second. This\nexecution type is thus very helpful in understanding the maximal load that\na certain cloud can handle.", 
+                    "module": "rally.plugins.common.runners.rps", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario Runner", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "required": [
+                            "times", 
+                            "rps"
+                        ], 
+                        "type": "object", 
+                        "properties": {
+                            "max_cpu_count": {
+                                "minimum": 1, 
+                                "type": "integer"
+                            }, 
+                            "max_concurrency": {
+                                "minimum": 1, 
+                                "type": "integer"
+                            }, 
+                            "rps": {
+                                "anyOf": [
+                                    {
+                                        "type": "number", 
+                                        "minimum": 0, 
+                                        "exclusiveMinimum": true, 
+                                        "description": "Generate constant requests per second during the whole workload."
+                                    }, 
+                                    {
+                                        "additionalProperties": false, 
+                                        "required": [
+                                            "start", 
+                                            "end", 
+                                            "step"
+                                        ], 
+                                        "type": "object", 
+                                        "description": "Increase requests per second for specified value each time after a certain number of seconds.", 
+                                        "properties": {
+                                            "duration": {
+                                                "minimum": 1, 
+                                                "type": "number"
+                                            }, 
+                                            "start": {
+                                                "minimum": 1, 
+                                                "type": "number"
+                                            }, 
+                                            "step": {
+                                                "minimum": 1, 
+                                                "type": "number"
+                                            }, 
+                                            "end": {
+                                                "minimum": 1, 
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }, 
+                            "timeout": {
+                                "type": "number"
+                            }, 
+                            "times": {
+                                "minimum": 1, 
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }, 
+                "serial@default": {
+                    "introduced_in": null, 
+                    "name": "serial", 
+                    "parameters": [], 
+                    "title": "Scenario runner that executes scenarios serially.", 
+                    "description": "Unlike scenario runners that execute in parallel, the serial scenario\nrunner executes scenarios one-by-one in the same python interpreter process\nas Rally. This allows you to execute scenario without introducing\nany concurrent operations as well as interactively debug the scenario\nfrom the same command that you use to start Rally.", 
+                    "module": "rally.plugins.common.runners.serial", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Scenario Runner", 
+                    "schema": {
+                        "additionalProperties": true, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "properties": {
+                            "times": {
+                                "minimum": 1, 
+                                "type": "integer"
+                            }
+                        }
+                    }
+                }
+            }
+        }, 
+        "Verification Reporter": {
+            "description": "Base class for all reporters for verifications.", 
+            "plugins": {
+                "html-static@default": {
+                    "introduced_in": null, 
+                    "name": "html-static", 
+                    "parameters": [], 
+                    "title": "Generates verification report in HTML format with embedded JS/CSS.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.verification.reporters", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Verification Reporter", 
+                    "schema": null
+                }, 
+                "html@default": {
+                    "introduced_in": null, 
+                    "name": "html", 
+                    "parameters": [], 
+                    "title": "Generates verification report in HTML format.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.verification.reporters", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Verification Reporter", 
+                    "schema": null
+                }, 
+                "json@default": {
+                    "introduced_in": null, 
+                    "name": "json", 
+                    "parameters": [], 
+                    "title": "Generates verification report in JSON format.", 
+                    "description": "An example of the report (All dates, numbers, names appearing in this\nexample are fictitious. Any resemblance to real things is purely\ncoincidental):\n\n  .. code-block:: json\n\n    {\"verifications\": {\n        \"verification-uuid-1\": {\n            \"status\": \"finished\",\n            \"skipped\": 1,\n            \"started_at\": \"2001-01-01T00:00:00\",\n            \"finished_at\": \"2001-01-01T00:05:00\",\n            \"tests_duration\": 5,\n            \"run_args\": {\n                \"pattern\": \"set=smoke\",\n                \"xfail_list\": {\"some.test.TestCase.test_xfail\":\n                                   \"Some reason why it is expected.\"},\n                \"skip_list\": {\"some.test.TestCase.test_skipped\":\n                                  \"This test was skipped intentionally\"},\n            },\n            \"success\": 1,\n            \"expected_failures\": 1,\n            \"tests_count\": 3,\n            \"failures\": 0,\n            \"unexpected_success\": 0\n        },\n        \"verification-uuid-2\": {\n            \"status\": \"finished\",\n            \"skipped\": 1,\n            \"started_at\": \"2002-01-01T00:00:00\",\n            \"finished_at\": \"2002-01-01T00:05:00\",\n            \"tests_duration\": 5,\n            \"run_args\": {\n                \"pattern\": \"set=smoke\",\n                \"xfail_list\": {\"some.test.TestCase.test_xfail\":\n                                   \"Some reason why it is expected.\"},\n                \"skip_list\": {\"some.test.TestCase.test_skipped\":\n                                  \"This test was skipped intentionally\"},\n            },\n            \"success\": 1,\n            \"expected_failures\": 1,\n            \"tests_count\": 3,\n            \"failures\": 1,\n            \"unexpected_success\": 0\n        }\n     },\n     \"tests\": {\n        \"some.test.TestCase.test_foo[tag1,tag2]\": {\n            \"name\": \"some.test.TestCase.test_foo\",\n            \"tags\": [\"tag1\",\"tag2\"],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"success\",\n                    \"duration\": \"1.111\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"success\",\n                    \"duration\": \"22.222\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_skipped[tag1]\": {\n            \"name\": \"some.test.TestCase.test_skipped\",\n            \"tags\": [\"tag1\"],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"skipped\",\n                    \"duration\": \"0\",\n                    \"details\": \"Skipped until Bug: 666 is resolved.\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"skipped\",\n                    \"duration\": \"0\",\n                    \"details\": \"Skipped until Bug: 666 is resolved.\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_xfail\": {\n            \"name\": \"some.test.TestCase.test_xfail\",\n            \"tags\": [],\n            \"by_verification\": {\n                \"verification-uuid-1\": {\n                    \"status\": \"xfail\",\n                    \"duration\": \"3\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                },\n                \"verification-uuid-2\": {\n                    \"status\": \"xfail\",\n                    \"duration\": \"3\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                }\n            }\n        },\n        \"some.test.TestCase.test_failed\": {\n            \"name\": \"some.test.TestCase.test_failed\",\n            \"tags\": [],\n            \"by_verification\": {\n                \"verification-uuid-2\": {\n                    \"status\": \"fail\",\n                    \"duration\": \"4\",\n                    \"details\": \"Some reason why it is expected.\\n\\n\"\n                        \"Traceback (most recent call last): \\n\"\n                        \"  File \"fake.py\", line 13, in <module>\\n\"\n                        \"    yyy()\\n\"\n                        \"  File \"fake.py\", line 11, in yyy\\n\"\n                        \"    xxx()\\n\"\n                        \"  File \"fake.py\", line 8, in xxx\\n\"\n                        \"    bar()\\n\"\n                        \"  File \"fake.py\", line 5, in bar\\n\"\n                        \"    foo()\\n\"\n                        \"  File \"fake.py\", line 2, in foo\\n\"\n                        \"    raise Exception()\\n\"\n                        \"Exception\"\n                    }\n                }\n            }\n        }\n    }", 
+                    "module": "rally.plugins.common.verification.reporters", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Verification Reporter", 
+                    "schema": null
+                }, 
+                "junit-xml@default": {
+                    "introduced_in": null, 
+                    "name": "junit-xml", 
+                    "parameters": [], 
+                    "title": "Generates verification report in JUnit-XML format.", 
+                    "description": "An example of the report (All dates, numbers, names appearing in this\nexample are fictitious. Any resemblance to real things is purely\ncoincidental):\n\n  .. code-block:: xml\n\n    <testsuites>\n      <!--Report is generated by Rally 0.8.0 at 2002-01-01T00:00:00-->\n      <testsuite id=\"verification-uuid-1\"\n                 tests=\"9\"\n                 time=\"1.111\"\n                 errors=\"0\"\n                 failures=\"3\"\n                 skipped=\"0\"\n                 timestamp=\"2001-01-01T00:00:00\">\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_foo\"\n                  time=\"8\"\n                  timestamp=\"2001-01-01T00:01:00\" />\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_skipped\"\n                  time=\"0\"\n                  timestamp=\"2001-01-01T00:02:00\">\n          <skipped>Skipped until Bug: 666 is resolved.</skipped>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_xfail\"\n                  time=\"3\"\n                  timestamp=\"2001-01-01T00:03:00\">\n          <!--It is an expected failure due to: something-->\n          <!--Traceback:\n    HEEELP-->\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_uxsuccess\"\n                  time=\"3\"\n                  timestamp=\"2001-01-01T00:04:00\">\n          <failure>\n              It is an unexpected success. The test should fail due to:\n              It should fail, I said!\n          </failure>\n        </testcase>\n      </testsuite>\n      <testsuite id=\"verification-uuid-2\"\n                 tests=\"99\"\n                 time=\"22.222\"\n                 errors=\"0\"\n                 failures=\"33\"\n                 skipped=\"0\"\n                 timestamp=\"2002-01-01T00:00:00\">\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_foo\"\n                  time=\"8\"\n                  timestamp=\"2001-02-01T00:01:00\" />\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_failed\"\n                  time=\"8\"\n                  timestamp=\"2001-02-01T00:02:00\">\n          <failure>HEEEEEEELP</failure>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_skipped\"\n                  time=\"0\"\n                  timestamp=\"2001-02-01T00:03:00\">\n          <skipped>Skipped until Bug: 666 is resolved.</skipped>\n        </testcase>\n        <testcase classname=\"some.test.TestCase\"\n                  name=\"test_xfail\"\n                  time=\"4\"\n                  timestamp=\"2001-02-01T00:04:00\">\n          <!--It is an expected failure due to: something-->\n          <!--Traceback:\n    HEEELP-->\n        </testcase>\n      </testsuite>\n    </testsuites>", 
+                    "module": "rally.plugins.common.verification.reporters", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Verification Reporter", 
+                    "schema": null
+                }
+            }
+        }, 
+        "SLA": {
+            "description": "Factory for criteria classes.", 
+            "plugins": {
+                "failure_rate@default": {
+                    "introduced_in": null, 
+                    "name": "failure_rate", 
+                    "parameters": [], 
+                    "title": "Failure rate minimum and maximum in percents.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.sla.failure_rate", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "properties": {
+                            "max": {
+                                "minimum": 0.0, 
+                                "type": "number", 
+                                "maximum": 100.0
+                            }, 
+                            "min": {
+                                "minimum": 0.0, 
+                                "type": "number", 
+                                "maximum": 100.0
+                            }
+                        }, 
+                        "minProperties": 1
+                    }
+                }, 
+                "max_avg_duration@default": {
+                    "introduced_in": null, 
+                    "name": "max_avg_duration", 
+                    "parameters": [], 
+                    "title": "Maximum average duration of one iteration in seconds.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.sla.max_average_duration", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "type": "number", 
+                        "minimum": 0.0, 
+                        "exclusiveMinimum": true
+                    }
+                }, 
+                "max_avg_duration_per_atomic@default": {
+                    "introduced_in": null, 
+                    "name": "max_avg_duration_per_atomic", 
+                    "parameters": [], 
+                    "title": "Maximum average duration of one iterations atomic actions in seconds.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.sla.max_average_duration_per_atomic", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "type": "object", 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "patternProperties": {
+                            ".*": {
+                                "type": "number", 
+                                "description": "The name of atomic action."
+                            }
+                        }, 
+                        "minProperties": 1
+                    }
+                }, 
+                "max_seconds_per_iteration@default": {
+                    "introduced_in": null, 
+                    "name": "max_seconds_per_iteration", 
+                    "parameters": [], 
+                    "title": "Maximum time for one iteration in seconds.", 
+                    "description": "", 
+                    "module": "rally.plugins.common.sla.iteration_time", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "type": "number", 
+                        "minimum": 0.0, 
+                        "exclusiveMinimum": true
+                    }
+                }, 
+                "outliers@default": {
+                    "introduced_in": null, 
+                    "name": "outliers", 
+                    "parameters": [], 
+                    "title": "Limit the number of outliers (iterations that take too much time).", 
+                    "description": "The outliers are detected automatically using the computation of the mean\nand standard deviation (std) of the data.", 
+                    "module": "rally.plugins.common.sla.outliers", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "type": "object", 
+                        "properties": {
+                            "max": {
+                                "minimum": 0, 
+                                "type": "integer"
+                            }, 
+                            "min_iterations": {
+                                "minimum": 3, 
+                                "type": "integer"
+                            }, 
+                            "sigmas": {
+                                "type": "number", 
+                                "minimum": 0.0, 
+                                "exclusiveMinimum": true
+                            }
+                        }
+                    }
+                }, 
+                "performance_degradation@default": {
+                    "introduced_in": null, 
+                    "name": "performance_degradation", 
+                    "parameters": [], 
+                    "title": "Calculates performance degradation based on iteration time", 
+                    "description": "This SLA plugin finds minimum and maximum duration of\niterations completed without errors during Rally task execution.\nAssuming that minimum duration is 100%, it calculates\nperformance degradation against maximum duration.", 
+                    "module": "rally.plugins.common.sla.performance_degradation", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "SLA", 
+                    "schema": {
+                        "additionalProperties": false, 
+                        "$schema": "http://json-schema.org/draft-04/schema", 
+                        "required": [
+                            "max_degradation"
+                        ], 
+                        "type": "object", 
+                        "properties": {
+                            "max_degradation": {
+                                "minimum": 0.0, 
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
             }
         }
     }, 
@@ -1630,17 +1733,5 @@
             }
         ]
     }, 
-    "plugins_bases": {
-        "Resource Type": "", 
-        "Scenario": "This is base class for any scenario.\n\nAll Scenario Plugins should be subclass of this class.\n", 
-        "Scenario Runner": "Base class for all scenario runners.\n\nScenario runner is an entity that implements a certain strategy of\nlaunching scenarios plugins, e.g. running them continuously or\nperiodically for a given number of times or seconds.\nThese strategies should be implemented in subclasses of ScenarioRunner\nin the_run_scenario() method.\n", 
-        "Validator": "A base class for all validators.", 
-        "Hook Trigger": "Factory for hook trigger classes.", 
-        "Context": "", 
-        "Task Exporter": "Base class for all exporters for Tasks.", 
-        "Verification Reporter": "Base class for all reporters for verifications.", 
-        "SLA": "Factory for criteria classes.", 
-        "Hook Action": "Factory for hook classes.", 
-        "Chart": "Base class for charts.\n\nThis is a base for all plugins that prepare data for specific charts\nin HTML report. Each chart must at least declare chart widget and\nprepare data that is suitable for rendering by JavaScript.\n"
-    }
+    "plugins_bases": {}
 }
