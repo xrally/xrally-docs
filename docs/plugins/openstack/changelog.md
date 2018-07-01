@@ -14,6 +14,19 @@ Please leave these notes as much as possible human oriented. -->
 <!-- Release notes for existing releases are MUTABLE! If there is something that
 was missed or can be improved, feel free to change it! -->
 
+## [1.2.0] - 2018-06-25
+
+Rally 1.0.0 has released. This is a major release which doesn't contain
+in-tree OpenStack plugins. Also, this release extends flexibility of
+validating required platforms which means that logic of required admin/users
+for the plugin can be implemented at **rally-openstack** side and this is
+done in rally-openstack 1.2.0
+
+### Changed
+
+Also, it is sad to mention, but due to OpenStack policies we need to stop
+duplicating release notes at `git tag message`. At least for now.
+
 ## [1.1.0] - 2018-05-11
 
 ### Added
@@ -101,6 +114,6 @@ project](https://github.com/openstack/rally/tree/0.11.1/rally/plugins/openstack)
 
 ### Fixed
 
-- The support of [kubernetes python client](https://pypi.python.org/pypi/kubernetes) (which is used by Magnum plugins)
+- The support of [kubernetes python client](https://pypi.org/project/kubernetes) (which is used by Magnum plugins)
   is not limited by 3.0.0 max version. You can use more modern releases of that
   library.

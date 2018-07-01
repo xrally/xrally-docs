@@ -105,12 +105,6 @@
 ```
 
 ```
-# HTTP timeout for any of OpenStack service in seconds
-# (floating point value)
-#openstack_client_http_timeout = 180.0
-```
-
-```
 # Enables or disables publication of error events.
 # (boolean value)
 #publish_errors = False

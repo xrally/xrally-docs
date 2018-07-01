@@ -3,13 +3,13 @@
          "name": "rally",
          "title": "In-tree",
          "repository": "https://github.com/openstack/rally",
-         "versions": ["0.11.0", "0.12.1"]
+         "versions": ["0.11.0", "1.0.0"]
     },
     {
          "name": "rally-openstack",
          "title": "OpenStack",
          "repository": "https://github.com/openstack/rally-openstack",
-         "versions": ["1.0.0", "1.1.0"],
+         "versions": ["1.0.0", "1.2.0"],
          "changelog_file": "CHANGELOG.rst"
     },
     {
@@ -20,9 +20,10 @@
          "changelog_file": "CHANGELOG.md"
     },
     {
-         "name": "xrally-kuberneted",
+         "name": "xrally-kubernetes",
          "title": "Kubernetes",
          "repository": "https://github.com/xrally/xrally-kubernetes",
-         "description": "A set of xRally plugins to run workloads against Kubernetes platform."
+         "versions": ["1.0.0", "1.0.0"],
+         "changelog_file": "CHANGELOG.md"
     }
 ]

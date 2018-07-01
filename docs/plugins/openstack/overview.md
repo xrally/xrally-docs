@@ -1,6 +1,6 @@
 # OpenStack
 
-__Relevant release__: 1.1.0
+__Relevant release__: 1.2.0
 
 __Repository__: <https://github.com/openstack/rally-openstack>
 

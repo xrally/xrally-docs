@@ -1,6 +1,6 @@
 # Plugins for OpenStack
 
-Processed releases: rally-openstack 1.0.0 - 1.1.0
+Processed releases: rally-openstack 1.0.0 - 1.2.0
 
 ## Environment Component
 
@@ -4687,7 +4687,7 @@ __Module__: [rally_openstack.scenarios.cinder.volume_types](https://github.com/o
 
 Create get and delete an encryption type.
 
-This scenario firstly creates an encryption type for a volome
+This scenario firstly creates an encryption type for a volume
 type created in the context, then gets detailed information of
 the created encryption type, finally deletes the created
 encryption type.
@@ -6815,6 +6815,79 @@ __Module__: [rally_openstack.scenarios.ec2.servers](https://github.com/openstack
 
 <hr />
 
+#### ElasticsearchLogging.log_instance [Scenario]
+
+Create nova instance and check it indexed in elasticsearch.
+
+__Platform__: openstack
+
+__Introduced in__: 1.2.0
+
+<table>
+  <caption>Parameters</caption>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-image"></a>image<a href="#ScenarioElasticsearchLogginglog-instance-image"> [ref]</a>
+      </td>
+      <td>image for server
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-flavor"></a>flavor<a href="#ScenarioElasticsearchLogginglog-instance-flavor"> [ref]</a>
+      </td>
+      <td>flavor for server
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-logging-vip"></a>logging_vip<a href="#ScenarioElasticsearchLogginglog-instance-logging-vip"> [ref]</a>
+      </td>
+      <td>logging system IP to check server name in
+elasticsearch index
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-elasticsearch-port"></a>elasticsearch_port<a href="#ScenarioElasticsearchLogginglog-instance-elasticsearch-port"> [ref]</a>
+      </td>
+      <td>elasticsearch port to use for check server
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-sleep-time"></a>sleep_time<a href="#ScenarioElasticsearchLogginglog-instance-sleep-time"> [ref]</a>
+      </td>
+      <td>sleep time in seconds between elasticsearch request
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioElasticsearchLogginglog-instance-retries-total"></a>retries_total<a href="#ScenarioElasticsearchLogginglog-instance-retries-total"> [ref]</a>
+      </td>
+      <td>total number of retries to check server name in
+elasticsearch
+</td>
+    </tr>
+  </tbody>
+</table>
+
+
+__Requires platform(s)__:
+
+* openstack with the next options: {u'admin': True}
+
+__Module__: [rally_openstack.scenarios.elasticsearch.logging](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/elasticsearch/logging.py)
+
+<hr />
+
 #### GlanceImages.create_and_deactivate_image [Scenario]
 
 Create an image, then deactivate it.
@@ -7954,6 +8027,179 @@ __Requires platform(s)__:
 * openstack with the next options: {u'users': True}
 
 __Module__: [rally_openstack.scenarios.gnocchi.resource_type](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/gnocchi/resource_type.py)
+
+<hr />
+
+#### GrafanaMetrics.push_metric_from_instance [Scenario]
+
+Create nova instance with pushing metric script as userdata.
+
+Push metric to metrics storage using Pushgateway and check it in
+Grafana.
+
+__Platform__: openstack
+
+__Introduced in__: 1.2.0
+
+<table>
+  <caption>Parameters</caption>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-image"></a>image<a href="#ScenarioGrafanaMetricspush-metric-from-instance-image"> [ref]</a>
+      </td>
+      <td>image for server with userdata script
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-flavor"></a>flavor<a href="#ScenarioGrafanaMetricspush-metric-from-instance-flavor"> [ref]</a>
+      </td>
+      <td>flavor for server with userdata script
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-monitor-vip"></a>monitor_vip<a href="#ScenarioGrafanaMetricspush-metric-from-instance-monitor-vip"> [ref]</a>
+      </td>
+      <td>monitoring system IP to push metric
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-pushgateway-port"></a>pushgateway_port<a href="#ScenarioGrafanaMetricspush-metric-from-instance-pushgateway-port"> [ref]</a>
+      </td>
+      <td>Pushgateway port to use for pushing metric
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-grafana"></a>grafana<a href="#ScenarioGrafanaMetricspush-metric-from-instance-grafana"> [ref]</a>
+      </td>
+      <td>Grafana dict with creds and port to use for checking
+metric. Format: {user: admin, password: pass, port: 9902}
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-datasource-id"></a>datasource_id<a href="#ScenarioGrafanaMetricspush-metric-from-instance-datasource-id"> [ref]</a>
+      </td>
+      <td>metrics storage datasource ID in Grafana
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-job-name"></a>job_name<a href="#ScenarioGrafanaMetricspush-metric-from-instance-job-name"> [ref]</a>
+      </td>
+      <td>job name to push metric in it
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-sleep-time"></a>sleep_time<a href="#ScenarioGrafanaMetricspush-metric-from-instance-sleep-time"> [ref]</a>
+      </td>
+      <td>sleep time between checking metrics in seconds
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-from-instance-retries-total"></a>retries_total<a href="#ScenarioGrafanaMetricspush-metric-from-instance-retries-total"> [ref]</a>
+      </td>
+      <td>total number of retries to check metric in
+Grafana
+</td>
+    </tr>
+  </tbody>
+</table>
+
+
+__Requires platform(s)__:
+
+* openstack with the next options: {u'admin': True}
+
+__Module__: [rally_openstack.scenarios.grafana.metrics](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/grafana/metrics.py)
+
+<hr />
+
+#### GrafanaMetrics.push_metric_locally [Scenario]
+
+Push random metric to Pushgateway locally and check it in Grafana.
+
+__Platform__: openstack
+
+__Introduced in__: 1.2.0
+
+<table>
+  <caption>Parameters</caption>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-monitor-vip"></a>monitor_vip<a href="#ScenarioGrafanaMetricspush-metric-locally-monitor-vip"> [ref]</a>
+      </td>
+      <td>monitoring system IP to push metric
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-pushgateway-port"></a>pushgateway_port<a href="#ScenarioGrafanaMetricspush-metric-locally-pushgateway-port"> [ref]</a>
+      </td>
+      <td>Pushgateway port to use for pushing metric
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-grafana"></a>grafana<a href="#ScenarioGrafanaMetricspush-metric-locally-grafana"> [ref]</a>
+      </td>
+      <td>Grafana dict with creds and port to use for checking
+metric. Format: {user: admin, password: pass, port: 9902}
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-datasource-id"></a>datasource_id<a href="#ScenarioGrafanaMetricspush-metric-locally-datasource-id"> [ref]</a>
+      </td>
+      <td>metrics storage datasource ID in Grafana
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-job-name"></a>job_name<a href="#ScenarioGrafanaMetricspush-metric-locally-job-name"> [ref]</a>
+      </td>
+      <td>job name to push metric in it
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-sleep-time"></a>sleep_time<a href="#ScenarioGrafanaMetricspush-metric-locally-sleep-time"> [ref]</a>
+      </td>
+      <td>sleep time between checking metrics in seconds
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="ScenarioGrafanaMetricspush-metric-locally-retries-total"></a>retries_total<a href="#ScenarioGrafanaMetricspush-metric-locally-retries-total"> [ref]</a>
+      </td>
+      <td>total number of retries to check metric in
+Grafana
+</td>
+    </tr>
+  </tbody>
+</table>
+
+
+__Module__: [rally_openstack.scenarios.grafana.metrics](https://github.com/openstack/rally-openstack/blob/master/rally_openstack/scenarios/grafana/metrics.py)
 
 <hr />
 

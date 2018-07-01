@@ -38,7 +38,11 @@ pages:
     - {Plugins: plugins/docker/plugins.md}
     - {ChangeLog: plugins/docker/changelog.md}
     - {Config Options: plugins/docker/options.md}
-  - {Kubernetes: plugins/kubernetes/overview.md}
+  - Kubernetes:
+    - {Overview: plugins/kubernetes/overview.md}
+    - {Plugins: plugins/kubernetes/plugins.md}
+    - {ChangeLog: plugins/kubernetes/changelog.md}
+    - {Config Options: plugins/kubernetes/options.md}
   - OpenStack:
     - {Overview: plugins/openstack/overview.md}
     - {Plugins: plugins/openstack/plugins.md}
