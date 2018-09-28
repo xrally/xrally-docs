@@ -50,19 +50,20 @@ specification json/yaml file. See the list of available options:
   etc), Rally team provides this way. Check [existing@kubernetes plugin documentation](https://xrally.org/plugins/kubernetes/plugins/#existing-platform)
   for the list of all available variables. Here is a simple example of this feature:
 
-  ```console
-  # the URL to the Kubernetes host.
-  export KUBERNETES_HOST="https://example.com:3030"
-  #  a path to a file containing TLS certificate to use when connecting to the Kubernetes host.
-  export KUBERNETES_CERT_AUTH="~/.kube/cert_auth_file"
-  # client API key to use as token when connecting to the Kubernetes host.
-  export KUBERNETES_API_KEY="foo"
-  # client API key prefix to use in token when connecting to the Kubernetes host.
-  export KUBERNETES_API_KEY_PREFIX="bar"
+```console
+# the URL to the Kubernetes host.
+export KUBERNETES_HOST="https://example.com:3030"
+#  a path to a file containing TLS certificate to use when connecting to the Kubernetes host.
+export KUBERNETES_CERT_AUTH="~/.kube/cert_auth_file"
+# client API key to use as token when connecting to the Kubernetes host.
+export KUBERNETES_API_KEY="foo"
+# client API key prefix to use in token when connecting to the Kubernetes host.
+export KUBERNETES_API_KEY_PREFIX="bar"
 
-  # finally create a Rally environment
-  rally env create --name my-kubernetes --from-sysenv
-  ```
+# finally create a Rally environment
+rally env create --name my-kubernetes --from-sysenv
+```
+
 Check env availbility by the following command:
 
 ```console
