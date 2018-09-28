@@ -1,6 +1,6 @@
 # In-tree plugins.
 
-Processed releases: rally 0.11.0 - 1.0.0
+Processed releases: rally 0.11.0 - 1.2.1
 
 ## Task Component
 
@@ -1174,11 +1174,19 @@ __Module__: [rally.plugins.common.runners.serial](https://github.com/openstack/r
 
 ### Task Exporter
 
-Base class for all exporters for Tasks.
+Plugin base for exporting tasks results to different systems&formats.
+
+This type of plugins is designed to provide the way to present results in
+different formats and send them to the different systems.
+
+- **To discover available plugins, call**
+`rally plugin list --plugin-base TaskExporter`.
+- **To export results of a task, call**
+`rally task export --uuid <task-uuid> --type <plugin-name> --to <dest>`
 
 #### elastic [Task Exporter]
 
-Exports task results to the ElasticSearch 2.x or 5.x clusters.
+Exports task results to the ElasticSearch 2.x, 5.x or 6.x clusters.
 
 The exported data includes:
 
@@ -1437,6 +1445,66 @@ __Module__: [rally.plugins.common.validators](https://github.com/openstack/rally
 JSON schema validator.
 
 __Platform__: default
+
+__Module__: [rally.plugins.common.validators](https://github.com/openstack/rally/blob/master/rally/plugins/common/validators.py)
+
+<hr />
+
+#### map_keys [Validator]
+
+Check that parameter contains specified keys.
+
+__Platform__: default
+
+__Introduced in__: 1.2.0
+
+<table>
+  <caption>Parameters</caption>
+  <thead>
+    <tr>
+      <th>Argument</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="Validatormap-keys-param-name"></a>param_name<a href="#Validatormap-keys-param-name"> [ref]</a>
+      </td>
+      <td>Name of parameter to validate
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="Validatormap-keys-required"></a>required<a href="#Validatormap-keys-required"> [ref]</a>
+      </td>
+      <td>List of all required keys
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="Validatormap-keys-allowed"></a>allowed<a href="#Validatormap-keys-allowed"> [ref]</a>
+      </td>
+      <td>List of all allowed keys
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="Validatormap-keys-additional"></a>additional<a href="#Validatormap-keys-additional"> [ref]</a>
+      </td>
+      <td>Whether additional keys are allowed. If list of allowed
+keys are specified, defaults to False, otherwise defaults to True
+</td>
+    </tr>
+    <tr>
+      <td style="white-space: nowrap">
+        <a name="Validatormap-keys-missed"></a>missed<a href="#Validatormap-keys-missed"> [ref]</a>
+      </td>
+      <td>Allow to accept optional parameter</td>
+    </tr>
+  </tbody>
+</table>
+
 
 __Module__: [rally.plugins.common.validators](https://github.com/openstack/rally/blob/master/rally/plugins/common/validators.py)
 

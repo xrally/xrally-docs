@@ -17,6 +17,36 @@
  
 -->
 
+## [1.1.0] - 2018-09-28
+
+**Added**
+
+* [context plugin] namespaces - create number of namespaces (with
+  non-default serviceAccounts optionally)
+* [scenario plugin] Kubernetes.create_and_delete_pod
+* [scenario plugin] Kubernetes.create_and_delete_replication_controller
+* [scenario plugin] Kubernetes.create_scale_and_delete_replication_controller
+* [scenario plugin] Kubernetes.create_and_delete_replicaset
+* [scenario plugin] Kubernetes.create_scale_and_delete_replicaset
+* [scenario plugin] Kubernetes.create_and_delete_pod_with_emptydir_volume
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_emptydir_volume
+* [scenario plugin] Kubernetes.create_and_delete_pod_with_hostpath_volume
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_hostpath_volume
+* [scenario plugin] Kubernetes.create_and_delete_pod_with_secret_volume
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_secret_volume
+* [scenario plugin] Kubernetes.create_and_delete_pod_with_configmap_volume
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_configmap_volume
+* [scenario plugin] Kubernetes.create_and_delete_pod_with_local_persistent_volume
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_local_persistent_volume
+* [scenario plugin] Kubernetes.create_and_delete_deployment
+* [scenario plugin] Kubernetes.create_rollout_and_delete_deployment
+* [scenario plugin] Kubernetes.create_and_delete_job
+* [scenario plugin] Kubernetes.create_and_delete_statefulset
+* [scenario plugin] Kubernetes.create_scale_and_delete_statefulset
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_cluster_ip_service
+* [scenario plugin] Kubernetes.create_check_and_delete_pod_with_node_port_service
+* [scenario plugin] Kubernetes.create_check_and_delete_daemonset
+
 ## [1.0.0] - 2018-06-26
 
 The start. Initial release. Have fun! ;)

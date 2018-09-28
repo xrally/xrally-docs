@@ -1,6 +1,6 @@
 # Plugins for Kubernetes
 
-Processed releases: xrally-kubernetes 1.0.0 - 1.0.0
+Processed releases: xrally-kubernetes 1.0.0 - 1.1.1
 
 ## Environment Component
 
@@ -19,41 +19,33 @@ certificates or defining auth token.
 To search configuration in kubeconfig file, rally checks standard
 `$HOME/.kube/config` file or get `KUBECONFIG` envvar.
 
-To define certificates to connect next environment variables used:
+To define certificates to connect next variables used:
 
-!!! Quote "$KUBERNETES_HOST" 
-    The URL to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_TLS_INSECURE" 
-    Not to verify the host against a CA certificate.
-
-!!! Quote "$KUBERNETES_CERT_AUTH" 
-    A path to a file containing TLS certificate to use when
-    connecting to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_CLIENT_CERT" 
-    A path to a file containing client certificate to use when
-    connecting to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_CLIENT_KEY" 
-    A path to a file containing client key to use when connecting to
-    the Kubernetes host.
+The URL to the Kubernetes host.
+.. envvar:: KUBERNETES_TLS_INSECURE
+Not to verify the host against a CA certificate.
+.. envvar:: KUBERNETES_CERT_AUTH
+A path to a file containing TLS certificate to use when
+connecting to the Kubernetes host.
+.. envvar:: KUBERNETES_CLIENT_CERT
+A path to a file containing client certificate to use when
+connecting to the Kubernetes host.
+.. envvar:: KUBERNETES_CLIENT_KEY
+A path to a file containing client key to use when connecting to
+the Kubernetes host.
 
 To define auth token to connect next variables used:
 
-!!! Quote "$KUBERNETES_HOST" 
-    The URL to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_CERT_AUTH" 
-    A path to a file containing TLS certificate to use when
-    connecting to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_API_KEY" 
-    Client API key to use as token when connecting to the Kubernetes host.
-
-!!! Quote "$KUBERNETES_API_KEY_PREFIX" 
-    Client API key prefix to use in token when connecting to the
-    Kubernetes host.
+The URL to the Kubernetes host.
+.. envvar:: KUBERNETES_CERT_AUTH
+A path to a file containing TLS certificate to use when
+connecting to the Kubernetes host.
+.. envvar:: KUBERNETES_API_KEY
+Client API key to use as token when connecting to the Kubernetes
+host.
+.. envvar:: KUBERNETES_API_KEY_PREFIX
+Client API key prefix to use in token when connecting to the
+Kubernetes host.
 
 __Platform__: kubernetes
 

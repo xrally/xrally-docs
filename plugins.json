@@ -3,7 +3,7 @@
          "name": "rally",
          "title": "In-tree",
          "repository": "https://github.com/openstack/rally",
-         "versions": ["0.11.0", "1.0.0"]
+         "versions": ["0.11.0", "1.2.1"]
     },
     {
          "name": "rally-openstack",
@@ -23,7 +23,7 @@
          "name": "xrally-kubernetes",
          "title": "Kubernetes",
          "repository": "https://github.com/xrally/xrally-kubernetes",
-         "versions": ["1.0.0", "1.0.0"],
+         "versions": ["1.0.0", "1.1.1"],
          "changelog_file": "CHANGELOG.md"
     }
 ]

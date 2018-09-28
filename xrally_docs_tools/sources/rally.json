@@ -3,7 +3,7 @@
     "repository": "https://github.com/openstack/rally", 
     "versions": [
         "0.11.0", 
-        "1.0.0"
+        "1.2.1"
     ], 
     "pkg_info": {
         "Name": "rally", 
@@ -13,8 +13,8 @@
         "Home-page": "https://docs.openstack.org/rally/latest/", 
         "Summary": "Generic Testing Framework & Tool that unifies all types of testing.", 
         "Platform": "UNKNOWN", 
-        "Classifier": "Programming Language :: Python :: 3.5", 
-        "Version": "1.0.0", 
+        "Classifier": "Programming Language :: Python :: 3.7", 
+        "Version": "1.2.1", 
         "Provides-Extra": "mysql", 
         "Author-email": "openstack-dev@lists.openstack.org", 
         "Description": "=====\n        Rally\n        =====\n        \n        Rally is tool & framework that allows one to write simple plugins and combine\n        them in complex tests scenarios that allows to perform all kinds of testing!\n        \n        Team and repository tags\n        ========================\n        \n        .. image:: https://governance.openstack.org/tc/badges/rally.svg\n            :target: https://governance.openstack.org/tc/reference/tags/index.html\n        \n        .. image:: https://img.shields.io/pypi/v/rally.svg\n            :target: https://pypi.org/project/rally/\n            :alt: Latest Version\n        \n        .. image:: https://img.shields.io/badge/gitter-join_chat-ff69b4.svg\n            :target: https://gitter.im/rally-dev/Lobby\n            :alt: Gitter Chat\n        \n        .. image:: https://img.shields.io/badge/tasks-trello_board-blue.svg\n            :target: https://trello.com/b/DoD8aeZy/rally\n            :alt: Trello Board\n        \n        .. image:: https://img.shields.io/github/license/openstack/rally.svg\n            :target: https://www.apache.org/licenses/LICENSE-2.0\n            :alt: Apache License, Version 2.0\n        \n        \n        What is Rally\n        =============\n        \n        Rally is intended to provide a testing framework that is\n        capable to perform **specific**, **complicated** and **reproducible**\n        test cases on **real deployment** scenarios.\n        \n        **Rally** workflow can be visualized by the following diagram:\n        \n        .. image:: doc/source/images/Rally-Actions.png\n           :alt: Rally Architecture\n        \n        \n        Who Is Using Rally\n        ==================\n        \n        .. image:: doc/source/images/Rally_who_is_using.png\n           :alt: Who is Using Rally\n        \n        \n        Documentation\n        =============\n        \n        `Rally documentation on ReadTheDocs <https://rally.readthedocs.org/en/latest/>`_\n        is a perfect place to start learning about Rally. It provides you with an\n        **easy** and **illustrative** guidance through this benchmarking tool.\n        \n        For example, check out the `Rally step-by-step tutorial\n        <https://rally.readthedocs.io/en/latest/quick_start/tutorial.html>`_ that\n        explains, in a series of lessons, how to explore the power of Rally in\n        benchmarking your OpenStack clouds.\n        \n        Architecture\n        ------------\n        \n        In terms of software architecture, Rally is built of 4 main components:\n        \n        1. **Environment** - one of key component in Rally. It manages and stores\n           information about tested platforms. Env manager is using platform plugins\n           to: create, delete, cleanup, check health, obtain information about\n           platforms.\n        2. **Task** component is responsible for executing tests defined in\n           task specs, persisting and reporting results.\n        3. **Verification** component allows to wrap subunit-based testing tools and\n           provide complete tool on top of them with allow to do pre configuration,\n           post cleanup as well process and persist results to Rally DB for future use\n           like reporting and results comparing.\n        \n        Use Cases\n        ---------\n        \n        There are 3 major high level Rally Use Cases:\n        \n        .. image:: doc/source/images/Rally-UseCases.png\n           :alt: Rally Use Cases\n        \n        \n        Typical cases where Rally aims to help are:\n        \n        - Automate measuring & profiling focused on how new code changes affect the\n          OpenStack performance;\n        - Using Rally profiler to detect scaling & performance issues;\n        - Investigate how different deployments affect the OS performance:\n        \n            - Find the set of suitable OpenStack deployment architectures;\n            - Create deployment specifications for different loads (amount of\n              controllers, swift nodes, etc.);\n        - Automate the search for hardware best suited for particular OpenStack cloud;\n        - Automate the production cloud specification generation:\n        \n            - Determine terminal loads for basic cloud operations: VM start & stop,\n              Block Device create/destroy & various OpenStack API methods;\n            - Check performance of basic cloud operations in case of different loads.\n        \n        Links\n        -----\n        \n        * Free software: Apache license\n        * Documentation: https://rally.readthedocs.org/en/latest/\n        * Source: https://git.openstack.org/cgit/openstack/rally\n        * Bugs: https://bugs.launchpad.net/rally\n        * Step-by-step tutorial: https://rally.readthedocs.io/en/latest/quick_start/tutorial.html\n        * Launchpad page: https://launchpad.net/rally\n        * Gitter chat: https://gitter.im/rally-dev/Lobby\n        * Trello board: https://trello.com/b/DoD8aeZy/rally\n        \n        "
@@ -319,13 +319,13 @@
             }
         }, 
         "Task Exporter": {
-            "description": "Base class for all exporters for Tasks.", 
+            "description": "Plugin base for exporting tasks results to different systems&formats.\n\nThis type of plugins is designed to provide the way to present results in\ndifferent formats and send them to the different systems.\n\nTo discover available plugins, call\n  ``rally plugin list --plugin-base TaskExporter``.\n\nTo export results of a task, call\n  ``rally task export --uuid <task-uuid> --type <plugin-name> --to <dest>``\n", 
             "plugins": {
                 "elastic@default": {
                     "introduced_in": null, 
                     "name": "elastic", 
                     "parameters": [], 
-                    "title": "Exports task results to the ElasticSearch 2.x or 5.x clusters.", 
+                    "title": "Exports task results to the ElasticSearch 2.x, 5.x or 6.x clusters.", 
                     "description": "The exported data includes:\n\n* Task basic information such as title, description, status,\n  deployment uuid, etc.\n  See rally_task_v1_data index.\n\n* Workload information such as scenario name and configuration, runner\n  type and configuration, time of the start load, success rate, sla\n  details in case of errors, etc.\n  See rally_workload_v1_data index.\n\n* Separate documents for all atomic actions.\n  See rally_atomic_action_data_v1 index.\n\nThe destination can be a remote server. In this case specify it like:\n\n    https://elastic:changeme@example.com\n\nOr we can dump documents to the file. The destination should look like:\n\n    /home/foo/bar.txt\n\nIn case of an empty destination, the http://localhost:9200 destination\nwill be used.", 
                     "module": "rally.plugins.common.exporters.elastic.exporter", 
                     "platform": "default", 
@@ -570,6 +570,39 @@
                     "name": "jsonschema", 
                     "parameters": [], 
                     "title": "JSON schema validator", 
+                    "description": "", 
+                    "module": "rally.plugins.common.validators", 
+                    "platform": "default", 
+                    "returns": "", 
+                    "base": "Validator", 
+                    "schema": null
+                }, 
+                "map_keys@default": {
+                    "introduced_in": "1.2.0", 
+                    "name": "map_keys", 
+                    "parameters": [
+                        {
+                            "doc": "Name of parameter to validate\n", 
+                            "name": "param_name"
+                        }, 
+                        {
+                            "doc": "List of all required keys\n", 
+                            "name": "required"
+                        }, 
+                        {
+                            "doc": "List of all allowed keys\n", 
+                            "name": "allowed"
+                        }, 
+                        {
+                            "doc": "Whether additional keys are allowed. If list of allowed\nkeys are specified, defaults to False, otherwise defaults to True\n", 
+                            "name": "additional"
+                        }, 
+                        {
+                            "doc": "Allow to accept optional parameter", 
+                            "name": "missed"
+                        }
+                    ], 
+                    "title": "Check that parameter contains specified keys.", 
                     "description": "", 
                     "module": "rally.plugins.common.validators", 
                     "platform": "default", 
